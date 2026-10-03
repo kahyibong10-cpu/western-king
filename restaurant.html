@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Restoran Western King</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff4e6;
+    color: #333;
+}
+
+.header {
+    background: linear-gradient(135deg, #d62828, #f77f00);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.header p {
+    margin-top: 8px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.section-title {
+    background: #ffb703;
+    color: #222;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.food {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    border: 2px solid #ffe0b2;
+}
+
+.food h3 {
+    margin-top: 0;
+}
+
+.price {
+    color: #d62828;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add-button {
+    background: #d62828;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.add-button:hover {
+    background: #a4161a;
+}
+
+.cart {
+    background: white;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    border: 2px solid #ffb703;
+}
+
+.cart-item {
+    background: #fff8e7;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.small-button {
+    background: #f77f00;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background: #777;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.checkout {
+    background: #e8f5e9;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #4caf50;
+}
+
+input {
+    padding: 10px;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+}
+
+.confirm-button {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.confirmed {
+    background: #e8f5e9;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #2e7d32;
+}
+
+.new-order-button {
+    background: #1565c0;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.total {
+    color: #d62828;
+    font-size: 22px;
+}
+
+.collection-box {
+    background: #fff3cd;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #ffb703;
+    text-align: center;
+}
+
+.collection-number {
+    font-size: 45px;
+    color: #d62828;
+    margin: 10px;
+}
+
+.status-box {
+    background: #e8f5e9;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ==================== HEADER ==================== -->
+
+<div class="header">
+
+<h1>🍔 RESTORAN WESTERN KING</h1>
+
+<p>🍴 Delicious Food • Great Price • Happy Meal 🍴</p>
+
+</div>
+
+<div class="container">
+
+<!-- ==================== FOOD ==================== -->
+
+<h2 class="section-title">🍗 Food Menu</h2>
+
+<div class="menu">
+
+<div class="food">
+
+<h3>🍗 Chicken Chop</h3>
+
+<p class="price">RM 15.00</p>
+
+<button class="add-button"
+onclick="addToCart('Chicken Chop', 15)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>🍝 Spaghetti</h3>
+
+<p class="price">RM 10.00</p>
+
+<button class="add-button"
+onclick="addToCart('Spaghetti', 10)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>🍔 Chicken Burger</h3>
+
+<p class="price">RM 6.00</p>
+
+<button class="add-button"
+onclick="addToCart('Chicken Burger', 6)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>🍟 French Fries</h3>
+
+<p class="price">RM 5.00</p>
+
+<button class="add-button"
+onclick="addToCart('French Fries', 5)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>🐟 Fish Burger</h3>
+
+<p class="price">RM 8.00</p>
+
+<button class="add-button"
+onclick="addToCart('Fish Burger', 8)">
+Add to Cart </button>
+
+</div>
+
+</div>
+
+<!-- ==================== DRINKS ==================== -->
+
+<h2 class="section-title">🥤 Drinks Menu</h2>
+
+<div class="menu">
+
+<div class="food">
+
+<h3>🥤 Ice Coca-Cola</h3>
+
+<p class="price">RM 3.00</p>
+
+<button class="add-button"
+onclick="addToCart('Ice Coca-Cola', 3)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>💧 Ice Mineral Water</h3>
+
+<p class="price">RM 2.00</p>
+
+<button class="add-button"
+onclick="addToCart('Ice Mineral Water', 2)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>🍋 Ice Lemon Tea</h3>
+
+<p class="price">RM 3.00</p>
+
+<button class="add-button"
+onclick="addToCart('Ice Lemon Tea', 3)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>🥛 Ice Milo</h3>
+
+<p class="price">RM 4.00</p>
+
+<button class="add-button"
+onclick="addToCart('Ice Milo', 4)">
+Add to Cart </button>
+
+</div>
+
+<div class="food">
+
+<h3>🥤 Ice 100 Plus</h3>
+
+<p class="price">RM 3.00</p>
+
+<button class="add-button"
+onclick="addToCart('Ice 100 Plus', 3)">
+Add to Cart </button>
+
+</div>
+
+</div>
+
+<!-- ==================== CART ==================== -->
+
+<div class="cart">
+
+<h2>🛒 Your Order</h2>
+
+<div id="cart-items">
+
+Your cart is empty.
+
+</div>
+
+<h3 class="total">
+
+Total: RM
+
+<span id="total">0.00</span>
+
+</h3>
+
+<button class="add-button"
+onclick="checkout()">
+
+🛍️ Checkout / Order Now
+
+</button>
+
+</div>
+
+<!-- ==================== CHECKOUT ==================== -->
+
+<div id="checkout"
+class="checkout"
+style="display:none;">
+
+<h2>🧾 Checkout</h2>
+
+<p>👤 Customer Name</p>
+
+<input
+type="text"
+id="customerName"
+placeholder="Enter your name"
+
+>
+
+<p>🪑 Table Number</p>
+
+<input
+type="number"
+id="tableNumber"
+placeholder="Enter table number"
+
+>
+
+<h3>📋 Order Summary</h3>
+
+<div id="summary"></div>
+
+<h3 class="total">
+
+Total: RM
+
+<span id="checkoutTotal">0.00</span>
+
+</h3>
+
+<button class="confirm-button"
+onclick="confirmOrder()">
+
+✅ Confirm Order
+
+</button>
+
+</div>
+
+<!-- ==================== CONFIRMED ORDER ==================== -->
+
+<div id="confirmed"
+class="confirmed"
+style="display:none;">
+
+<div id="confirmedOrder"></div>
+
+</div>
+
+</div>
+
+<script>
+
+
+// ==================== CART ====================
+
+let cart = {};
+
+
+// ==================== ADD TO CART ====================
+
+function addToCart(name, price) {
+
+    if (cart[name]) {
+
+        cart[name].quantity++;
+
+    }
+
+    else {
+
+        cart[name] = {
+
+            price: price,
+
+            quantity: 1
+
+        };
+
+    }
+
+    showCart();
+
+}
+
+
+// ==================== PLUS ====================
+
+function plus(name) {
+
+    cart[name].quantity++;
+
+    showCart();
+
+}
+
+
+// ==================== MINUS ====================
+
+function minus(name) {
+
+    cart[name].quantity--;
+
+    if (cart[name].quantity <= 0) {
+
+        delete cart[name];
+
+    }
+
+    showCart();
+
+}
+
+
+// ==================== DELETE ====================
+
+function removeItem(name) {
+
+    delete cart[name];
+
+    showCart();
+
+}
+
+
+// ==================== SHOW CART ====================
+
+function showCart() {
+
+    let box =
+        document.getElementById("cart-items");
+
+    box.innerHTML = "";
+
+    let total = 0;
+
+    let names = Object.keys(cart);
+
+
+    if (names.length === 0) {
+
+        box.innerHTML =
+            "Your cart is empty.";
+
+        document.getElementById("total")
+            .innerText = "0.00";
+
+        return;
+
+    }
+
+
+    for (let i = 0; i < names.length; i++) {
+
+        let name = names[i];
+
+        let item = cart[name];
+
+        let subtotal =
+            item.price * item.quantity;
+
+        total += subtotal;
+
+
+        box.innerHTML +=
+
+        '<div class="cart-item">' +
+
+        "🍴 <b>" + name + "</b>" +
+
+        "<br>" +
+
+        "RM " +
+        item.price.toFixed(2) +
+
+        "<br><br>" +
+
+        '<button class="small-button" ' +
+        'onclick="minus(\'' + name + '\')">' +
+
+        "−" +
+
+        "</button>" +
+
+        " " +
+
+        item.quantity +
+
+        " " +
+
+        '<button class="small-button" ' +
+        'onclick="plus(\'' + name + '\')">' +
+
+        "+" +
+
+        "</button>" +
+
+        " " +
+
+        '<button class="delete-button" ' +
+        'onclick="removeItem(\'' + name + '\')">' +
+
+        "🗑️ Delete" +
+
+        "</button>" +
+
+        "<br><br>" +
+
+        "Subtotal: RM " +
+
+        subtotal.toFixed(2) +
+
+        "</div>";
+
+    }
+
+
+    document.getElementById("total")
+        .innerText = total.toFixed(2);
+
+}
+
+
+// ==================== CHECKOUT ====================
+
+function checkout() {
+
+    if (Object.keys(cart).length === 0) {
+
+        alert("Your cart is empty!");
+
+        return;
+
+    }
+
+
+    document.getElementById("checkout")
+        .style.display = "block";
+
+
+    let summary =
+        document.getElementById("summary");
+
+    summary.innerHTML = "";
+
+
+    let total = 0;
+
+    let names = Object.keys(cart);
+
+
+    for (let i = 0; i < names.length; i++) {
+
+        let name = names[i];
+
+        let item = cart[name];
+
+        let subtotal =
+            item.price * item.quantity;
+
+        total += subtotal;
+
+
+        summary.innerHTML +=
+
+        "<p>" +
+
+        "🍴 <b>" +
+
+        name +
+
+        "</b> × " +
+
+        item.quantity +
+
+        " = RM " +
+
+        subtotal.toFixed(2) +
+
+        "</p>";
+
+    }
+
+
+    document.getElementById("checkoutTotal")
+        .innerText = total.toFixed(2);
+
+}
+
+
+// ==================== CONFIRM ORDER ====================
+
+function confirmOrder() {
+
+    let name =
+        document.getElementById("customerName")
+        .value.trim();
+
+    let table =
+        document.getElementById("tableNumber")
+        .value.trim();
+
+
+    if (name === "") {
+
+        alert("Please enter customer name.");
+
+        return;
+
+    }
+
+
+    if (table === "") {
+
+        alert("Please enter table number.");
+
+        return;
+
+    }
+
+
+    // TOTAL
+
+    let total =
+        document.getElementById("checkoutTotal")
+        .innerText;
+
+
+    // ORDER NUMBER
+
+    let orderNumber =
+        "WK" +
+        Math.floor(1000 + Math.random() * 9000);
+
+
+    // TIME
+
+    let now = new Date();
+
+    let time =
+        now.toLocaleString();
+
+
+    // RESULT
+
+    let result =
+
+        "<h2>🎉 Order Confirmed!</h2>" +
+
+
+        '<div class="collection-box">' +
+
+        "<h2>🔢 Collection Number</h2>" +
+
+        '<h1 class="collection-number">' +
+
+        orderNumber +
+
+        "</h1>" +
+
+        "<p><b>🍔 Please remember this number.</b></p>" +
+
+        "<p>" +
+
+        "When your food is ready, " +
+
+        "please collect your order using this number." +
+
+        "</p>" +
+
+        "</div>" +
+
+
+        "<p>🕐 Time: <b>" +
+
+        time +
+
+        "</b></p>" +
+
+
+        "<p>👤 Customer Name: <b>" +
+
+        name +
+
+        "</b></p>" +
+
+
+        "<p>🪑 Table Number: <b>" +
+
+        table +
+
+        "</b></p>" +
+
+
+        "<p>📦 Status: " +
+
+        '<b style="color:#f77f00;">' +
+
+        "PREPARING" +
+
+        "</b>" +
+
+        "</p>" +
+
+
+        "<h3>📋 Order:</h3>";
+
+
+    // ORDER ITEMS
+
+    let names = Object.keys(cart);
+
+
+    for (let i = 0; i < names.length; i++) {
+
+        let food = names[i];
+
+        let item = cart[food];
+
+        let subtotal =
+            item.price * item.quantity;
+
+
+        result +=
+
+        "<p>" +
+
+        "🍴 " +
+
+        food +
+
+        " × " +
+
+        item.quantity +
+
+        " = RM " +
+
+        subtotal.toFixed(2) +
+
+        "</p>";
+
+    }
+
+
+    // TOTAL + STATUS
+
+    result +=
+
+        "<hr>" +
+
+        "<h2>💰 Total: RM " +
+
+        total +
+
+        "</h2>" +
+
+
+        '<div class="status-box">' +
+
+        "<h2>🟡 Your order is being prepared</h2>" +
+
+        "<p>Please wait until your order is ready.</p>" +
+
+        "<h3>When ready, collect:</h3>" +
+
+        '<h2 style="color:#d62828;">' +
+
+        orderNumber +
+
+        "</h2>" +
+
+        "</div>" +
+
+
+        "<br>" +
+
+
+        '<button class="new-order-button" ' +
+
+        'onclick="newOrder()">' +
+
+        "🛒 New Order" +
+
+        "</button>";
+
+
+    // SHOW CONFIRMED ORDER
+
+    document.getElementById("confirmedOrder")
+        .innerHTML = result;
+
+
+    document.getElementById("confirmed")
+        .style.display = "block";
+
+
+    document.getElementById("checkout")
+        .style.display = "none";
+
+}
+
+
+// ==================== NEW ORDER ====================
+
+function newOrder() {
+
+    cart = {};
+
+
+    document.getElementById("cart-items")
+        .innerHTML = "Your cart is empty.";
+
+
+    document.getElementById("total")
+        .innerText = "0.00";
+
+
+    document.getElementById("customerName")
+        .value = "";
+
+
+    document.getElementById("tableNumber")
+        .value = "";
+
+
+    document.getElementById("checkout")
+        .style.display = "none";
+
+
+    document.getElementById("confirmed")
+        .style.display = "none";
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
