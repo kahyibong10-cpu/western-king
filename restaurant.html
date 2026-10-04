@@ -4,7 +4,6 @@
 <head>
 
 <title>Restoran Western King</title>
-<h1 style="color:red;">TEST 123</h1>
 
 <style>
 
@@ -1200,7 +1199,7 @@ async function confirmOrder() {
 
     try {
 
-        await addDoc(
+        await window.addDoc(
             window.ordersCollection,
             {
 
@@ -1234,7 +1233,7 @@ async function confirmOrder() {
                     new Date().toLocaleString(),
 
                 createdAt:
-                    serverTimestamp()
+                    window.serverTimestamp()
 
             }
         );
@@ -1338,6 +1337,11 @@ function newOrder() {
 
     document.getElementById(
         "tableNumber"
+    ).value = "";
+
+
+    document.getElementById(
+        "description"
     ).value = "";
 
 
