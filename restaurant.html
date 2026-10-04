@@ -481,10 +481,10 @@ body {
         </p>
 
         <button
-            class="add-button"
-            onclick="addToCart('Chicken Chop', 15)">
-            Add to Cart
-        </button>
+    class="add-button"
+    onclick="addToCart('Chicken Chop', 15)">
+    Add to Cart
+</button>
 
     </div>
 
@@ -877,28 +877,19 @@ let cart = {};
 
 /* ADD */
 
-function addToCart(name, price) {
+window.addToCart = function(name, price) {
 
     if (cart[name]) {
-
         cart[name].quantity++;
-
     } else {
-
         cart[name] = {
-
             price: price,
-
             quantity: 1
-
         };
-
     }
 
     showCart();
-
-}
-
+};
 
 /* PLUS */
 
@@ -914,35 +905,28 @@ function plus(name) {
 
 }
 
-
-/* MINUS */
-
-function minus(name) {
+window.minus = function(name) {
 
     if (cart[name]) {
 
         cart[name].quantity--;
 
         if (cart[name].quantity <= 0) {
-
             delete cart[name];
-
         }
-
     }
 
     showCart();
+};
 
 }
 
 
 /* DELETE */
-
-function removeItem(name) {
-
+window.removeItem = function(name) {
     delete cart[name];
-
     showCart();
+};
 
 }
 
