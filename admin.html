@@ -4,7 +4,6 @@
 <head>
 
 <title>Restoran Western King</title>
-<h1 style="color:red;">TEST 123</h1>
 
 <style>
 
@@ -335,7 +334,9 @@ body {
 
 <div class="promotion-section">
 
-    <h2 class="promotion-title">🔥 PROMOTION 🔥</h2>
+    <h2 class="promotion-title">
+        🔥 PROMOTION 🔥
+    </h2>
 
     <div class="promotion-menu">
 
@@ -356,29 +357,27 @@ body {
 
         <div class="promotion-card">
 
-    <h3>🍔 Chicken Burger Combo</h3>
+            <h3>🍔 Chicken Burger Combo</h3>
 
-    <p>
-        🍔 Chicken Burger
-        <br>
-        🍟 French Fries
-        <br>
-        🥤 Coca-Cola
-    </p>
+            <p>
+                🍔 Chicken Burger
+                <br>
+                🍟 French Fries
+                <br>
+                🥤 Coca-Cola
+            </p>
 
-    <div class="discount">
-        RM 10.00
-    </div>
+            <div class="discount">
+                RM 10.00
+            </div>
 
-    <button
-        class="add-button"
-        onclick="addToCart('Chicken Burger Combo', 10)">
-        Add to Cart
-    </button>
+            <button
+                class="add-button"
+                onclick="addToCart('Chicken Burger Combo', 10)">
+                Add to Cart
+            </button>
 
-</div>
-
-           
+        </div>
 
 
         <div class="promotion-card">
@@ -408,7 +407,6 @@ body {
 
 
 <div class="menu">
-
 
     <div class="food">
 
@@ -471,7 +469,6 @@ body {
 
 
 <div class="menu">
-
 
     <div class="food">
 
@@ -569,7 +566,6 @@ body {
 
 <div class="menu">
 
-
     <div class="food">
 
         <h3>🥤 Ice Coca-Cola</h3>
@@ -599,7 +595,6 @@ body {
             class="add-button"
             onclick="addToCart('Ice Mineral Water', 2)">
             Add to Cart
-
         </button>
 
     </div>
@@ -701,6 +696,7 @@ body {
         id="description"
         placeholder="Example: No onion, less spicy, extra sauce (optional)"
     ></textarea>
+
 
     <label>
         Order Type
@@ -809,14 +805,13 @@ body {
 </div>
 
 
-<!-- ================= FIREBASE ================= -->
+<!-- ================= FIREBASE + JAVASCRIPT ================= -->
 
 <script type="module">
 
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-
 
 import {
     getFirestore,
@@ -825,6 +820,8 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
+
+/* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
 
@@ -848,35 +845,24 @@ const firebaseConfig = {
 };
 
 
+/* ================= FIREBASE ================= */
+
 const app =
     initializeApp(firebaseConfig);
-
 
 const db =
     getFirestore(app);
 
-
-/* Make Firebase available to normal script */
-
-window.db = db;
-
-window.ordersCollection =
+const ordersCollection =
     collection(db, "orders");
-window.addDoc = addDoc;
 
-window.serverTimestamp =
-    serverTimestamp;
-</script>
-
-
-<script>
 
 /* ================= CART ================= */
 
 let cart = {};
 
 
-/* ADD */
+/* ================= ADD TO CART ================= */
 
 function addToCart(name, price) {
 
@@ -888,7 +874,7 @@ function addToCart(name, price) {
 
         cart[name] = {
 
-            price: price,
+            price: Number(price),
 
             quantity: 1
 
@@ -901,7 +887,7 @@ function addToCart(name, price) {
 }
 
 
-/* PLUS */
+/* ================= PLUS ================= */
 
 function plus(name) {
 
@@ -916,7 +902,7 @@ function plus(name) {
 }
 
 
-/* MINUS */
+/* ================= MINUS ================= */
 
 function minus(name) {
 
@@ -937,13 +923,32 @@ function minus(name) {
 }
 
 
-/* DELETE */
+/* ================= DELETE ================= */
 
 function removeItem(name) {
 
     delete cart[name];
 
     showCart();
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -978,7 +983,7 @@ function showCart() {
 
     let html = "";
 
-    let total = 0;
+    let cartTotalAmount = 0;
 
 
     names.forEach(function(name) {
@@ -988,7 +993,7 @@ function showCart() {
         const subtotal =
             item.price * item.quantity;
 
-        total += subtotal;
+        cartTotalAmount += subtotal;
 
 
         html += `
@@ -1015,21 +1020,21 @@ function showCart() {
 
                     <button
                         class="minus"
-                        onclick="minus('${escapeHTML(name)}')">
+                        onclick="minus(${JSON.stringify(name)})">
                         −
                     </button>
 
 
                     <button
                         class="plus"
-                        onclick="plus('${escapeHTML(name)}')">
+                        onclick="plus(${JSON.stringify(name)})">
                         +
                     </button>
 
 
                     <button
                         class="delete"
-                        onclick="removeItem('${escapeHTML(name)}')">
+                        onclick="removeItem(${JSON.stringify(name)})">
                         Delete
                     </button>
 
@@ -1042,11 +1047,13 @@ function showCart() {
     });
 
 
-    cartItems.innerHTML = html;
+    cartItems.innerHTML =
+        html;
 
 
     cartTotal.innerHTML =
-        "Total: RM " + total.toFixed(2);
+        "Total: RM " +
+        cartTotalAmount.toFixed(2);
 
 }
 
@@ -1061,7 +1068,9 @@ function checkout() {
 
     if (names.length === 0) {
 
-        alert("Please add food to your cart.");
+        alert(
+            "Please add food to your cart."
+        );
 
         return;
 
@@ -1069,12 +1078,17 @@ function checkout() {
 
 
     const customer =
-        document.getElementById("customerName").value.trim();
+        document
+            .getElementById("customerName")
+            .value
+            .trim();
 
 
     if (!customer) {
 
-        alert("Please enter your name.");
+        alert(
+            "Please enter your name."
+        );
 
         return;
 
@@ -1091,10 +1105,13 @@ function checkout() {
         orderType === "Dine In" &&
         !document
             .getElementById("tableNumber")
-            .value.trim()
+            .value
+            .trim()
     ) {
 
-        alert("Please enter your table number.");
+        alert(
+            "Please enter your table number."
+        );
 
         return;
 
@@ -1110,10 +1127,21 @@ function checkout() {
 
 function changeOrderType() {
 
-    const orderType =
+    const selected =
         document.querySelector(
             'input[name="orderType"]:checked'
-        ).value;
+        );
+
+
+    if (!selected) {
+
+        return;
+
+    }
+
+
+    const orderType =
+        selected.value;
 
 
     const tableBox =
@@ -1122,11 +1150,17 @@ function changeOrderType() {
 
     if (orderType === "Dine In") {
 
-        tableBox.style.display = "block";
+        tableBox.style.display =
+            "block";
 
     } else {
 
-        tableBox.style.display = "none";
+        tableBox.style.display =
+            "none";
+
+        document.getElementById(
+            "tableNumber"
+        ).value = "";
 
     }
 
@@ -1138,9 +1172,17 @@ function changeOrderType() {
 async function confirmOrder() {
 
     const customer =
-        document.getElementById("customerName")
-        .value
-        .trim();
+        document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+
+    const description =
+        document
+            .getElementById("description")
+            .value
+            .trim();
 
 
     const orderType =
@@ -1149,63 +1191,66 @@ async function confirmOrder() {
         ).value;
 
 
-  document.getElementById(
-    "tableNumber"
-).value = "";
-    document.getElementById(
-    "description"
-).value = "";
+    const table =
+        document
+            .getElementById("tableNumber")
+            .value
+            .trim();
 
 
-const description =
-    document.getElementById("description")
-    .value
-    .trim();
-
-
-let total = 0;
-
-    let total = 0;
+    let orderTotal = 0;
 
     const items = [];
 
 
-    Object.keys(cart).forEach(function(name) {
+    Object.keys(cart).forEach(
+        function(name) {
 
-        const item = cart[name];
-
-        const subtotal =
-            item.price * item.quantity;
-
-        total += subtotal;
+            const item =
+                cart[name];
 
 
-        items.push({
+            const subtotal =
+                item.price *
+                item.quantity;
 
-            name: name,
 
-            price: item.price,
+            orderTotal +=
+                subtotal;
 
-            quantity: item.quantity,
 
-            subtotal: subtotal
+            items.push({
 
-        });
+                name:
+                    name,
 
-    });
+                price:
+                    item.price,
+
+                quantity:
+                    item.quantity,
+
+                subtotal:
+                    subtotal
+
+            });
+
+        }
+    );
 
 
     const orderNumber =
         "WK" +
         Math.floor(
-            1000 + Math.random() * 9000
+            1000 +
+            Math.random() * 9000
         );
 
 
     try {
 
         await addDoc(
-            window.ordersCollection,
+            ordersCollection,
             {
 
                 orderNumber:
@@ -1229,13 +1274,14 @@ let total = 0;
                     items,
 
                 total:
-                    total,
+                    orderTotal,
 
                 status:
                     "NEW",
 
                 time:
-                    new Date().toLocaleString(),
+                    new Date()
+                        .toLocaleString(),
 
                 createdAt:
                     serverTimestamp()
@@ -1243,6 +1289,8 @@ let total = 0;
             }
         );
 
+
+        /* ================= SHOW CONFIRMATION ================= */
 
         document.getElementById(
             "confirmedOrderNumber"
@@ -1265,23 +1313,14 @@ let total = 0;
         document.getElementById(
             "confirmedTotal"
         ).textContent =
-            "RM " + total.toFixed(2);
+            "RM " +
+            orderTotal.toFixed(2);
 
 
-       const table =
-    document.getElementById("tableNumber")
-    .value
-    .trim();
-
-const description =
-    document.getElementById("description")
-    .value
-    .trim();
-const description =
-    document.getElementById("description")
-    .value
-    .trim();
-let total = 0;
+        const tableText =
+            document.getElementById(
+                "confirmedTableText"
+            );
 
 
         if (orderType === "Dine In") {
@@ -1296,22 +1335,37 @@ let total = 0;
 
         }
 
+
         const confirmedDescription =
-            document.getElementById("confirmedDescription");
+            document.getElementById(
+                "confirmedDescription"
+            );
+
 
         if (description) {
+
             confirmedDescription.textContent =
-                "📝 Description: " + description;
-            confirmedDescription.style.display = "block";
+                "📝 Description: " +
+                description;
+
+            confirmedDescription.style.display =
+                "block";
+
         } else {
-            confirmedDescription.style.display = "none";
-            confirmedDescription.textContent = "";
+
+            confirmedDescription.textContent =
+                "";
+
+            confirmedDescription.style.display =
+                "none";
+
         }
 
 
         document.getElementById(
             "confirmed"
-        ).style.display = "block";
+        ).style.display =
+            "block";
 
 
         window.scrollTo({
@@ -1327,7 +1381,11 @@ let total = 0;
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Firebase order error:",
+            error
+        );
+
 
         alert(
             "Order failed. Please try again."
@@ -1347,25 +1405,36 @@ function newOrder() {
 
     document.getElementById(
         "customerName"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
-    "tableNumber"
-).value = "";
+        "description"
+    ).value =
+        "";
+
+
     document.getElementById(
-    "description"
-).value = "";
+        "tableNumber"
+    ).value =
+        "";
 
 
     document.getElementById(
         "confirmed"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
-    document.querySelector(
-        'input[name="orderType"][value="Dine In"]'
-    ).checked = true;
+    const dineIn =
+        document.querySelector(
+            'input[name="orderType"][value="Dine In"]'
+        );
+
+
+    dineIn.checked =
+        true;
 
 
     changeOrderType();
@@ -1384,23 +1453,28 @@ function newOrder() {
 }
 
 
-/* ================= ESCAPE HTML ================= */
+/* ================= MAKE FUNCTIONS GLOBAL ================= */
 
-function escapeHTML(value) {
+window.addToCart =
+    addToCart;
 
-    return String(value)
+window.plus =
+    plus;
 
-        .replace(/&/g, "&amp;")
+window.minus =
+    minus;
 
-        .replace(/</g, "&lt;")
+window.removeItem =
+    removeItem;
 
-        .replace(/>/g, "&gt;")
+window.checkout =
+    checkout;
 
-        .replace(/"/g, "&quot;")
+window.changeOrderType =
+    changeOrderType;
 
-        .replace(/'/g, "&#039;");
-
-}
+window.newOrder =
+    newOrder;
 
 
 /* ================= START ================= */
