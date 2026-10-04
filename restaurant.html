@@ -1,5 +1,5 @@
-	<!DOCTYPE html>
-
+```html
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -212,10 +212,11 @@ input {
 
 </head>
 
+
 <body>
 
 
-<!-- ==================== HEADER ==================== -->
+<!-- ================= HEADER ================= -->
 
 <div class="header">
 
@@ -229,12 +230,10 @@ input {
 <div class="container">
 
 
-<!-- ==================== FOOD ==================== -->
+<!-- ================= FOOD MENU ================= -->
 
 <h2 class="section-title">
-
 🍗 Food Menu
-
 </h2>
 
 
@@ -329,7 +328,7 @@ Add to Cart
 </div>
 
 
-<!-- ==================== DRINKS ==================== -->
+<!-- ================= DRINKS ================= -->
 
 <h2 class="section-title">
 
@@ -429,7 +428,7 @@ Add to Cart
 </div>
 
 
-<!-- ==================== CART ==================== -->
+<!-- ================= CART ================= -->
 
 <div class="cart">
 
@@ -462,7 +461,7 @@ onclick="checkout()">
 </div>
 
 
-<!-- ==================== CHECKOUT ==================== -->
+<!-- ================= CHECKOUT ================= -->
 
 <div
 id="checkout"
@@ -480,9 +479,13 @@ id="customerName"
 placeholder="Enter your name">
 
 
+<!-- ORDER TYPE -->
+
 <p>🍽️ Order Type</p>
 
+
 <label>
+
 <input
 type="radio"
 name="orderType"
@@ -491,11 +494,15 @@ checked
 onchange="changeOrderType()">
 
 🍽️ Dine In
+
 </label>
+
 
 <br><br>
 
+
 <label>
+
 <input
 type="radio"
 name="orderType"
@@ -503,35 +510,11 @@ value="Take Away"
 onchange="changeOrderType()">
 
 🥡 Take Away
+
 </label>
 
 
-<div id="tableBox">
-
-<p>🍽️ Order Type</p>
-
-<label>
-<input
-type="radio"
-name="orderType"
-value="Dine In"
-checked
-onchange="changeOrderType()">
-
-🍽️ Dine In
-</label>
-
-<br><br>
-
-<label>
-<input
-type="radio"
-name="orderType"
-value="Take Away"
-onchange="changeOrderType()">
-
-🥡 Take Away
-</label>
+<!-- TABLE -->
 
 <div id="tableBox">
 
@@ -543,7 +526,7 @@ id="tableNumber"
 placeholder="Enter table number">
 
 </div>
-</div>
+
 
 <h3>📋 Order Summary</h3>
 
@@ -571,7 +554,7 @@ onclick="confirmOrder()">
 </div>
 
 
-<!-- ==================== CONFIRMED ORDER ==================== -->
+<!-- ================= CONFIRMED ================= -->
 
 <div
 id="confirmed"
@@ -595,9 +578,10 @@ class="firebase-status">
 </div>
 
 
-<!-- ===================================================== -->
-<!-- ==================== FIREBASE ======================== -->
-<!-- ===================================================== -->
+
+<!-- ================================================= -->
+<!-- ================= FIREBASE ====================== -->
+<!-- ================================================= -->
 
 <script type="module">
 
@@ -617,8 +601,6 @@ import {
 
 from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-
-/* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
 
@@ -643,8 +625,6 @@ const firebaseConfig = {
 };
 
 
-/* ================= INITIALIZE ================= */
-
 try {
 
     const app =
@@ -667,11 +647,15 @@ try {
         serverTimestamp;
 
 
-    document.getElementById("firebaseStatus")
-        .innerText = "🟢 Firebase Connected";
+    document.getElementById(
+        "firebaseStatus"
+    ).innerText =
+        "🟢 Firebase Connected";
 
 
-    console.log("✅ Firebase connected");
+    console.log(
+        "✅ Firebase connected"
+    );
 
 }
 
@@ -683,27 +667,30 @@ catch (error) {
     );
 
 
-    document.getElementById("firebaseStatus")
-        .innerText = "🔴 Firebase Error";
+    document.getElementById(
+        "firebaseStatus"
+    ).innerText =
+        "🔴 Firebase Error";
 
 }
 
 </script>
 
 
-<!-- ===================================================== -->
-<!-- ==================== MAIN JAVASCRIPT ================= -->
-<!-- ===================================================== -->
+
+<!-- ================================================= -->
+<!-- ================= MAIN JAVASCRIPT =============== -->
+<!-- ================================================= -->
 
 <script>
 
 
-// ==================== CART ====================
+// ================= CART =================
 
 let cart = {};
 
 
-// ==================== ADD TO CART ====================
+// ================= ADD TO CART =================
 
 function addToCart(name, price) {
 
@@ -730,11 +717,15 @@ function addToCart(name, price) {
 }
 
 
-// ==================== PLUS ====================
+// ================= PLUS =================
 
 function plus(name) {
 
-    if (!cart[name]) return;
+    if (!cart[name]) {
+
+        return;
+
+    }
 
     cart[name].quantity++;
 
@@ -743,11 +734,15 @@ function plus(name) {
 }
 
 
-// ==================== MINUS ====================
+// ================= MINUS =================
 
 function minus(name) {
 
-    if (!cart[name]) return;
+    if (!cart[name]) {
+
+        return;
+
+    }
 
     cart[name].quantity--;
 
@@ -758,13 +753,12 @@ function minus(name) {
 
     }
 
-
     showCart();
 
 }
 
 
-// ==================== DELETE ====================
+// ================= DELETE =================
 
 function removeItem(name) {
 
@@ -775,12 +769,14 @@ function removeItem(name) {
 }
 
 
-// ==================== SHOW CART ====================
+// ================= SHOW CART =================
 
 function showCart() {
 
     let box =
-        document.getElementById("cart-items");
+        document.getElementById(
+            "cart-items"
+        );
 
 
     box.innerHTML = "";
@@ -799,8 +795,10 @@ function showCart() {
             "Your cart is empty.";
 
 
-        document.getElementById("total")
-            .innerText = "0.00";
+        document.getElementById(
+            "total"
+        ).innerText =
+            "0.00";
 
 
         return;
@@ -814,9 +812,11 @@ function showCart() {
         i++
     ) {
 
-        let name = names[i];
+        let name =
+            names[i];
 
-        let item = cart[name];
+        let item =
+            cart[name];
 
 
         let subtotal =
@@ -832,7 +832,7 @@ function showCart() {
         '<div class="cart-item">' +
 
         "🍴 <b>" +
-        name +
+        escapeHTML(name) +
         "</b>" +
 
         "<br>" +
@@ -894,14 +894,15 @@ function showCart() {
     }
 
 
-    document.getElementById("total")
-        .innerText =
+    document.getElementById(
+        "total"
+    ).innerText =
         total.toFixed(2);
 
 }
 
 
-// ==================== CHECKOUT ====================
+// ================= CHECKOUT =================
 
 function checkout() {
 
@@ -918,12 +919,16 @@ function checkout() {
     }
 
 
-    document.getElementById("checkout")
-        .style.display = "block";
+    document.getElementById(
+        "checkout"
+    ).style.display =
+        "block";
 
 
     let summary =
-        document.getElementById("summary");
+        document.getElementById(
+            "summary"
+        );
 
 
     summary.innerHTML = "";
@@ -942,9 +947,11 @@ function checkout() {
         i++
     ) {
 
-        let name = names[i];
+        let name =
+            names[i];
 
-        let item = cart[name];
+        let item =
+            cart[name];
 
 
         let subtotal =
@@ -961,7 +968,7 @@ function checkout() {
 
         "🍴 <b>" +
 
-        name +
+        escapeHTML(name) +
 
         "</b> × " +
 
@@ -982,37 +989,70 @@ function checkout() {
         total.toFixed(2);
 
 
-    document.getElementById("checkout")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    changeOrderType();
+
+
+    document.getElementById(
+        "checkout"
+    ).scrollIntoView({
+
+        behavior: "smooth"
+
+    });
 
 }
+
+
+// ================= ORDER TYPE =================
+
 function changeOrderType() {
 
+    let selected =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        );
+
+
+    if (!selected) {
+
+        return;
+
+    }
+
+
     let orderType =
-    document.querySelector(
-        'input[name="orderType"]:checked'
-    ).value;
+        selected.value;
+
 
     let tableBox =
-        document.getElementById("tableBox");
+        document.getElementById(
+            "tableBox"
+        );
+
 
     let tableInput =
-        document.getElementById("tableNumber");
+        document.getElementById(
+            "tableNumber"
+        );
 
 
     if (orderType === "Dine In") {
 
-        tableBox.style.display = "block";
+        tableBox.style.display =
+            "block";
 
-        tableInput.required = true;
+        tableInput.required =
+            true;
 
-    } else {
+    }
 
-        tableBox.style.display = "none";
+    else {
 
-        tableInput.required = false;
+        tableBox.style.display =
+            "none";
+
+        tableInput.required =
+            false;
 
         tableInput.value = "";
 
@@ -1020,23 +1060,45 @@ function changeOrderType() {
 
 }
 
-// ==================== CONFIRM ORDER ====================
+
+// ================= CONFIRM ORDER =================
 
 async function confirmOrder() {
-
 
     let name =
         document.getElementById(
             "customerName"
         ).value.trim();
 
-let table =
-    document.getElementById(
-        "tableNumber"
-    ).value.trim();
+
+    let selected =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        );
 
 
-    /* ================= VALIDATION ================= */
+    if (!selected) {
+
+        alert(
+            "Please select order type."
+        );
+
+        return;
+
+    }
+
+
+    let orderType =
+        selected.value;
+
+
+    let table =
+        document.getElementById(
+            "tableNumber"
+        ).value.trim();
+
+
+    // CUSTOMER NAME
 
     if (name === "") {
 
@@ -1049,16 +1111,23 @@ let table =
     }
 
 
-if (
-    orderType === "Dine In" &&
-    table === ""
-) {
-    alert("Please enter table number.");
-    return;
-}
-}
-}
-}
+    // TABLE
+
+    if (
+        orderType === "Dine In" &&
+        table === ""
+    ) {
+
+        alert(
+            "Please enter table number."
+        );
+
+        return;
+
+    }
+
+
+    // CART
 
     if (
         Object.keys(cart).length === 0
@@ -1073,7 +1142,7 @@ if (
     }
 
 
-    /* ================= FIREBASE CHECK ================= */
+    // FIREBASE
 
     if (
         !window.db ||
@@ -1091,15 +1160,15 @@ if (
     }
 
 
-    /* ================= BUTTON ================= */
-
     const confirmButton =
         document.getElementById(
             "confirmButton"
         );
 
 
-    confirmButton.disabled = true;
+    confirmButton.disabled =
+        true;
+
 
     confirmButton.innerText =
         "⏳ Sending Order...";
@@ -1107,8 +1176,7 @@ if (
 
     try {
 
-
-        /* ================= ORDER NUMBER ================= */
+        // ORDER NUMBER
 
         let orderNumber =
             "WK" +
@@ -1118,7 +1186,7 @@ if (
             );
 
 
-        /* ================= TIME ================= */
+        // TIME
 
         let now =
             new Date();
@@ -1128,7 +1196,7 @@ if (
             now.toLocaleString();
 
 
-        /* ================= ITEMS ================= */
+        // ITEMS
 
         let items = [];
 
@@ -1163,20 +1231,24 @@ if (
 
             items.push({
 
-                name: food,
+                name:
+                    food,
 
-                price: item.price,
+                price:
+                    item.price,
 
-                quantity: item.quantity,
+                quantity:
+                    item.quantity,
 
-                subtotal: subtotal
+                subtotal:
+                    subtotal
 
             });
 
         }
 
 
-        /* ================= SAVE FIREBASE ================= */
+        // SAVE TO FIREBASE
 
         const docRef =
             await window.firestoreAddDoc(
@@ -1194,8 +1266,13 @@ if (
                     customer:
                         name,
 
+                    orderType:
+                        orderType,
+
                     table:
-                        table,
+                        orderType === "Dine In"
+                            ? table
+                            : "",
 
                     items:
                         items,
@@ -1223,7 +1300,7 @@ if (
         );
 
 
-        /* ================= RESULT ================= */
+        // RESULT
 
         let result =
 
@@ -1257,7 +1334,7 @@ if (
 
             "<p>🕐 Time: <b>" +
 
-            time +
+            escapeHTML(time) +
 
             "</b></p>" +
 
@@ -1269,11 +1346,20 @@ if (
             "</b></p>" +
 
 
-            "<p>🪑 Table Number: <b>" +
+            "<p>" +
 
-            escapeHTML(table) +
+            (
+                orderType === "Dine In"
 
-            "</b></p>" +
+                ? "🍽️ Order Type: <b>Dine In</b><br>" +
+                  "🪑 Table Number: <b>" +
+                  escapeHTML(table) +
+                  "</b>"
+
+                : "🥡 Order Type: <b>Take Away</b>"
+            ) +
+
+            "</p>" +
 
 
             "<p>📦 Status: " +
@@ -1290,7 +1376,7 @@ if (
             "<h3>📋 Order:</h3>";
 
 
-        /* ================= ORDER ITEMS ================= */
+        // ITEMS RESULT
 
         for (
             let i = 0;
@@ -1332,7 +1418,7 @@ if (
         }
 
 
-        /* ================= TOTAL ================= */
+        // TOTAL RESULT
 
         result +=
 
@@ -1380,7 +1466,7 @@ if (
             "</button>";
 
 
-        /* ================= SHOW ================= */
+        // SHOW RESULT
 
         document.getElementById(
             "confirmedOrder"
@@ -1403,14 +1489,15 @@ if (
         document.getElementById(
             "confirmed"
         ).scrollIntoView({
-            behavior: "smooth"
-        });
 
+            behavior: "smooth"
+
+        });
 
     }
 
-    catch (error) {
 
+    catch (error) {
 
         console.error(
             "❌ Firebase order error:",
@@ -1442,7 +1529,7 @@ if (
 }
 
 
-// ==================== NEW ORDER ====================
+// ================= NEW ORDER =================
 
 function newOrder() {
 
@@ -1463,12 +1550,14 @@ function newOrder() {
 
     document.getElementById(
         "customerName"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "tableNumber"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
@@ -1495,6 +1584,15 @@ function newOrder() {
         "0.00";
 
 
+    document.querySelector(
+        'input[name="orderType"][value="Dine In"]'
+    ).checked =
+        true;
+
+
+    changeOrderType();
+
+
     window.scrollTo({
 
         top: 0,
@@ -1506,7 +1604,7 @@ function newOrder() {
 }
 
 
-// ==================== ESCAPE HTML ====================
+// ================= ESCAPE HTML =================
 
 function escapeHTML(value) {
 
@@ -1539,10 +1637,10 @@ function escapeHTML(value) {
 
 }
 
-
 </script>
 
 
 </body>
 
 </html>
+```
