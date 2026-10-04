@@ -1149,11 +1149,21 @@ async function confirmOrder() {
         ).value;
 
 
-    const table =
-        document.getElementById("tableNumber")
-        .value
-        .trim();
+  document.getElementById(
+    "tableNumber"
+).value = "";
+    document.getElementById(
+    "description"
+).value = "";
 
+
+const description =
+    document.getElementById("description")
+    .value
+    .trim();
+
+
+let total = 0;
 
     let total = 0;
 
@@ -1258,10 +1268,20 @@ async function confirmOrder() {
             "RM " + total.toFixed(2);
 
 
-        const tableText =
-            document.getElementById(
-                "confirmedTableText"
-            );
+       const table =
+    document.getElementById("tableNumber")
+    .value
+    .trim();
+
+const description =
+    document.getElementById("description")
+    .value
+    .trim();
+const description =
+    document.getElementById("description")
+    .value
+    .trim();
+let total = 0;
 
 
         if (orderType === "Dine In") {
@@ -1331,8 +1351,11 @@ function newOrder() {
 
 
     document.getElementById(
-        "tableNumber"
-    ).value = "";
+    "tableNumber"
+).value = "";
+    document.getElementById(
+    "description"
+).value = "";
 
 
     document.getElementById(
