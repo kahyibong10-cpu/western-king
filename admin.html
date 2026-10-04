@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
 
-<title>Restoran Western King - Admin</title>
+<title>Restoran Western King</title>
+<h1 style="color:red;">TEST 123</h1>
 
 <style>
 
@@ -14,6 +14,8 @@ body {
     background: #fff4e6;
     color: #333;
 }
+
+/* ===== HEADER ===== */
 
 .header {
     background: linear-gradient(135deg, #d62828, #f77f00);
@@ -28,8 +30,10 @@ body {
 }
 
 .header p {
-    margin-top: 8px;
+    margin-top: 10px;
 }
+
+/* ===== CONTAINER ===== */
 
 .container {
     max-width: 1100px;
@@ -37,307 +41,276 @@ body {
     padding: 20px;
 }
 
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    margin-bottom: 25px;
+/* ===== PROMOTION ===== */
+
+.promotion-section {
+    margin-bottom: 30px;
 }
 
-.stat {
+.promotion-title {
+    background: linear-gradient(135deg, #d62828, #f77f00);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.promotion-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+}
+
+.promotion-card {
     background: white;
-    padding: 20px;
     border-radius: 15px;
+    padding: 20px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    border: 2px solid #ffb703;
 }
 
-.stat h2 {
-    margin: 0;
-    font-size: 30px;
+.promotion-card h3 {
+    margin-top: 0;
     color: #d62828;
-}
-
-.stat p {
-    margin-bottom: 0;
-}
-
-.refresh-button {
-    background: #1565c0;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 20px;
-}
-
-.refresh-button:hover {
-    background: #0d47a1;
-}
-
-.orders {
-    display: grid;
-    gap: 20px;
-}
-
-.order-card {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border-left: 7px solid #ffb703;
-}
-
-.order-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.order-number {
-    font-size: 24px;
-    font-weight: bold;
-    color: #d62828;
-}
-
-.customer {
-    font-size: 18px;
-    margin-top: 8px;
-}
-
-.order-info {
-    background: #fff8e7;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 15px;
-}
-
-.item {
-    padding: 7px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.item:last-child {
-    border-bottom: none;
-}
-
-.total {
-    font-size: 22px;
-    font-weight: bold;
-    color: #d62828;
-    margin-top: 15px;
-}
-
-/* ORDER TYPE */
-
-.order-type {
-    display: inline-block;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-weight: bold;
-    margin: 5px 0 10px 0;
-    font-size: 16px;
-}
-
-.dine-in {
-    background: #d1e7dd;
-    color: #0f5132;
-}
-
-.take-away {
-    background: #cfe2ff;
-    color: #084298;
-}
-
-.unknown-type {
-    background: #fff3cd;
-    color: #856404;
-}
-
-/* DEBUG */
-
-.debug-type {
-    margin-top: 5px;
-    padding: 8px;
-    background: #f1f1f1;
-    border-radius: 8px;
-    font-size: 12px;
-    color: #555;
-}
-
-/* STATUS */
-
-.status {
-    display: inline-block;
-    padding: 7px 13px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 13px;
-}
-
-.status-NEW {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-PREPARING {
-    background: #cfe2ff;
-    color: #084298;
-}
-
-.status-READY {
-    background: #d1e7dd;
-    color: #0f5132;
-}
-
-.status-COMPLETED {
-    background: #e2e3e5;
-    color: #41464b;
-}
-
-.status-CANCELLED {
-    background: #f8d7da;
-    color: #842029;
-}
-
-
-/* ================= PROMOTION ================= */
-
-.promotion-box {
-    margin-top: 15px;
-    padding: 15px;
-    background: #fff0f0;
-    border: 2px solid #ffb3b3;
-    border-radius: 12px;
-}
-
-.promotion-box h4 {
-    margin: 0 0 10px 0;
-    color: #d62828;
-}
-
-.promotion-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.promotion-input {
-    width: 110px;
-    padding: 9px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.promotion-button {
-    background: #d62828;
-    color: white;
-    border: none;
-    padding: 9px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.promotion-button:hover {
-    opacity: 0.85;
-}
-
-.price-row {
-    margin-top: 8px;
-}
-
-.original-price {
-    color: #777;
-    text-decoration: line-through;
-}
-
-.discount-price {
-    color: #d62828;
-    font-weight: bold;
     font-size: 20px;
 }
 
-.discount-label {
+.promotion-card p {
+    line-height: 1.6;
+}
+
+.discount {
+    color: #d62828;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.buy1free1 {
     color: #2e7d32;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* ===== NEW DISHES ===== */
+
+.new-dishes-title {
+    background: #2e7d32;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+/* ===== SECTION TITLE ===== */
+
+.section-title {
+    background: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* ===== MENU ===== */
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.food {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.food h3 {
+    margin-top: 0;
+}
+
+.price {
+    color: #d62828;
+    font-size: 22px;
     font-weight: bold;
 }
 
-/* BUTTONS */
-
-.buttons {
-    margin-top: 18px;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-button.action {
-    border: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.prepare {
-    background: #1565c0;
-}
-
-.ready {
+.add-button {
     background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-.complete {
-    background: #555;
+.add-button:hover {
+    background: #1b5e20;
 }
 
-.cancel {
-    background: #d62828;
-}
+/* ===== CART ===== */
 
-button.action:hover {
-    opacity: 0.85;
-}
-
-/* EMPTY */
-
-.empty {
+.cart {
     background: white;
-    padding: 40px;
-    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* ERROR */
-
-.error {
-    background: #f8d7da;
-    color: #842029;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    display: none;
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
 }
 
-/* FIREBASE STATUS */
+.cart-controls button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-.firebase-status {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    padding: 8px 12px;
+.plus {
+    background: #2e7d32;
+    color: white;
+}
+
+.minus {
+    background: #f9a825;
+    color: white;
+}
+
+.delete {
+    background: #d62828;
+    color: white;
+}
+
+.total {
+    text-align: right;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* ===== CHECKOUT ===== */
+
+.checkout {
+    background: white;
+    margin-top: 20px;
+    padding: 20px;
     border-radius: 15px;
-    font-size: 12px;
-    background: #eee;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.checkout input,
+.checkout textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.checkout textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.checkout label {
+    display: block;
+    margin: 8px 0;
+}
+
+.checkout button {
+    width: 100%;
+    padding: 14px;
+    background: #d62828;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.checkout button:hover {
+    background: #a51d1d;
+}
+
+/* ===== TABLE ===== */
+
+.table-box {
+    margin-top: 15px;
+    background: #fff8e7;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* ===== CONFIRMED ===== */
+
+.confirmed {
+    display: none;
+    background: #e8f5e9;
+    border: 2px solid #2e7d32;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.confirmed h2 {
+    color: #2e7d32;
+}
+
+.confirmed-description {
+    background: #fff8e7;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+.new-order {
+    background: #2e7d32 !important;
+    margin-top: 10px;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
 }
 
 </style>
@@ -348,99 +321,514 @@ button.action:hover {
 
 <div class="header">
 
-<h1>👨‍🍳 RESTORAN WESTERN KING</h1>
+    <h1>🍔 RESTORAN WESTERN KING</h1>
 
-<p>📋 Admin Order Management System</p>
+    <p>🍴 Delicious Food • Great Price • Happy Meal 🍴</p>
 
 </div>
+
 
 <div class="container">
 
-<div class="dashboard">
 
-<div class="stat">
-<h2 id="newCount">0</h2>
-<p>🆕 NEW</p>
+<!-- ================= PROMOTION ================= -->
+
+<div class="promotion-section">
+
+    <h2 class="promotion-title">🔥 PROMOTION 🔥</h2>
+
+    <div class="promotion-menu">
+
+        <div class="promotion-card">
+
+            <h3>🎉 Weekend Promotion</h3>
+
+            <div class="discount">
+                20% OFF
+            </div>
+
+            <p>
+                Enjoy our special weekend promotion!
+            </p>
+
+        </div>
+
+
+        <div class="promotion-card">
+
+    <h3>🍔 Chicken Burger Combo</h3>
+
+    <p>
+        🍔 Chicken Burger
+        <br>
+        🍟 French Fries
+        <br>
+        🥤 Coca-Cola
+    </p>
+
+    <div class="discount">
+        RM 10.00
+    </div>
+
+    <button
+        class="add-button"
+        onclick="addToCart('Chicken Burger Combo', 10)">
+        Add to Cart
+    </button>
+
 </div>
 
-<div class="stat">
-<h2 id="preparingCount">0</h2>
-<p>👨‍🍳 PREPARING</p>
+           
+
+
+        <div class="promotion-card">
+
+            <h3>🎁 Buy 1 Free 1</h3>
+
+            <div class="buy1free1">
+                BUY 1 FREE 1
+            </div>
+
+            <p>
+                Enjoy our Buy 1 Free 1 promotion!
+            </p>
+
+        </div>
+
+    </div>
+
 </div>
 
-<div class="stat">
-<h2 id="readyCount">0</h2>
-<p>🔔 READY</p>
+
+<!-- ================= NEW DISHES ================= -->
+
+<h2 class="new-dishes-title">
+    🆕 NEW DISHES
+</h2>
+
+
+<div class="menu">
+
+
+    <div class="food">
+
+        <h3>🍗 Spicy Chicken Chop</h3>
+
+        <p class="price">
+            RM 16.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Spicy Chicken Chop', 16)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍝 Creamy Chicken Pasta</h3>
+
+        <p class="price">
+            RM 13.90
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Creamy Chicken Pasta', 13.90)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🧀 Cheesy Fries</h3>
+
+        <p class="price">
+            RM 6.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Cheesy Fries', 6)">
+            Add to Cart
+        </button>
+
+    </div>
+
 </div>
 
-<div class="stat">
-<h2 id="completedCount">0</h2>
-<p>✅ COMPLETED</p>
+
+<!-- ================= FOOD ================= -->
+
+<h2 class="section-title">
+    🍗 Food Menu
+</h2>
+
+
+<div class="menu">
+
+
+    <div class="food">
+
+        <h3>🍗 Chicken Chop</h3>
+
+        <p class="price">
+            RM 15.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Chicken Chop', 15)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍝 Spaghetti</h3>
+
+        <p class="price">
+            RM 10.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Spaghetti', 10)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍔 Chicken Burger</h3>
+
+        <p class="price">
+            RM 6.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Chicken Burger', 6)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍟 French Fries</h3>
+
+        <p class="price">
+            RM 5.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('French Fries', 5)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🐟 Fish Burger</h3>
+
+        <p class="price">
+            RM 8.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Fish Burger', 8)">
+            Add to Cart
+        </button>
+
+    </div>
+
 </div>
 
-<div class="stat">
-<h2 id="totalRevenue">RM 0.00</h2>
-<p>💰 TOTAL REVENUE</p>
-</div>
+
+<!-- ================= DRINKS ================= -->
+
+<h2 class="section-title">
+    🥤 Drinks
+</h2>
+
+
+<div class="menu">
+
+
+    <div class="food">
+
+        <h3>🥤 Ice Coca-Cola</h3>
+
+        <p class="price">
+            RM 3.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Coca-Cola', 3)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>💧 Ice Mineral Water</h3>
+
+        <p class="price">
+            RM 2.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Mineral Water', 2)">
+            Add to Cart
+
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍋 Ice Lemon Tea</h3>
+
+        <p class="price">
+            RM 3.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Lemon Tea', 3)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🥛 Ice Milo</h3>
+
+        <p class="price">
+            RM 4.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Milo', 4)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🥤 Ice 100 Plus</h3>
+
+        <p class="price">
+            RM 3.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice 100 Plus', 3)">
+            Add to Cart
+        </button>
+
+    </div>
 
 </div>
 
-<button
-class="refresh-button"
-onclick="loadOrders()">
 
-🔄 Refresh Orders
+<!-- ================= CART ================= -->
 
-</button>
+<div class="cart">
+
+    <h2>🛒 Your Cart</h2>
+
+    <div id="cartItems">
+        Your cart is empty.
+    </div>
+
+    <div class="total" id="cartTotal">
+        Total: RM 0.00
+    </div>
+
+</div>
+
+
+<!-- ================= CHECKOUT ================= -->
+
+<div class="checkout">
+
+    <h2>📝 Checkout</h2>
+
+
+    <label>
+        Customer Name
+    </label>
+
+    <input
+        type="text"
+        id="customerName"
+        placeholder="Enter your name"
+    >
+
+
+    <label>
+        Description (Optional)
+    </label>
+
+    <textarea
+        id="description"
+        placeholder="Example: No onion, less spicy, extra sauce (optional)"
+    ></textarea>
+
+    <label>
+        Order Type
+    </label>
+
+
+    <label>
+        <input
+            type="radio"
+            name="orderType"
+            value="Dine In"
+            checked
+            onchange="changeOrderType()"
+        >
+        Dine In
+    </label>
+
+
+    <label>
+        <input
+            type="radio"
+            name="orderType"
+            value="Take Away"
+            onchange="changeOrderType()"
+        >
+        Take Away
+    </label>
+
+
+    <div
+        class="table-box"
+        id="tableBox"
+    >
+
+        <label>
+            Table Number
+        </label>
+
+        <input
+            type="text"
+            id="tableNumber"
+            placeholder="Example: T01"
+        >
+
+    </div>
+
+
+    <button onclick="checkout()">
+        🛒 Proceed to Order
+    </button>
+
+</div>
+
+
+<!-- ================= CONFIRMED ================= -->
 
 <div
-id="errorBox"
-class="error">
+    class="confirmed"
+    id="confirmed"
+>
+
+    <h2>
+        ✅ Order Confirmed!
+    </h2>
+
+    <p>
+        Order Number:
+        <b id="confirmedOrderNumber"></b>
+    </p>
+
+    <p>
+        Customer:
+        <b id="confirmedCustomer"></b>
+    </p>
+
+    <p>
+        Order Type:
+        <b id="confirmedOrderType"></b>
+    </p>
+
+    <p id="confirmedTableText">
+    </p>
+
+    <div
+        id="confirmedDescription"
+        class="confirmed-description"
+        style="display:none;"
+    ></div>
+
+    <p>
+        Total:
+        <b id="confirmedTotal"></b>
+    </p>
+
+
+    <button
+        class="new-order"
+        onclick="newOrder()"
+    >
+        ➕ New Order
+    </button>
+
 </div>
 
-<div
-id="orders"
-class="orders">
-
-<div class="empty">
-⏳ Loading orders...
-</div>
 
 </div>
 
-</div>
 
-<div
-id="firebaseStatus"
-class="firebase-status">
-
-⏳ Connecting...
-
-</div>
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
 import {
     initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
 
 import {
     getFirestore,
     collection,
-    onSnapshot,
-    updateDoc,
-    doc
-}
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-
-/* ================= FIREBASE ================= */
 
 const firebaseConfig = {
 
-    apiKey:
-        "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
+    apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
 
     authDomain:
         "western-king-restaurant.firebaseapp.com",
@@ -460,674 +848,190 @@ const firebaseConfig = {
 };
 
 
-let app;
-let db;
-
-try {
-
-    app = initializeApp(firebaseConfig);
-
-    db = getFirestore(app);
-
-    document.getElementById(
-        "firebaseStatus"
-    ).innerText =
-        "🟢 Firebase Connected";
-
-}
-
-catch (error) {
-
-    console.error(error);
-
-    document.getElementById(
-        "firebaseStatus"
-    ).innerText =
-        "🔴 Firebase Error";
-
-}
+const app =
+    initializeApp(firebaseConfig);
 
 
-let allOrders = [];
+const db =
+    getFirestore(app);
 
-let unsubscribeOrders = null;
+
+/* Make Firebase available to normal script */
+
+window.db = db;
+
+window.ordersCollection =
+    collection(db, "orders");
+window.addDoc = addDoc;
+
+window.serverTimestamp =
+    serverTimestamp;
+</script>
 
 
-/* ================= LOAD ORDERS ================= */
+<script>
 
-function loadOrders() {
+/* ================= CART ================= */
 
-    if (!db) {
-        return;
+let cart = {};
+
+
+/* ADD */
+
+function addToCart(name, price) {
+
+    if (cart[name]) {
+
+        cart[name].quantity++;
+
+    } else {
+
+        cart[name] = {
+
+            price: price,
+
+            quantity: 1
+
+        };
+
     }
 
-    if (unsubscribeOrders) {
-        unsubscribeOrders();
-    }
-
-    const ordersRef =
-        collection(db, "orders");
-
-    unsubscribeOrders =
-        onSnapshot(
-
-            ordersRef,
-
-            (snapshot) => {
-
-                console.log(
-                    "Orders received:",
-                    snapshot.size
-                );
-
-                allOrders = [];
-
-                snapshot.forEach(
-                    (document) => {
-
-                        const data =
-                            document.data();
-
-                        console.log(
-                            "ORDER FROM FIREBASE:",
-                            data
-                        );
-
-                        allOrders.push({
-
-                            id:
-                                document.id,
-
-                            ...data
-
-                        });
-
-                    }
-                );
-
-                allOrders.sort(
-                    (a, b) => {
-
-                        let timeA = 0;
-                        let timeB = 0;
-
-                        if (a.createdAt) {
-                            timeA =
-                                a.createdAt.seconds || 0;
-                        }
-
-                        if (b.createdAt) {
-                            timeB =
-                                b.createdAt.seconds || 0;
-                        }
-
-                        return timeB - timeA;
-
-                    }
-                );
-
-                displayOrders();
-
-                updateDashboard();
-
-                document.getElementById(
-                    "errorBox"
-                ).style.display =
-                    "none";
-
-            },
-
-            (error) => {
-
-                console.error(
-                    "Firebase error:",
-                    error
-                );
-
-                const errorBox =
-                    document.getElementById(
-                        "errorBox"
-                    );
-
-                errorBox.innerText =
-                    "❌ Firebase Error: " +
-                    error.message;
-
-                errorBox.style.display =
-                    "block";
-
-            }
-
-        );
+    showCart();
 
 }
 
 
-/* ================= DISPLAY ORDERS ================= */
+/* PLUS */
 
-function displayOrders() {
+function plus(name) {
 
-    const box =
-        document.getElementById("orders");
+    if (cart[name]) {
 
-    box.innerHTML = "";
+        cart[name].quantity++;
 
-    if (allOrders.length === 0) {
+    }
 
-        box.innerHTML = `
+    showCart();
 
-            <div class="empty">
+}
 
-                <h2>📭 No Orders</h2>
 
-                <p>
-                    There are currently no customer orders.
-                </p>
+/* MINUS */
 
-            </div>
+function minus(name) {
 
-        `;
+    if (cart[name]) {
+
+        cart[name].quantity--;
+
+        if (cart[name].quantity <= 0) {
+
+            delete cart[name];
+
+        }
+
+    }
+
+    showCart();
+
+}
+
+
+/* DELETE */
+
+function removeItem(name) {
+
+    delete cart[name];
+
+    showCart();
+
+}
+
+
+/* ================= SHOW CART ================= */
+
+function showCart() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    const names =
+        Object.keys(cart);
+
+
+    if (names.length === 0) {
+
+        cartItems.innerHTML =
+            "Your cart is empty.";
+
+        cartTotal.innerHTML =
+            "Total: RM 0.00";
 
         return;
+
     }
 
 
-    allOrders.forEach(
-        (order) => {
+    let html = "";
+
+    let total = 0;
 
 
-        /* ================= ITEMS ================= */
+    names.forEach(function(name) {
 
-        let itemsHTML = "";
+        const item = cart[name];
 
-        if (
-            order.items &&
-            Array.isArray(order.items)
-        ) {
+        const subtotal =
+            item.price * item.quantity;
 
-            order.items.forEach(
-                (item) => {
-
-                itemsHTML += `
-
-                    <div class="item">
-
-                        🍴
-
-                        <b>
-                            ${escapeHTML(item.name)}
-                        </b>
-
-                        × ${item.quantity}
-
-                        &nbsp;&nbsp;
-
-                        RM ${Number(
-                            item.subtotal || 0
-                        ).toFixed(2)}
-
-                    </div>
-
-                `;
-
-            });
-
-        }
+        total += subtotal;
 
 
-        /* ================= BASIC DATA ================= */
+        html += `
 
-        let status =
-            String(order.status || "NEW")
-            .trim()
-            .toUpperCase();
+            <div class="cart-item">
 
-        let time =
-            order.time || "Unknown time";
+                <div>
 
-        let total =
-            Number(order.total || 0);
+                    <b>${escapeHTML(name)}</b>
 
-        // Keep the first/original price so repeated promotions do not
-        // accidentally discount an already discounted price.
-        let originalTotal =
-            Number(
-                order.originalTotal ??
-                order.total ??
-                0
-            );
+                    <br>
 
-        let promotion =
-            String(order.promotion || "").trim();
+                    RM ${item.price.toFixed(2)}
+                    ×
+                    ${item.quantity}
 
-        let discount =
-            Number(order.discount || 0);
-
-        let finalTotal =
-            Number(
-                order.finalTotal ??
-                order.total ??
-                0
-            );
-
-        let orderNumber =
-            order.orderNumber ||
-            order.id;
-
-        let customer =
-            order.customer ||
-            "Customer";
-
-
-        /* ================= IMPORTANT FIX ================= */
-
-        /*
-        把 Firebase 的 orderType
-        统一成小写再判断。
-        */
-
-        let rawOrderType =
-            order.orderType;
-
-        let normalizedOrderType =
-            String(
-                rawOrderType || ""
-            )
-            .trim()
-            .toLowerCase();
-
-
-        console.log(
-            "Order:",
-            orderNumber,
-            "RAW orderType =",
-            rawOrderType,
-            "NORMALIZED =",
-            normalizedOrderType
-        );
-
-
-        /* ================= ORDER TYPE ================= */
-
-        let orderTypeHTML = "";
-
-        let tableHTML = "";
-
-
-        if (
-            normalizedOrderType === "dine in" ||
-            normalizedOrderType === "dine-in" ||
-            normalizedOrderType === "dinein"
-        ) {
-
-            orderTypeHTML = `
-
-                <div class="order-type dine-in">
-
-                    🍽️ DINE IN
+                    =
+                    RM ${subtotal.toFixed(2)}
 
                 </div>
 
-            `;
 
+                <div class="cart-controls">
 
-            let table =
-                order.table || "";
+                    <button
+                        class="minus"
+                        onclick="minus('${escapeHTML(name)}')">
+                        −
+                    </button>
 
 
-            tableHTML = `
+                    <button
+                        class="plus"
+                        onclick="plus('${escapeHTML(name)}')">
+                        +
+                    </button>
 
-                <p>
 
-                    🪑
-
-                    <b>
-                        Table:
-                    </b>
-
-                    ${escapeHTML(
-                        String(table || "-")
-                    )}
-
-                </p>
-
-            `;
-
-        }
-
-        else if (
-            normalizedOrderType === "take away" ||
-            normalizedOrderType === "take-away" ||
-            normalizedOrderType === "takeaway"
-        ) {
-
-            orderTypeHTML = `
-
-                <div class="order-type take-away">
-
-                    🥡 TAKE AWAY
-
-                </div>
-
-            `;
-
-        }
-
-        else {
-
-            orderTypeHTML = `
-
-                <div class="order-type unknown-type">
-
-                    ⚠️ ORDER TYPE NOT FOUND
-
-                </div>
-
-            `;
-
-        }
-
-
-        /* ================= DEBUG ================= */
-
-        let debugHTML = `
-
-            <div class="debug-type">
-
-                Firebase orderType:
-
-                <b>
-                    ${escapeHTML(
-                        String(
-                            rawOrderType ?? "undefined"
-                        )
-                    )}
-                </b>
-
-            </div>
-
-        `;
-
-
-        /* ================= ORDER CARD ================= */
-
-        box.innerHTML += `
-
-            <div class="order-card">
-
-                <div class="order-top">
-
-                    <div>
-
-                        <div class="order-number">
-
-                            #${escapeHTML(
-                                String(orderNumber)
-                            )}
-
-                        </div>
-
-                        <div class="customer">
-
-                            👤
-
-                            <b>
-
-                                ${escapeHTML(
-                                    String(customer)
-                                )}
-
-                            </b>
-
-                        </div>
-
-                    </div>
-
-
-                    <div>
-
-                        <span
-                            class="status status-${escapeHTML(
-                                status
-                            )}">
-
-                            ${escapeHTML(status)}
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="order-info">
-
-
-                    <p>
-
-                        <b>
-                            Order Type:
-                        </b>
-
-                    </p>
-
-
-                    ${orderTypeHTML}
-
-
-                    ${tableHTML}
-
-
-                    ${debugHTML}
-
-
-                    <p>
-
-                        🕐
-
-                        <b>
-                            Time:
-                        </b>
-
-                        ${escapeHTML(
-                            String(time)
-                        )}
-
-                    </p>
-
-
-                    <hr>
-
-
-                    <h3>
-
-                        🍴 Order Items
-
-                    </h3>
-
-
-                    ${itemsHTML}
-
-
-                    <div class="promotion-box">
-
-                        <h4>🏷️ Promotion / Discount</h4>
-
-                        <div class="promotion-row">
-
-                            <input
-                                type="number"
-                                min="0"
-                                max="100"
-                                step="0.01"
-                                class="promotion-input"
-                                id="promotion-${escapeHTML(order.id)}"
-                                placeholder="例如 10"
-                                value="${promotion.replace(/[^0-9.]/g, "")}"
-                            >
-
-                            <span>% OFF</span>
-
-                            <button
-                                class="promotion-button"
-                                onclick="applyPromotion('${escapeHTML(order.id)}')">
-
-                                Apply Promotion
-
-                            </button>
-
-                        </div>
-
-                        <div class="price-row">
-
-                            Original Price:
-                            <b>RM ${originalTotal.toFixed(2)}</b>
-
-                        </div>
-
-                        <div class="price-row discount-label">
-
-                            ${promotion
-                                ? "🏷️ Promotion: " + escapeHTML(promotion)
-                                : "🏷️ No Promotion"}
-
-                            ${discount > 0
-                                ? " &nbsp; (-RM " + discount.toFixed(2) + ")"
-                                : ""}
-
-                        </div>
-
-                        <div class="price-row discount-price">
-
-                            💰 Final Price:
-                            RM ${finalTotal.toFixed(2)}
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="buttons">
-
-
-                    ${
-                        status === "NEW"
-
-                        ?
-
-                        `
-
-                        <button
-
-                            class="action prepare"
-
-                            onclick="changeStatus(
-                                '${escapeHTML(order.id)}',
-                                'PREPARING'
-                            )">
-
-                            👨‍🍳 Accept Order
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
-
-
-                    ${
-                        status === "PREPARING"
-
-                        ?
-
-                        `
-
-                        <button
-
-                            class="action ready"
-
-                            onclick="changeStatus(
-                                '${escapeHTML(order.id)}',
-                                'READY'
-                            )">
-
-                            🔔 Mark Ready
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
-
-
-                    ${
-                        status === "READY"
-
-                        ?
-
-                        `
-
-                        <button
-
-                            class="action complete"
-
-                            onclick="changeStatus(
-                                '${escapeHTML(order.id)}',
-                                'COMPLETED'
-                            )">
-
-                            ✅ Complete
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
-
-
-                    ${
-                        status !== "COMPLETED" &&
-                        status !== "CANCELLED"
-
-                        ?
-
-                        `
-
-                        <button
-
-                            class="action cancel"
-
-                            onclick="changeStatus(
-                                '${escapeHTML(order.id)}',
-                                'CANCELLED'
-                            )">
-
-                            ❌ Cancel
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
+                    <button
+                        class="delete"
+                        onclick="removeItem('${escapeHTML(name)}')">
+                        Delete
+                    </button>
 
                 </div>
 
@@ -1137,257 +1041,350 @@ function displayOrders() {
 
     });
 
+
+    cartItems.innerHTML = html;
+
+
+    cartTotal.innerHTML =
+        "Total: RM " + total.toFixed(2);
+
 }
 
 
-/* ================= PROMOTION ================= */
+/* ================= CHECKOUT ================= */
 
-window.applyPromotion =
-    async function(orderId) {
+function checkout() {
 
-        try {
-
-            const input =
-                document.getElementById(
-                    "promotion-" + orderId
-                );
-
-            if (!input) {
-                alert("❌ Promotion input not found.");
-                return;
-            }
-
-            let percentage =
-                Number(input.value || 0);
-
-            if (
-                !Number.isFinite(percentage) ||
-                percentage < 0 ||
-                percentage > 100
-            ) {
-                alert("❌ Please enter a discount from 0% to 100%.");
-                return;
-            }
-
-            const order =
-                allOrders.find(
-                    item => item.id === orderId
-                );
-
-            if (!order) {
-                alert("❌ Order not found.");
-                return;
-            }
-
-            // Always use the original price.
-            const originalTotal =
-                Number(
-                    order.originalTotal ??
-                    order.total ??
-                    0
-                );
-
-            const discount =
-                originalTotal * percentage / 100;
-
-            const finalTotal =
-                Math.max(
-                    0,
-                    originalTotal - discount
-                );
-
-            const promotionText =
-                percentage === 0
-                    ? ""
-                    : percentage + "% OFF";
-
-            await updateDoc(
-                doc(
-                    db,
-                    "orders",
-                    orderId
-                ),
-                {
-                    originalTotal: originalTotal,
-                    promotion: promotionText,
-                    discount: Number(discount.toFixed(2)),
-                    finalTotal: Number(finalTotal.toFixed(2)),
-                    total: Number(finalTotal.toFixed(2))
-                }
-            );
-
-            alert(
-                percentage === 0
-                    ? "✅ Promotion removed."
-                    : "✅ Promotion applied: " +
-                      percentage +
-                      "% OFF\n\nFinal Price: RM " +
-                      finalTotal.toFixed(2)
-            );
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Promotion error:",
-                error
-            );
-
-            alert(
-                "❌ Failed to apply promotion:\n\n" +
-                error.message
-            );
-
-        }
-
-    };
+    const names =
+        Object.keys(cart);
 
 
-/* ================= CHANGE STATUS ================= */
+    if (names.length === 0) {
 
-window.changeStatus =
-    async function(
-        orderId,
-        newStatus
-    ) {
+        alert("Please add food to your cart.");
 
-    try {
-
-        await updateDoc(
-
-            doc(
-                db,
-                "orders",
-                orderId
-            ),
-
-            {
-                status:
-                    newStatus
-            }
-
-        );
+        return;
 
     }
 
-    catch (error) {
+
+    const customer =
+        document.getElementById("customerName").value.trim();
+
+
+    if (!customer) {
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+
+    const orderType =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        ).value;
+
+
+    if (
+        orderType === "Dine In" &&
+        !document
+            .getElementById("tableNumber")
+            .value.trim()
+    ) {
+
+        alert("Please enter your table number.");
+
+        return;
+
+    }
+
+
+    confirmOrder();
+
+}
+
+
+/* ================= ORDER TYPE ================= */
+
+function changeOrderType() {
+
+    const orderType =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        ).value;
+
+
+    const tableBox =
+        document.getElementById("tableBox");
+
+
+    if (orderType === "Dine In") {
+
+        tableBox.style.display = "block";
+
+    } else {
+
+        tableBox.style.display = "none";
+
+    }
+
+}
+
+
+/* ================= CONFIRM ORDER ================= */
+
+async function confirmOrder() {
+
+    const customer =
+        document.getElementById("customerName")
+        .value
+        .trim();
+
+
+    const orderType =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        ).value;
+
+
+    const table =
+        document.getElementById("tableNumber")
+        .value
+        .trim();
+
+
+    let total = 0;
+
+    const items = [];
+
+
+    Object.keys(cart).forEach(function(name) {
+
+        const item = cart[name];
+
+        const subtotal =
+            item.price * item.quantity;
+
+        total += subtotal;
+
+
+        items.push({
+
+            name: name,
+
+            price: item.price,
+
+            quantity: item.quantity,
+
+            subtotal: subtotal
+
+        });
+
+    });
+
+
+    const orderNumber =
+        "WK" +
+        Math.floor(
+            1000 + Math.random() * 9000
+        );
+
+
+    try {
+
+        await addDoc(
+            window.ordersCollection,
+            {
+
+                orderNumber:
+                    orderNumber,
+
+                customer:
+                    customer,
+
+                orderType:
+                    orderType,
+
+                table:
+                    orderType === "Dine In"
+                        ? table
+                        : "",
+
+                description:
+                    description,
+
+                items:
+                    items,
+
+                total:
+                    total,
+
+                status:
+                    "NEW",
+
+                time:
+                    new Date().toLocaleString(),
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        document.getElementById(
+            "confirmedOrderNumber"
+        ).textContent =
+            orderNumber;
+
+
+        document.getElementById(
+            "confirmedCustomer"
+        ).textContent =
+            customer;
+
+
+        document.getElementById(
+            "confirmedOrderType"
+        ).textContent =
+            orderType;
+
+
+        document.getElementById(
+            "confirmedTotal"
+        ).textContent =
+            "RM " + total.toFixed(2);
+
+
+        const tableText =
+            document.getElementById(
+                "confirmedTableText"
+            );
+
+
+        if (orderType === "Dine In") {
+
+            tableText.textContent =
+                "Table: " + table;
+
+        } else {
+
+            tableText.textContent =
+                "Take Away";
+
+        }
+
+        const confirmedDescription =
+            document.getElementById("confirmedDescription");
+
+        if (description) {
+            confirmedDescription.textContent =
+                "📝 Description: " + description;
+            confirmedDescription.style.display = "block";
+        } else {
+            confirmedDescription.style.display = "none";
+            confirmedDescription.textContent = "";
+        }
+
+
+        document.getElementById(
+            "confirmed"
+        ).style.display = "block";
+
+
+        window.scrollTo({
+
+            top:
+                document.body.scrollHeight,
+
+            behavior:
+                "smooth"
+
+        });
+
+
+    } catch (error) {
 
         console.error(error);
 
         alert(
-            "❌ Failed to update order:\n\n" +
-            error.message
+            "Order failed. Please try again."
         );
 
     }
 
-};
+}
 
 
-/* ================= DASHBOARD ================= */
+/* ================= NEW ORDER ================= */
 
-function updateDashboard() {
+function newOrder() {
 
-    let newCount = 0;
-    let preparingCount = 0;
-    let readyCount = 0;
-    let completedCount = 0;
-    let totalRevenue = 0;
+    cart = {};
 
 
-    allOrders.forEach(
-        (order) => {
-
-        const status =
-            String(
-                order.status || "NEW"
-            )
-            .trim()
-            .toUpperCase();
+    document.getElementById(
+        "customerName"
+    ).value = "";
 
 
-        if (status === "NEW") {
-            newCount++;
-        }
+    document.getElementById(
+        "tableNumber"
+    ).value = "";
 
-        else if (status === "PREPARING") {
-            preparingCount++;
-        }
 
-        else if (status === "READY") {
-            readyCount++;
-        }
+    document.getElementById(
+        "confirmed"
+    ).style.display = "none";
 
-        else if (status === "COMPLETED") {
 
-            completedCount++;
+    document.querySelector(
+        'input[name="orderType"][value="Dine In"]'
+    ).checked = true;
 
-            totalRevenue +=
-                Number(
-                    order.finalTotal ??
-                    order.total ??
-                    0
-                );
 
-        }
+    changeOrderType();
+
+    showCart();
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
 
     });
-
-
-    document.getElementById(
-        "newCount"
-    ).innerText =
-        newCount;
-
-    document.getElementById(
-        "preparingCount"
-    ).innerText =
-        preparingCount;
-
-    document.getElementById(
-        "readyCount"
-    ).innerText =
-        readyCount;
-
-    document.getElementById(
-        "completedCount"
-    ).innerText =
-        completedCount;
-
-    document.getElementById(
-        "totalRevenue"
-    ).innerText =
-        "RM " +
-        totalRevenue.toFixed(2);
 
 }
 
 
-/* ================= ESCAPE ================= */
+/* ================= ESCAPE HTML ================= */
 
 function escapeHTML(value) {
 
     return String(value)
 
         .replace(/&/g, "&amp;")
+
         .replace(/</g, "&lt;")
+
         .replace(/>/g, "&gt;")
+
         .replace(/"/g, "&quot;")
+
         .replace(/'/g, "&#039;");
 
 }
 
 
-/* ================= GLOBAL ================= */
-
-window.loadOrders =
-    loadOrders;
-
-
 /* ================= START ================= */
 
-loadOrders();
+showCart();
+
+changeOrderType();
 
 </script>
 
