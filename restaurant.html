@@ -218,7 +218,8 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.checkout input {
+.checkout input,
+.checkout textarea {
     width: 100%;
     padding: 12px;
     margin-top: 8px;
@@ -226,6 +227,13 @@ body {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.checkout textarea {
+    min-height: 90px;
+    resize: vertical;
 }
 
 .checkout label {
@@ -270,6 +278,14 @@ body {
 
 .confirmed h2 {
     color: #2e7d32;
+}
+
+.confirmed-description {
+    background: #fff8e7;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+    white-space: pre-wrap;
 }
 
 .new-order {
@@ -678,6 +694,15 @@ body {
 
 
     <label>
+        Description (Optional)
+    </label>
+
+    <textarea
+        id="description"
+        placeholder="Example: No onion, less spicy, extra sauce (optional)"
+    ></textarea>
+
+    <label>
         Order Type
     </label>
 
@@ -758,6 +783,12 @@ body {
 
     <p id="confirmedTableText">
     </p>
+
+    <div
+        id="confirmedDescription"
+        class="confirmed-description"
+        style="display:none;"
+    ></div>
 
     <p>
         Total:
@@ -1181,6 +1212,9 @@ async function confirmOrder() {
                         ? table
                         : "",
 
+                description:
+                    description,
+
                 items:
                     items,
 
@@ -1240,6 +1274,18 @@ async function confirmOrder() {
             tableText.textContent =
                 "Take Away";
 
+        }
+
+        const confirmedDescription =
+            document.getElementById("confirmedDescription");
+
+        if (description) {
+            confirmedDescription.textContent =
+                "📝 Description: " + description;
+            confirmedDescription.style.display = "block";
+        } else {
+            confirmedDescription.style.display = "none";
+            confirmedDescription.textContent = "";
         }
 
 
