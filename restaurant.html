@@ -326,9 +326,7 @@ body {
 
 </div>
 
-
 <div class="container">
-
 
 <!-- ================= PROMOTION ================= -->
 
@@ -355,29 +353,28 @@ body {
 
         <div class="promotion-card">
 
-    <h3>🍔 Chicken Burger Combo</h3>
+            <h3>🍔 Chicken Burger Combo</h3>
 
-    <p>
-        🍔 Chicken Burger
-        <br>
-        🍟 French Fries
-        <br>
-        🥤 Coca-Cola
-    </p>
+            <p>
+                🍔 Chicken Burger
+                <br>
+                🍟 French Fries
+                <br>
+                🥤 Coca-Cola
+            </p>
 
-    <div class="discount">
-        RM 10.00
-    </div>
+            <div class="discount">
+                RM 10.00
+            </div>
 
-    <button
-        class="add-button"
-        onclick="addToCart('Chicken Burger Combo', 10)">
-        Add to Cart
-    </button>
+            <button
+                type="button"
+                class="add-button"
+                onclick="addToCart('Chicken Burger Combo', 10)">
+                Add to Cart
+            </button>
 
-</div>
-
-           
+        </div>
 
 
         <div class="promotion-card">
@@ -405,9 +402,7 @@ body {
     🆕 NEW DISHES
 </h2>
 
-
 <div class="menu">
-
 
     <div class="food">
 
@@ -418,6 +413,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Spicy Chicken Chop', 16)">
             Add to Cart
@@ -435,6 +431,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Creamy Chicken Pasta', 13.90)">
             Add to Cart
@@ -452,6 +449,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Cheesy Fries', 6)">
             Add to Cart
@@ -468,9 +466,7 @@ body {
     🍗 Food Menu
 </h2>
 
-
 <div class="menu">
-
 
     <div class="food">
 
@@ -481,10 +477,11 @@ body {
         </p>
 
         <button
-    class="add-button"
-    onclick="addToCart('Chicken Chop', 15)">
-    Add to Cart
-</button>
+            type="button"
+            class="add-button"
+            onclick="addToCart('Chicken Chop', 15)">
+            Add to Cart
+        </button>
 
     </div>
 
@@ -498,6 +495,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Spaghetti', 10)">
             Add to Cart
@@ -515,6 +513,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Chicken Burger', 6)">
             Add to Cart
@@ -532,6 +531,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('French Fries', 5)">
             Add to Cart
@@ -549,6 +549,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Fish Burger', 8)">
             Add to Cart
@@ -565,9 +566,7 @@ body {
     🥤 Drinks
 </h2>
 
-
 <div class="menu">
-
 
     <div class="food">
 
@@ -578,6 +577,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Ice Coca-Cola', 3)">
             Add to Cart
@@ -595,10 +595,10 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Ice Mineral Water', 2)">
             Add to Cart
-
         </button>
 
     </div>
@@ -613,6 +613,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Ice Lemon Tea', 3)">
             Add to Cart
@@ -630,6 +631,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Ice Milo', 4)">
             Add to Cart
@@ -647,6 +649,7 @@ body {
         </p>
 
         <button
+            type="button"
             class="add-button"
             onclick="addToCart('Ice 100 Plus', 3)">
             Add to Cart
@@ -680,7 +683,6 @@ body {
 
     <h2>📝 Checkout</h2>
 
-
     <label>
         Customer Name
     </label>
@@ -701,10 +703,10 @@ body {
         placeholder="Example: No onion, less spicy, extra sauce (optional)"
     ></textarea>
 
+
     <label>
         Order Type
     </label>
-
 
     <label>
         <input
@@ -747,7 +749,9 @@ body {
     </div>
 
 
-    <button onclick="checkout()">
+    <button
+        type="button"
+        onclick="checkout()">
         🛒 Proceed to Order
     </button>
 
@@ -780,8 +784,7 @@ body {
         <b id="confirmedOrderType"></b>
     </p>
 
-    <p id="confirmedTableText">
-    </p>
+    <p id="confirmedTableText"></p>
 
     <div
         id="confirmedDescription"
@@ -796,6 +799,7 @@ body {
 
 
     <button
+        type="button"
         class="new-order"
         onclick="newOrder()"
     >
@@ -803,7 +807,6 @@ body {
     </button>
 
 </div>
-
 
 </div>
 
@@ -816,7 +819,6 @@ import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
-
 import {
     getFirestore,
     collection,
@@ -827,7 +829,7 @@ import {
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
+    apiKey: "AIzaSyDnRYJQTPVFjJmQTFNwiBn7tfRbMRYACWQ",
 
     authDomain:
         "western-king-restaurant.firebaseapp.com",
@@ -847,24 +849,33 @@ const firebaseConfig = {
 };
 
 
-const app =
-    initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
 
 
-const db =
-    getFirestore(app);
-
-
-/* Make Firebase available to normal script */
+/*
+   Make Firebase functions available
+   to the normal JavaScript.
+*/
 
 window.db = db;
 
 window.ordersCollection =
     collection(db, "orders");
+
 window.addDoc = addDoc;
 
 window.serverTimestamp =
     serverTimestamp;
+
+
+/*
+   Tell the page that Firebase is ready.
+*/
+
+window.firebaseReady = true;
+
 </script>
 
 
@@ -875,25 +886,34 @@ window.serverTimestamp =
 let cart = {};
 
 
-/* ADD */
+/* ================= ADD TO CART ================= */
 
 window.addToCart = function(name, price) {
 
     if (cart[name]) {
+
         cart[name].quantity++;
+
     } else {
+
         cart[name] = {
-            price: price,
+
+            price: Number(price),
+
             quantity: 1
+
         };
+
     }
 
     showCart();
+
 };
 
-/* PLUS */
 
-function plus(name) {
+/* ================= PLUS ================= */
+
+window.plus = function(name) {
 
     if (cart[name]) {
 
@@ -903,7 +923,10 @@ function plus(name) {
 
     showCart();
 
-}
+};
+
+
+/* ================= MINUS ================= */
 
 window.minus = function(name) {
 
@@ -912,28 +935,32 @@ window.minus = function(name) {
         cart[name].quantity--;
 
         if (cart[name].quantity <= 0) {
+
             delete cart[name];
+
         }
+
     }
 
     showCart();
+
 };
 
-}
 
+/* ================= DELETE ================= */
 
-/* DELETE */
 window.removeItem = function(name) {
-    delete cart[name];
-    showCart();
-};
 
-}
+    delete cart[name];
+
+    showCart();
+
+};
 
 
 /* ================= SHOW CART ================= */
 
-function showCart() {
+window.showCart = function() {
 
     const cartItems =
         document.getElementById("cartItems");
@@ -997,6 +1024,7 @@ function showCart() {
                 <div class="cart-controls">
 
                     <button
+                        type="button"
                         class="minus"
                         onclick="minus('${escapeHTML(name)}')">
                         −
@@ -1004,6 +1032,7 @@ function showCart() {
 
 
                     <button
+                        type="button"
                         class="plus"
                         onclick="plus('${escapeHTML(name)}')">
                         +
@@ -1011,6 +1040,7 @@ function showCart() {
 
 
                     <button
+                        type="button"
                         class="delete"
                         onclick="removeItem('${escapeHTML(name)}')">
                         Delete
@@ -1027,16 +1057,15 @@ function showCart() {
 
     cartItems.innerHTML = html;
 
-
     cartTotal.innerHTML =
         "Total: RM " + total.toFixed(2);
 
-}
+};
 
 
 /* ================= CHECKOUT ================= */
 
-function checkout() {
+window.checkout = function() {
 
     const names =
         Object.keys(cart);
@@ -1044,7 +1073,9 @@ function checkout() {
 
     if (names.length === 0) {
 
-        alert("Please add food to your cart.");
+        alert(
+            "Please add food to your cart."
+        );
 
         return;
 
@@ -1052,12 +1083,34 @@ function checkout() {
 
 
     const customer =
-        document.getElementById("customerName").value.trim();
+        document
+        .getElementById("customerName")
+        .value
+        .trim();
 
 
     if (!customer) {
 
-        alert("Please enter your name.");
+        alert(
+            "Please enter your name."
+        );
+
+        return;
+
+    }
+
+
+    const selected =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        );
+
+
+    if (!selected) {
+
+        alert(
+            "Please select order type."
+        );
 
         return;
 
@@ -1065,19 +1118,20 @@ function checkout() {
 
 
     const orderType =
-        document.querySelector(
-            'input[name="orderType"]:checked'
-        ).value;
+        selected.value;
 
 
     if (
         orderType === "Dine In" &&
         !document
-            .getElementById("tableNumber")
-            .value.trim()
+        .getElementById("tableNumber")
+        .value
+        .trim()
     ) {
 
-        alert("Please enter your table number.");
+        alert(
+            "Please enter your table number."
+        );
 
         return;
 
@@ -1086,17 +1140,28 @@ function checkout() {
 
     confirmOrder();
 
-}
+};
 
 
 /* ================= ORDER TYPE ================= */
 
-function changeOrderType() {
+window.changeOrderType = function() {
 
-    const orderType =
+    const selected =
         document.querySelector(
             'input[name="orderType"]:checked'
-        ).value;
+        );
+
+
+    if (!selected) {
+
+        return;
+
+    }
+
+
+    const orderType =
+        selected.value;
 
 
     const tableBox =
@@ -1105,41 +1170,50 @@ function changeOrderType() {
 
     if (orderType === "Dine In") {
 
-        tableBox.style.display = "block";
+        tableBox.style.display =
+            "block";
 
     } else {
 
-        tableBox.style.display = "none";
+        tableBox.style.display =
+            "none";
 
     }
 
-}
+};
 
 
 /* ================= CONFIRM ORDER ================= */
 
-async function confirmOrder() {
+window.confirmOrder = async function() {
 
     const customer =
-        document.getElementById("customerName")
+        document
+        .getElementById("customerName")
         .value
         .trim();
 
 
-    const orderType =
+    const selected =
         document.querySelector(
             'input[name="orderType"]:checked'
-        ).value;
+        );
+
+
+    const orderType =
+        selected.value;
 
 
     const table =
-        document.getElementById("tableNumber")
+        document
+        .getElementById("tableNumber")
         .value
         .trim();
 
 
     const description =
-        document.getElementById("description")
+        document
+        .getElementById("description")
         .value
         .trim();
 
@@ -1149,42 +1223,70 @@ async function confirmOrder() {
     const items = [];
 
 
-    Object.keys(cart).forEach(function(name) {
+    Object.keys(cart).forEach(
+        function(name) {
 
-        const item = cart[name];
-
-        const subtotal =
-            item.price * item.quantity;
-
-        total += subtotal;
+            const item =
+                cart[name];
 
 
-        items.push({
+            const subtotal =
+                item.price *
+                item.quantity;
 
-            name: name,
 
-            price: item.price,
+            total += subtotal;
 
-            quantity: item.quantity,
 
-            subtotal: subtotal
+            items.push({
 
-        });
+                name: name,
 
-    });
+                price: item.price,
+
+                quantity: item.quantity,
+
+                subtotal: subtotal
+
+            });
+
+        }
+    );
 
 
     const orderNumber =
         "WK" +
         Math.floor(
-            1000 + Math.random() * 9000
+            1000 +
+            Math.random() * 9000
         );
 
 
     try {
 
+        /*
+           Wait until Firebase is ready.
+        */
+
+        if (
+            !window.firebaseReady ||
+            !window.addDoc ||
+            !window.ordersCollection
+        ) {
+
+            alert(
+                "Firebase is still loading. Please try again."
+            );
+
+            return;
+
+        }
+
+
         await window.addDoc(
+
             window.ordersCollection,
+
             {
 
                 orderNumber:
@@ -1198,8 +1300,8 @@ async function confirmOrder() {
 
                 table:
                     orderType === "Dine In"
-                        ? table
-                        : "",
+                    ? table
+                    : "",
 
                 description:
                     description,
@@ -1214,37 +1316,48 @@ async function confirmOrder() {
                     "NEW",
 
                 time:
-                    new Date().toLocaleString(),
+                    new Date()
+                    .toLocaleString(),
 
                 createdAt:
                     window.serverTimestamp()
 
             }
+
         );
 
 
-        document.getElementById(
+        document
+        .getElementById(
             "confirmedOrderNumber"
-        ).textContent =
+        )
+        .textContent =
             orderNumber;
 
 
-        document.getElementById(
+        document
+        .getElementById(
             "confirmedCustomer"
-        ).textContent =
+        )
+        .textContent =
             customer;
 
 
-        document.getElementById(
+        document
+        .getElementById(
             "confirmedOrderType"
-        ).textContent =
+        )
+        .textContent =
             orderType;
 
 
-        document.getElementById(
+        document
+        .getElementById(
             "confirmedTotal"
-        ).textContent =
-            "RM " + total.toFixed(2);
+        )
+        .textContent =
+            "RM " +
+            total.toFixed(2);
 
 
         const tableText =
@@ -1253,7 +1366,9 @@ async function confirmOrder() {
             );
 
 
-        if (orderType === "Dine In") {
+        if (
+            orderType === "Dine In"
+        ) {
 
             tableText.textContent =
                 "Table: " + table;
@@ -1265,22 +1380,41 @@ async function confirmOrder() {
 
         }
 
+
         const confirmedDescription =
-            document.getElementById("confirmedDescription");
+            document.getElementById(
+                "confirmedDescription"
+            );
+
 
         if (description) {
-            confirmedDescription.textContent =
-                "📝 Description: " + description;
-            confirmedDescription.style.display = "block";
+
+            confirmedDescription
+            .textContent =
+                "📝 Description: " +
+                description;
+
+            confirmedDescription
+            .style.display =
+                "block";
+
         } else {
-            confirmedDescription.style.display = "none";
-            confirmedDescription.textContent = "";
+
+            confirmedDescription
+            .style.display =
+                "none";
+
+            confirmedDescription
+            .textContent =
+                "";
+
         }
 
 
-        document.getElementById(
-            "confirmed"
-        ).style.display = "block";
+        document
+        .getElementById("confirmed")
+        .style.display =
+            "block";
 
 
         window.scrollTo({
@@ -1296,7 +1430,11 @@ async function confirmOrder() {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "ORDER ERROR:",
+            error
+        );
+
 
         alert(
             "Order failed. Please try again."
@@ -1304,39 +1442,51 @@ async function confirmOrder() {
 
     }
 
-}
+};
 
 
 /* ================= NEW ORDER ================= */
 
-function newOrder() {
+window.newOrder = function() {
 
     cart = {};
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "customerName"
-    ).value = "";
+    )
+    .value = "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "tableNumber"
-    ).value = "";
+    )
+    .value = "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "description"
-    ).value = "";
+    )
+    .value = "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "confirmed"
-    ).style.display = "none";
+    )
+    .style.display =
+        "none";
 
 
-    document.querySelector(
+    document
+    .querySelector(
         'input[name="orderType"][value="Dine In"]'
-    ).checked = true;
+    )
+    .checked =
+        true;
 
 
     changeOrderType();
@@ -1352,26 +1502,41 @@ function newOrder() {
 
     });
 
-}
+};
 
 
 /* ================= ESCAPE HTML ================= */
 
-function escapeHTML(value) {
+window.escapeHTML = function(value) {
 
     return String(value)
 
-        .replace(/&/g, "&amp;")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
 
-        .replace(/</g, "&lt;")
+        .replace(
+            /</g,
+            "&lt;"
+        )
 
-        .replace(/>/g, "&gt;")
+        .replace(
+            />/g,
+            "&gt;"
+        )
 
-        .replace(/"/g, "&quot;")
+        .replace(
+            /"/g,
+            "&quot;"
+        )
 
-        .replace(/'/g, "&#039;");
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
-}
+};
 
 
 /* ================= START ================= */
