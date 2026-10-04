@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Restoran Western King - Admin</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff4e6;
+    color: #333;
+}
+
+.header {
+    background: linear-gradient(135deg, #d62828, #f77f00);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.header p {
+    margin-top: 8px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.stat h2 {
+    margin: 0;
+    font-size: 30px;
+    color: #d62828;
+}
+
+.stat p {
+    margin-bottom: 0;
+}
+
+.refresh-button {
+    background: #1565c0;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.refresh-button:hover {
+    background: #0d47a1;
+}
+
+.orders {
+    display: grid;
+    gap: 20px;
+}
+
+.order-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-left: 7px solid #ffb703;
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d62828;
+}
+
+.customer {
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.order-info {
+    background: #fff8e7;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.item {
+    padding: 7px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.total {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d62828;
+    margin-top: 15px;
+}
+
+/* ORDER TYPE */
+
+.order-type {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 5px 0 10px 0;
+    font-size: 16px;
+}
+
+.dine-in {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.take-away {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.unknown-type {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* DEBUG */
+
+.debug-type {
+    margin-top: 5px;
+    padding: 8px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #555;
+}
+
+/* STATUS */
+
+.status {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.status-NEW {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-PREPARING {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.status-READY {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-COMPLETED {
+    background: #e2e3e5;
+    color: #41464b;
+}
+
+.status-CANCELLED {
+    background: #f8d7da;
+    color: #842029;
+}
+
+
+/* ================= PROMOTION ================= */
+
+.promotion-box {
+    margin-top: 15px;
+    padding: 15px;
+    background: #fff0f0;
+    border: 2px solid #ffb3b3;
+    border-radius: 12px;
+}
+
+.promotion-box h4 {
+    margin: 0 0 10px 0;
+    color: #d62828;
+}
+
+.promotion-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.promotion-input {
+    width: 110px;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.promotion-button {
+    background: #d62828;
+    color: white;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.promotion-button:hover {
+    opacity: 0.85;
+}
+
+.price-row {
+    margin-top: 8px;
+}
+
+.original-price {
+    color: #777;
+    text-decoration: line-through;
+}
+
+.discount-price {
+    color: #d62828;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.discount-label {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+/* BUTTONS */
+
+.buttons {
+    margin-top: 18px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+button.action {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.prepare {
+    background: #1565c0;
+}
+
+.ready {
+    background: #2e7d32;
+}
+
+.complete {
+    background: #555;
+}
+
+.cancel {
+    background: #d62828;
+}
+
+button.action:hover {
+    opacity: 0.85;
+}
+
+/* EMPTY */
+
+.empty {
+    background: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ERROR */
+
+.error {
+    background: #f8d7da;
+    color: #842029;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* FIREBASE STATUS */
+
+.firebase-status {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    background: #eee;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>👨‍🍳 RESTORAN WESTERN KING</h1>
+
+<p>📋 Admin Order Management System</p>
+
+</div>
+
+<div class="container">
+
+<div class="dashboard">
+
+<div class="stat">
+<h2 id="newCount">0</h2>
+<p>🆕 NEW</p>
+</div>
+
+<div class="stat">
+<h2 id="preparingCount">0</h2>
+<p>👨‍🍳 PREPARING</p>
+</div>
+
+<div class="stat">
+<h2 id="readyCount">0</h2>
+<p>🔔 READY</p>
+</div>
+
+<div class="stat">
+<h2 id="completedCount">0</h2>
+<p>✅ COMPLETED</p>
+</div>
+
+<div class="stat">
+<h2 id="totalRevenue">RM 0.00</h2>
+<p>💰 TOTAL REVENUE</p>
+</div>
+
+</div>
+
+<button
+class="refresh-button"
+onclick="loadOrders()">
+
+🔄 Refresh Orders
+
+</button>
+
+<div
+id="errorBox"
+class="error">
+</div>
+
+<div
+id="orders"
+class="orders">
+
+<div class="empty">
+⏳ Loading orders...
+</div>
+
+</div>
+
+</div>
+
+<div
+id="firebaseStatus"
+class="firebase-status">
+
+⏳ Connecting...
+
+</div>
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    onSnapshot,
+    updateDoc,
+    doc
+}
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+
+/* ================= FIREBASE ================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
+
+    authDomain:
+        "western-king-restaurant.firebaseapp.com",
+
+    projectId:
+        "western-king-restaurant",
+
+    storageBucket:
+        "western-king-restaurant.firebasestorage.app",
+
+    messagingSenderId:
+        "866508888526",
+
+    appId:
+        "1:866508888526:web:ad4c149c431fd5d286339f6"
+
+};
+
+
+let app;
+let db;
+
+try {
+
+    app = initializeApp(firebaseConfig);
+
+    db = getFirestore(app);
+
+    document.getElementById(
+        "firebaseStatus"
+    ).innerText =
+        "🟢 Firebase Connected";
+
+}
+
+catch (error) {
+
+    console.error(error);
+
+    document.getElementById(
+        "firebaseStatus"
+    ).innerText =
+        "🔴 Firebase Error";
+
+}
+
+
+let allOrders = [];
+
+let unsubscribeOrders = null;
+
+
+/* ================= LOAD ORDERS ================= */
+
+function loadOrders() {
+
+    if (!db) {
+        return;
+    }
+
+    if (unsubscribeOrders) {
+        unsubscribeOrders();
+    }
+
+    const ordersRef =
+        collection(db, "orders");
+
+    unsubscribeOrders =
+        onSnapshot(
+
+            ordersRef,
+
+            (snapshot) => {
+
+                console.log(
+                    "Orders received:",
+                    snapshot.size
+                );
+
+                allOrders = [];
+
+                snapshot.forEach(
+                    (document) => {
+
+                        const data =
+                            document.data();
+
+                        console.log(
+                            "ORDER FROM FIREBASE:",
+                            data
+                        );
+
+                        allOrders.push({
+
+                            id:
+                                document.id,
+
+                            ...data
+
+                        });
+
+                    }
+                );
+
+                allOrders.sort(
+                    (a, b) => {
+
+                        let timeA = 0;
+                        let timeB = 0;
+
+                        if (a.createdAt) {
+                            timeA =
+                                a.createdAt.seconds || 0;
+                        }
+
+                        if (b.createdAt) {
+                            timeB =
+                                b.createdAt.seconds || 0;
+                        }
+
+                        return timeB - timeA;
+
+                    }
+                );
+
+                displayOrders();
+
+                updateDashboard();
+
+                document.getElementById(
+                    "errorBox"
+                ).style.display =
+                    "none";
+
+            },
+
+            (error) => {
+
+                console.error(
+                    "Firebase error:",
+                    error
+                );
+
+                const errorBox =
+                    document.getElementById(
+                        "errorBox"
+                    );
+
+                errorBox.innerText =
+                    "❌ Firebase Error: " +
+                    error.message;
+
+                errorBox.style.display =
+                    "block";
+
+            }
+
+        );
+
+}
+
+
+/* ================= DISPLAY ORDERS ================= */
+
+function displayOrders() {
+
+    const box =
+        document.getElementById("orders");
+
+    box.innerHTML = "";
+
+    if (allOrders.length === 0) {
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                <h2>📭 No Orders</h2>
+
+                <p>
+                    There are currently no customer orders.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    allOrders.forEach(
+        (order) => {
+
+
+        /* ================= ITEMS ================= */
+
+        let itemsHTML = "";
+
+        if (
+            order.items &&
+            Array.isArray(order.items)
+        ) {
+
+            order.items.forEach(
+                (item) => {
+
+                itemsHTML += `
+
+                    <div class="item">
+
+                        🍴
+
+                        <b>
+                            ${escapeHTML(item.name)}
+                        </b>
+
+                        × ${item.quantity}
+
+                        &nbsp;&nbsp;
+
+                        RM ${Number(
+                            item.subtotal || 0
+                        ).toFixed(2)}
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        /* ================= BASIC DATA ================= */
+
+        let status =
+            String(order.status || "NEW")
+            .trim()
+            .toUpperCase();
+
+        let time =
+            order.time || "Unknown time";
+
+        let total =
+            Number(order.total || 0);
+
+        // Keep the first/original price so repeated promotions do not
+        // accidentally discount an already discounted price.
+        let originalTotal =
+            Number(
+                order.originalTotal ??
+                order.total ??
+                0
+            );
+
+        let promotion =
+            String(order.promotion || "").trim();
+
+        let discount =
+            Number(order.discount || 0);
+
+        let finalTotal =
+            Number(
+                order.finalTotal ??
+                order.total ??
+                0
+            );
+
+        let orderNumber =
+            order.orderNumber ||
+            order.id;
+
+        let customer =
+            order.customer ||
+            "Customer";
+
+
+        /* ================= IMPORTANT FIX ================= */
+
+        /*
+        把 Firebase 的 orderType
+        统一成小写再判断。
+        */
+
+        let rawOrderType =
+            order.orderType;
+
+        let normalizedOrderType =
+            String(
+                rawOrderType || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        console.log(
+            "Order:",
+            orderNumber,
+            "RAW orderType =",
+            rawOrderType,
+            "NORMALIZED =",
+            normalizedOrderType
+        );
+
+
+        /* ================= ORDER TYPE ================= */
+
+        let orderTypeHTML = "";
+
+        let tableHTML = "";
+
+
+        if (
+            normalizedOrderType === "dine in" ||
+            normalizedOrderType === "dine-in" ||
+            normalizedOrderType === "dinein"
+        ) {
+
+            orderTypeHTML = `
+
+                <div class="order-type dine-in">
+
+                    🍽️ DINE IN
+
+                </div>
+
+            `;
+
+
+            let table =
+                order.table || "";
+
+
+            tableHTML = `
+
+                <p>
+
+                    🪑
+
+                    <b>
+                        Table:
+                    </b>
+
+                    ${escapeHTML(
+                        String(table || "-")
+                    )}
+
+                </p>
+
+            `;
+
+        }
+
+        else if (
+            normalizedOrderType === "take away" ||
+            normalizedOrderType === "take-away" ||
+            normalizedOrderType === "takeaway"
+        ) {
+
+            orderTypeHTML = `
+
+                <div class="order-type take-away">
+
+                    🥡 TAKE AWAY
+
+                </div>
+
+            `;
+
+        }
+
+        else {
+
+            orderTypeHTML = `
+
+                <div class="order-type unknown-type">
+
+                    ⚠️ ORDER TYPE NOT FOUND
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* ================= DEBUG ================= */
+
+        let debugHTML = `
+
+            <div class="debug-type">
+
+                Firebase orderType:
+
+                <b>
+                    ${escapeHTML(
+                        String(
+                            rawOrderType ?? "undefined"
+                        )
+                    )}
+                </b>
+
+            </div>
+
+        `;
+
+
+        /* ================= ORDER CARD ================= */
+
+        box.innerHTML += `
+
+            <div class="order-card">
+
+                <div class="order-top">
+
+                    <div>
+
+                        <div class="order-number">
+
+                            #${escapeHTML(
+                                String(orderNumber)
+                            )}
+
+                        </div>
+
+                        <div class="customer">
+
+                            👤
+
+                            <b>
+
+                                ${escapeHTML(
+                                    String(customer)
+                                )}
+
+                            </b>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span
+                            class="status status-${escapeHTML(
+                                status
+                            )}">
+
+                            ${escapeHTML(status)}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="order-info">
+
+
+                    <p>
+
+                        <b>
+                            Order Type:
+                        </b>
+
+                    </p>
+
+
+                    ${orderTypeHTML}
+
+
+                    ${tableHTML}
+
+
+                    ${debugHTML}
+
+
+                    <p>
+
+                        🕐
+
+                        <b>
+                            Time:
+                        </b>
+
+                        ${escapeHTML(
+                            String(time)
+                        )}
+
+                    </p>
+
+
+                    <hr>
+
+
+                    <h3>
+
+                        🍴 Order Items
+
+                    </h3>
+
+
+                    ${itemsHTML}
+
+
+                    <div class="promotion-box">
+
+                        <h4>🏷️ Promotion / Discount</h4>
+
+                        <div class="promotion-row">
+
+                            <input
+                                type="number"
+                                min="0"
+                                max="100"
+                                step="0.01"
+                                class="promotion-input"
+                                id="promotion-${escapeHTML(order.id)}"
+                                placeholder="例如 10"
+                                value="${promotion.replace(/[^0-9.]/g, "")}"
+                            >
+
+                            <span>% OFF</span>
+
+                            <button
+                                class="promotion-button"
+                                onclick="applyPromotion('${escapeHTML(order.id)}')">
+
+                                Apply Promotion
+
+                            </button>
+
+                        </div>
+
+                        <div class="price-row">
+
+                            Original Price:
+                            <b>RM ${originalTotal.toFixed(2)}</b>
+
+                        </div>
+
+                        <div class="price-row discount-label">
+
+                            ${promotion
+                                ? "🏷️ Promotion: " + escapeHTML(promotion)
+                                : "🏷️ No Promotion"}
+
+                            ${discount > 0
+                                ? " &nbsp; (-RM " + discount.toFixed(2) + ")"
+                                : ""}
+
+                        </div>
+
+                        <div class="price-row discount-price">
+
+                            💰 Final Price:
+                            RM ${finalTotal.toFixed(2)}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="buttons">
+
+
+                    ${
+                        status === "NEW"
+
+                        ?
+
+                        `
+
+                        <button
+
+                            class="action prepare"
+
+                            onclick="changeStatus(
+                                '${escapeHTML(order.id)}',
+                                'PREPARING'
+                            )">
+
+                            👨‍🍳 Accept Order
+
+                        </button>
+
+                        `
+
+                        :
+
+                        ""
+
+                    }
+
+
+                    ${
+                        status === "PREPARING"
+
+                        ?
+
+                        `
+
+                        <button
+
+                            class="action ready"
+
+                            onclick="changeStatus(
+                                '${escapeHTML(order.id)}',
+                                'READY'
+                            )">
+
+                            🔔 Mark Ready
+
+                        </button>
+
+                        `
+
+                        :
+
+                        ""
+
+                    }
+
+
+                    ${
+                        status === "READY"
+
+                        ?
+
+                        `
+
+                        <button
+
+                            class="action complete"
+
+                            onclick="changeStatus(
+                                '${escapeHTML(order.id)}',
+                                'COMPLETED'
+                            )">
+
+                            ✅ Complete
+
+                        </button>
+
+                        `
+
+                        :
+
+                        ""
+
+                    }
+
+
+                    ${
+                        status !== "COMPLETED" &&
+                        status !== "CANCELLED"
+
+                        ?
+
+                        `
+
+                        <button
+
+                            class="action cancel"
+
+                            onclick="changeStatus(
+                                '${escapeHTML(order.id)}',
+                                'CANCELLED'
+                            )">
+
+                            ❌ Cancel
+
+                        </button>
+
+                        `
+
+                        :
+
+                        ""
+
+                    }
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+/* ================= PROMOTION ================= */
+
+window.applyPromotion =
+    async function(orderId) {
+
+        try {
+
+            const input =
+                document.getElementById(
+                    "promotion-" + orderId
+                );
+
+            if (!input) {
+                alert("❌ Promotion input not found.");
+                return;
+            }
+
+            let percentage =
+                Number(input.value || 0);
+
+            if (
+                !Number.isFinite(percentage) ||
+                percentage < 0 ||
+                percentage > 100
+            ) {
+                alert("❌ Please enter a discount from 0% to 100%.");
+                return;
+            }
+
+            const order =
+                allOrders.find(
+                    item => item.id === orderId
+                );
+
+            if (!order) {
+                alert("❌ Order not found.");
+                return;
+            }
+
+            // Always use the original price.
+            const originalTotal =
+                Number(
+                    order.originalTotal ??
+                    order.total ??
+                    0
+                );
+
+            const discount =
+                originalTotal * percentage / 100;
+
+            const finalTotal =
+                Math.max(
+                    0,
+                    originalTotal - discount
+                );
+
+            const promotionText =
+                percentage === 0
+                    ? ""
+                    : percentage + "% OFF";
+
+            await updateDoc(
+                doc(
+                    db,
+                    "orders",
+                    orderId
+                ),
+                {
+                    originalTotal: originalTotal,
+                    promotion: promotionText,
+                    discount: Number(discount.toFixed(2)),
+                    finalTotal: Number(finalTotal.toFixed(2)),
+                    total: Number(finalTotal.toFixed(2))
+                }
+            );
+
+            alert(
+                percentage === 0
+                    ? "✅ Promotion removed."
+                    : "✅ Promotion applied: " +
+                      percentage +
+                      "% OFF\n\nFinal Price: RM " +
+                      finalTotal.toFixed(2)
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Promotion error:",
+                error
+            );
+
+            alert(
+                "❌ Failed to apply promotion:\n\n" +
+                error.message
+            );
+
+        }
+
+    };
+
+
+/* ================= CHANGE STATUS ================= */
+
+window.changeStatus =
+    async function(
+        orderId,
+        newStatus
+    ) {
+
+    try {
+
+        await updateDoc(
+
+            doc(
+                db,
+                "orders",
+                orderId
+            ),
+
+            {
+                status:
+                    newStatus
+            }
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "❌ Failed to update order:\n\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* ================= DASHBOARD ================= */
+
+function updateDashboard() {
+
+    let newCount = 0;
+    let preparingCount = 0;
+    let readyCount = 0;
+    let completedCount = 0;
+    let totalRevenue = 0;
+
+
+    allOrders.forEach(
+        (order) => {
+
+        const status =
+            String(
+                order.status || "NEW"
+            )
+            .trim()
+            .toUpperCase();
+
+
+        if (status === "NEW") {
+            newCount++;
+        }
+
+        else if (status === "PREPARING") {
+            preparingCount++;
+        }
+
+        else if (status === "READY") {
+            readyCount++;
+        }
+
+        else if (status === "COMPLETED") {
+
+            completedCount++;
+
+            totalRevenue +=
+                Number(
+                    order.finalTotal ??
+                    order.total ??
+                    0
+                );
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "newCount"
+    ).innerText =
+        newCount;
+
+    document.getElementById(
+        "preparingCount"
+    ).innerText =
+        preparingCount;
+
+    document.getElementById(
+        "readyCount"
+    ).innerText =
+        readyCount;
+
+    document.getElementById(
+        "completedCount"
+    ).innerText =
+        completedCount;
+
+    document.getElementById(
+        "totalRevenue"
+    ).innerText =
+        "RM " +
+        totalRevenue.toFixed(2);
+
+}
+
+
+/* ================= ESCAPE ================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ================= GLOBAL ================= */
+
+window.loadOrders =
+    loadOrders;
+
+
+/* ================= START ================= */
+
+loadOrders();
+
+</script>
+
+</body>
+
+</html>
