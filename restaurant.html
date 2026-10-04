@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 
 <html>
 
@@ -132,6 +132,7 @@ input {
     max-width: 400px;
     border: 1px solid #aaa;
     border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .confirm-button {
@@ -142,6 +143,15 @@ input {
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
+}
+
+.confirm-button:hover {
+    background: #1b5e20;
+}
+
+.confirm-button:disabled {
+    background: #999;
+    cursor: not-allowed;
 }
 
 .confirmed {
@@ -188,11 +198,22 @@ input {
     margin-top: 15px;
 }
 
+.firebase-status {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    background: #eee;
+}
+
 </style>
 
 </head>
 
 <body>
+
 
 <!-- ==================== HEADER ==================== -->
 
@@ -204,13 +225,21 @@ input {
 
 </div>
 
+
 <div class="container">
+
 
 <!-- ==================== FOOD ==================== -->
 
-<h2 class="section-title">🍗 Food Menu</h2>
+<h2 class="section-title">
+
+🍗 Food Menu
+
+</h2>
+
 
 <div class="menu">
+
 
 <div class="food">
 
@@ -218,11 +247,16 @@ input {
 
 <p class="price">RM 15.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Chicken Chop', 15)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -230,11 +264,16 @@ Add to Cart </button>
 
 <p class="price">RM 10.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Spaghetti', 10)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -242,11 +281,16 @@ Add to Cart </button>
 
 <p class="price">RM 6.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Chicken Burger', 6)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -254,11 +298,16 @@ Add to Cart </button>
 
 <p class="price">RM 5.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('French Fries', 5)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -266,19 +315,31 @@ Add to Cart </button>
 
 <p class="price">RM 8.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Fish Burger', 8)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
 
+
 </div>
+
 
 <!-- ==================== DRINKS ==================== -->
 
-<h2 class="section-title">🥤 Drinks Menu</h2>
+<h2 class="section-title">
+
+🥤 Drinks Menu
+
+</h2>
+
 
 <div class="menu">
+
 
 <div class="food">
 
@@ -286,11 +347,16 @@ Add to Cart </button>
 
 <p class="price">RM 3.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Ice Coca-Cola', 3)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -298,11 +364,16 @@ Add to Cart </button>
 
 <p class="price">RM 2.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Ice Mineral Water', 2)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -310,11 +381,16 @@ Add to Cart </button>
 
 <p class="price">RM 3.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Ice Lemon Tea', 3)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -322,11 +398,16 @@ Add to Cart </button>
 
 <p class="price">RM 4.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Ice Milo', 4)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
+
 
 <div class="food">
 
@@ -334,13 +415,19 @@ Add to Cart </button>
 
 <p class="price">RM 3.00</p>
 
-<button class="add-button"
+<button
+class="add-button"
 onclick="addToCart('Ice 100 Plus', 3)">
-Add to Cart </button>
+
+Add to Cart
+
+</button>
 
 </div>
 
+
 </div>
+
 
 <!-- ==================== CART ==================== -->
 
@@ -354,6 +441,7 @@ Your cart is empty.
 
 </div>
 
+
 <h3 class="total">
 
 Total: RM
@@ -362,7 +450,9 @@ Total: RM
 
 </h3>
 
-<button class="add-button"
+
+<button
+class="add-button"
 onclick="checkout()">
 
 🛍️ Checkout / Order Now
@@ -371,35 +461,94 @@ onclick="checkout()">
 
 </div>
 
+
 <!-- ==================== CHECKOUT ==================== -->
 
-<div id="checkout"
+<div
+id="checkout"
 class="checkout"
 style="display:none;">
 
 <h2>🧾 Checkout</h2>
+
 
 <p>👤 Customer Name</p>
 
 <input
 type="text"
 id="customerName"
-placeholder="Enter your name"
+placeholder="Enter your name">
 
->
+
+<p>🍽️ Order Type</p>
+
+<label>
+<input
+type="radio"
+name="orderType"
+value="Dine In"
+checked
+onchange="changeOrderType()">
+
+🍽️ Dine In
+</label>
+
+<br><br>
+
+<label>
+<input
+type="radio"
+name="orderType"
+value="Take Away"
+onchange="changeOrderType()">
+
+🥡 Take Away
+</label>
+
+
+<div id="tableBox">
+
+<p>🍽️ Order Type</p>
+
+<label>
+<input
+type="radio"
+name="orderType"
+value="Dine In"
+checked
+onchange="changeOrderType()">
+
+🍽️ Dine In
+</label>
+
+<br><br>
+
+<label>
+<input
+type="radio"
+name="orderType"
+value="Take Away"
+onchange="changeOrderType()">
+
+🥡 Take Away
+</label>
+
+<div id="tableBox">
 
 <p>🪑 Table Number</p>
 
 <input
 type="number"
 id="tableNumber"
-placeholder="Enter table number"
+placeholder="Enter table number">
 
->
+</div>
+</div>
 
 <h3>📋 Order Summary</h3>
 
 <div id="summary"></div>
+
 
 <h3 class="total">
 
@@ -409,7 +558,10 @@ Total: RM
 
 </h3>
 
-<button class="confirm-button"
+
+<button
+id="confirmButton"
+class="confirm-button"
 onclick="confirmOrder()">
 
 ✅ Confirm Order
@@ -418,9 +570,11 @@ onclick="confirmOrder()">
 
 </div>
 
+
 <!-- ==================== CONFIRMED ORDER ==================== -->
 
-<div id="confirmed"
+<div
+id="confirmed"
 class="confirmed"
 style="display:none;">
 
@@ -428,7 +582,118 @@ style="display:none;">
 
 </div>
 
+
 </div>
+
+
+<div
+id="firebaseStatus"
+class="firebase-status">
+
+⏳ Connecting...
+
+</div>
+
+
+<!-- ===================================================== -->
+<!-- ==================== FIREBASE ======================== -->
+<!-- ===================================================== -->
+
+<script type="module">
+
+import { initializeApp }
+
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+
+import {
+
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+
+
+/* ================= FIREBASE CONFIG ================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
+
+    authDomain:
+    "western-king-restaurant.firebaseapp.com",
+
+    projectId:
+    "western-king-restaurant",
+
+    storageBucket:
+    "western-king-restaurant.firebasestorage.app",
+
+    messagingSenderId:
+    "866508888526",
+
+    appId:
+    "1:866508888526:web:ad4c149c431fd5d286339f6"
+
+};
+
+
+/* ================= INITIALIZE ================= */
+
+try {
+
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const db =
+        getFirestore(app);
+
+
+    window.db = db;
+
+    window.firestoreCollection =
+        collection;
+
+    window.firestoreAddDoc =
+        addDoc;
+
+    window.firestoreServerTimestamp =
+        serverTimestamp;
+
+
+    document.getElementById("firebaseStatus")
+        .innerText = "🟢 Firebase Connected";
+
+
+    console.log("✅ Firebase connected");
+
+}
+
+catch (error) {
+
+    console.error(
+        "Firebase initialization error:",
+        error
+    );
+
+
+    document.getElementById("firebaseStatus")
+        .innerText = "🔴 Firebase Error";
+
+}
+
+</script>
+
+
+<!-- ===================================================== -->
+<!-- ==================== MAIN JAVASCRIPT ================= -->
+<!-- ===================================================== -->
 
 <script>
 
@@ -469,6 +734,8 @@ function addToCart(name, price) {
 
 function plus(name) {
 
+    if (!cart[name]) return;
+
     cart[name].quantity++;
 
     showCart();
@@ -480,13 +747,17 @@ function plus(name) {
 
 function minus(name) {
 
+    if (!cart[name]) return;
+
     cart[name].quantity--;
+
 
     if (cart[name].quantity <= 0) {
 
         delete cart[name];
 
     }
+
 
     showCart();
 
@@ -511,11 +782,15 @@ function showCart() {
     let box =
         document.getElementById("cart-items");
 
+
     box.innerHTML = "";
+
 
     let total = 0;
 
-    let names = Object.keys(cart);
+
+    let names =
+        Object.keys(cart);
 
 
     if (names.length === 0) {
@@ -523,22 +798,31 @@ function showCart() {
         box.innerHTML =
             "Your cart is empty.";
 
+
         document.getElementById("total")
             .innerText = "0.00";
+
 
         return;
 
     }
 
 
-    for (let i = 0; i < names.length; i++) {
+    for (
+        let i = 0;
+        i < names.length;
+        i++
+    ) {
 
         let name = names[i];
 
         let item = cart[name];
 
+
         let subtotal =
-            item.price * item.quantity;
+            item.price *
+            item.quantity;
+
 
         total += subtotal;
 
@@ -547,7 +831,9 @@ function showCart() {
 
         '<div class="cart-item">' +
 
-        "🍴 <b>" + name + "</b>" +
+        "🍴 <b>" +
+        name +
+        "</b>" +
 
         "<br>" +
 
@@ -556,8 +842,12 @@ function showCart() {
 
         "<br><br>" +
 
+
         '<button class="small-button" ' +
-        'onclick="minus(\'' + name + '\')">' +
+
+        'onclick="minus(\'' +
+        name +
+        '\')">' +
 
         "−" +
 
@@ -569,8 +859,12 @@ function showCart() {
 
         " " +
 
+
         '<button class="small-button" ' +
-        'onclick="plus(\'' + name + '\')">' +
+
+        'onclick="plus(\'' +
+        name +
+        '\')">' +
 
         "+" +
 
@@ -578,8 +872,12 @@ function showCart() {
 
         " " +
 
+
         '<button class="delete-button" ' +
-        'onclick="removeItem(\'' + name + '\')">' +
+
+        'onclick="removeItem(\'' +
+        name +
+        '\')">' +
 
         "🗑️ Delete" +
 
@@ -597,7 +895,8 @@ function showCart() {
 
 
     document.getElementById("total")
-        .innerText = total.toFixed(2);
+        .innerText =
+        total.toFixed(2);
 
 }
 
@@ -606,9 +905,13 @@ function showCart() {
 
 function checkout() {
 
-    if (Object.keys(cart).length === 0) {
+    if (
+        Object.keys(cart).length === 0
+    ) {
 
-        alert("Your cart is empty!");
+        alert(
+            "Your cart is empty!"
+        );
 
         return;
 
@@ -622,22 +925,32 @@ function checkout() {
     let summary =
         document.getElementById("summary");
 
+
     summary.innerHTML = "";
 
 
     let total = 0;
 
-    let names = Object.keys(cart);
+
+    let names =
+        Object.keys(cart);
 
 
-    for (let i = 0; i < names.length; i++) {
+    for (
+        let i = 0;
+        i < names.length;
+        i++
+    ) {
 
         let name = names[i];
 
         let item = cart[name];
 
+
         let subtotal =
-            item.price * item.quantity;
+            item.price *
+            item.quantity;
+
 
         total += subtotal;
 
@@ -663,220 +976,466 @@ function checkout() {
     }
 
 
-    document.getElementById("checkoutTotal")
-        .innerText = total.toFixed(2);
-
-}
-
-
-// ==================== CONFIRM ORDER ====================
-
-function confirmOrder() {
-
-    let name =
-        document.getElementById("customerName")
-        .value.trim();
-
-    let table =
-        document.getElementById("tableNumber")
-        .value.trim();
-
-
-    if (name === "") {
-
-        alert("Please enter customer name.");
-
-        return;
-
-    }
-
-
-    if (table === "") {
-
-        alert("Please enter table number.");
-
-        return;
-
-    }
-
-
-    // TOTAL
-
-    let total =
-        document.getElementById("checkoutTotal")
-        .innerText;
-
-
-    // ORDER NUMBER
-
-    let orderNumber =
-        "WK" +
-        Math.floor(1000 + Math.random() * 9000);
-
-
-    // TIME
-
-    let now = new Date();
-
-    let time =
-        now.toLocaleString();
-
-
-    // RESULT
-
-    let result =
-
-        "<h2>🎉 Order Confirmed!</h2>" +
-
-
-        '<div class="collection-box">' +
-
-        "<h2>🔢 Collection Number</h2>" +
-
-        '<h1 class="collection-number">' +
-
-        orderNumber +
-
-        "</h1>" +
-
-        "<p><b>🍔 Please remember this number.</b></p>" +
-
-        "<p>" +
-
-        "When your food is ready, " +
-
-        "please collect your order using this number." +
-
-        "</p>" +
-
-        "</div>" +
-
-
-        "<p>🕐 Time: <b>" +
-
-        time +
-
-        "</b></p>" +
-
-
-        "<p>👤 Customer Name: <b>" +
-
-        name +
-
-        "</b></p>" +
-
-
-        "<p>🪑 Table Number: <b>" +
-
-        table +
-
-        "</b></p>" +
-
-
-        "<p>📦 Status: " +
-
-        '<b style="color:#f77f00;">' +
-
-        "PREPARING" +
-
-        "</b>" +
-
-        "</p>" +
-
-
-        "<h3>📋 Order:</h3>";
-
-
-    // ORDER ITEMS
-
-    let names = Object.keys(cart);
-
-
-    for (let i = 0; i < names.length; i++) {
-
-        let food = names[i];
-
-        let item = cart[food];
-
-        let subtotal =
-            item.price * item.quantity;
-
-
-        result +=
-
-        "<p>" +
-
-        "🍴 " +
-
-        food +
-
-        " × " +
-
-        item.quantity +
-
-        " = RM " +
-
-        subtotal.toFixed(2) +
-
-        "</p>";
-
-    }
-
-
-    // TOTAL + STATUS
-
-    result +=
-
-        "<hr>" +
-
-        "<h2>💰 Total: RM " +
-
-        total +
-
-        "</h2>" +
-
-
-        '<div class="status-box">' +
-
-        "<h2>🟡 Your order is being prepared</h2>" +
-
-        "<p>Please wait until your order is ready.</p>" +
-
-        "<h3>When ready, collect:</h3>" +
-
-        '<h2 style="color:#d62828;">' +
-
-        orderNumber +
-
-        "</h2>" +
-
-        "</div>" +
-
-
-        "<br>" +
-
-
-        '<button class="new-order-button" ' +
-
-        'onclick="newOrder()">' +
-
-        "🛒 New Order" +
-
-        "</button>";
-
-
-    // SHOW CONFIRMED ORDER
-
-    document.getElementById("confirmedOrder")
-        .innerHTML = result;
-
-
-    document.getElementById("confirmed")
-        .style.display = "block";
+    document.getElementById(
+        "checkoutTotal"
+    ).innerText =
+        total.toFixed(2);
 
 
     document.getElementById("checkout")
-        .style.display = "none";
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+function changeOrderType() {
+
+    let orderType =
+    document.querySelector(
+        'input[name="orderType"]:checked'
+    ).value;
+
+    let tableBox =
+        document.getElementById("tableBox");
+
+    let tableInput =
+        document.getElementById("tableNumber");
+
+
+    if (orderType === "Dine In") {
+
+        tableBox.style.display = "block";
+
+        tableInput.required = true;
+
+    } else {
+
+        tableBox.style.display = "none";
+
+        tableInput.required = false;
+
+        tableInput.value = "";
+
+    }
+
+}
+
+// ==================== CONFIRM ORDER ====================
+
+async function confirmOrder() {
+
+
+    let name =
+        document.getElementById(
+            "customerName"
+        ).value.trim();
+
+let table =
+    document.getElementById(
+        "tableNumber"
+    ).value.trim();
+
+
+    /* ================= VALIDATION ================= */
+
+    if (name === "") {
+
+        alert(
+            "Please enter customer name."
+        );
+
+        return;
+
+    }
+
+
+if (
+    orderType === "Dine In" &&
+    table === ""
+) {
+    alert("Please enter table number.");
+    return;
+}
+}
+
+    if (
+        Object.keys(cart).length === 0
+    ) {
+
+        alert(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+
+    /* ================= FIREBASE CHECK ================= */
+
+    if (
+        !window.db ||
+        !window.firestoreAddDoc ||
+        !window.firestoreCollection
+    ) {
+
+        alert(
+            "❌ Firebase is not connected.\n\n" +
+            "Please check your Firebase configuration."
+        );
+
+        return;
+
+    }
+
+
+    /* ================= BUTTON ================= */
+
+    const confirmButton =
+        document.getElementById(
+            "confirmButton"
+        );
+
+
+    confirmButton.disabled = true;
+
+    confirmButton.innerText =
+        "⏳ Sending Order...";
+
+
+    try {
+
+
+        /* ================= ORDER NUMBER ================= */
+
+        let orderNumber =
+            "WK" +
+            Math.floor(
+                1000 +
+                Math.random() * 9000
+            );
+
+
+        /* ================= TIME ================= */
+
+        let now =
+            new Date();
+
+
+        let time =
+            now.toLocaleString();
+
+
+        /* ================= ITEMS ================= */
+
+        let items = [];
+
+        let total = 0;
+
+
+        let names =
+            Object.keys(cart);
+
+
+        for (
+            let i = 0;
+            i < names.length;
+            i++
+        ) {
+
+            let food =
+                names[i];
+
+
+            let item =
+                cart[food];
+
+
+            let subtotal =
+                item.price *
+                item.quantity;
+
+
+            total += subtotal;
+
+
+            items.push({
+
+                name: food,
+
+                price: item.price,
+
+                quantity: item.quantity,
+
+                subtotal: subtotal
+
+            });
+
+        }
+
+
+        /* ================= SAVE FIREBASE ================= */
+
+        const docRef =
+            await window.firestoreAddDoc(
+
+                window.firestoreCollection(
+                    window.db,
+                    "orders"
+                ),
+
+                {
+
+                    orderNumber:
+                        orderNumber,
+
+                    customer:
+                        name,
+
+                    table:
+                        table,
+
+                    items:
+                        items,
+
+                    total:
+                        total,
+
+                    status:
+                        "NEW",
+
+                    time:
+                        time,
+
+                    createdAt:
+                        window.firestoreServerTimestamp()
+
+                }
+
+            );
+
+
+        console.log(
+            "✅ Order saved:",
+            docRef.id
+        );
+
+
+        /* ================= RESULT ================= */
+
+        let result =
+
+            "<h2>🎉 Order Confirmed!</h2>" +
+
+
+            '<div class="collection-box">' +
+
+            "<h2>🔢 Collection Number</h2>" +
+
+            '<h1 class="collection-number">' +
+
+            orderNumber +
+
+            "</h1>" +
+
+            "<p><b>🍔 Please remember this number.</b></p>" +
+
+            "<p>" +
+
+            "When your food is ready, " +
+
+            "please collect your order " +
+
+            "using this number." +
+
+            "</p>" +
+
+            "</div>" +
+
+
+            "<p>🕐 Time: <b>" +
+
+            time +
+
+            "</b></p>" +
+
+
+            "<p>👤 Customer Name: <b>" +
+
+            escapeHTML(name) +
+
+            "</b></p>" +
+
+
+            "<p>🪑 Table Number: <b>" +
+
+            escapeHTML(table) +
+
+            "</b></p>" +
+
+
+            "<p>📦 Status: " +
+
+            '<b style="color:#f77f00;">' +
+
+            "NEW" +
+
+            "</b>" +
+
+            "</p>" +
+
+
+            "<h3>📋 Order:</h3>";
+
+
+        /* ================= ORDER ITEMS ================= */
+
+        for (
+            let i = 0;
+            i < names.length;
+            i++
+        ) {
+
+            let food =
+                names[i];
+
+
+            let item =
+                cart[food];
+
+
+            let subtotal =
+                item.price *
+                item.quantity;
+
+
+            result +=
+
+                "<p>" +
+
+                "🍴 " +
+
+                escapeHTML(food) +
+
+                " × " +
+
+                item.quantity +
+
+                " = RM " +
+
+                subtotal.toFixed(2) +
+
+                "</p>";
+
+        }
+
+
+        /* ================= TOTAL ================= */
+
+        result +=
+
+            "<hr>" +
+
+            "<h2>💰 Total: RM " +
+
+            total.toFixed(2) +
+
+            "</h2>" +
+
+
+            '<div class="status-box">' +
+
+            "<h2>🟡 Your order has been received</h2>" +
+
+            "<p>" +
+
+            "Please wait while the restaurant " +
+
+            "prepares your order." +
+
+            "</p>" +
+
+            "<h3>When ready, collect:</h3>" +
+
+            '<h2 style="color:#d62828;">' +
+
+            orderNumber +
+
+            "</h2>" +
+
+            "</div>" +
+
+
+            "<br>" +
+
+
+            '<button class="new-order-button" ' +
+
+            'onclick="newOrder()">' +
+
+            "🛒 New Order" +
+
+            "</button>";
+
+
+        /* ================= SHOW ================= */
+
+        document.getElementById(
+            "confirmedOrder"
+        ).innerHTML =
+            result;
+
+
+        document.getElementById(
+            "confirmed"
+        ).style.display =
+            "block";
+
+
+        document.getElementById(
+            "checkout"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "confirmed"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
+
+
+    }
+
+    catch (error) {
+
+
+        console.error(
+            "❌ Firebase order error:",
+            error
+        );
+
+
+        alert(
+
+            "❌ Order failed!\n\n" +
+
+            error.message
+
+        );
+
+    }
+
+
+    finally {
+
+        confirmButton.disabled =
+            false;
+
+        confirmButton.innerText =
+            "✅ Confirm Order";
+
+    }
 
 }
 
@@ -888,28 +1447,50 @@ function newOrder() {
     cart = {};
 
 
-    document.getElementById("cart-items")
-        .innerHTML = "Your cart is empty.";
+    document.getElementById(
+        "cart-items"
+    ).innerHTML =
+        "Your cart is empty.";
 
 
-    document.getElementById("total")
-        .innerText = "0.00";
+    document.getElementById(
+        "total"
+    ).innerText =
+        "0.00";
 
 
-    document.getElementById("customerName")
-        .value = "";
+    document.getElementById(
+        "customerName"
+    ).value = "";
 
 
-    document.getElementById("tableNumber")
-        .value = "";
+    document.getElementById(
+        "tableNumber"
+    ).value = "";
 
 
-    document.getElementById("checkout")
-        .style.display = "none";
+    document.getElementById(
+        "checkout"
+    ).style.display =
+        "none";
 
 
-    document.getElementById("confirmed")
-        .style.display = "none";
+    document.getElementById(
+        "confirmed"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "summary"
+    ).innerHTML =
+        "";
+
+
+    document.getElementById(
+        "checkoutTotal"
+    ).innerText =
+        "0.00";
 
 
     window.scrollTo({
@@ -922,7 +1503,43 @@ function newOrder() {
 
 }
 
+
+// ==================== ESCAPE HTML ====================
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
 </script>
+
 
 </body>
 
