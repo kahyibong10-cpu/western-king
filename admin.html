@@ -1,25 +1,31 @@
-```html
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Restoran Western King - Admin</title>
+<title>Western King - Admin</title>
 
 <style>
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #fff4e6;
+    background: #f4f6f8;
     color: #333;
 }
+
+/* HEADER */
 
 .header {
     background: linear-gradient(135deg, #d62828, #f77f00);
     color: white;
+    padding: 25px;
     text-align: center;
-    padding: 30px 10px;
 }
 
 .header h1 {
@@ -28,322 +34,363 @@ body {
 }
 
 .header p {
-    margin-top: 8px;
+    margin: 8px 0 0;
 }
 
+/* CONTAINER */
+
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
     padding: 20px;
 }
 
+/* DASHBOARD */
+
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
     margin-bottom: 25px;
 }
 
-.stat {
+.card {
     background: white;
     padding: 20px;
     border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
 }
 
-.stat h2 {
+.card h3 {
     margin: 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.card .number {
+    margin-top: 10px;
     font-size: 30px;
-    color: #d62828;
-}
-
-.stat p {
-    margin-bottom: 0;
-}
-
-.refresh-button {
-    background: #1565c0;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 20px;
-}
-
-.refresh-button:hover {
-    background: #0d47a1;
-}
-
-.orders {
-    display: grid;
-    gap: 20px;
-}
-
-.order-card {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border-left: 7px solid #ffb703;
-}
-
-.order-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.order-number {
-    font-size: 24px;
     font-weight: bold;
     color: #d62828;
 }
 
-.customer {
-    font-size: 18px;
-    margin-top: 8px;
+/* CONNECTION */
+
+.connection {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.connected {
+    display: inline-block;
+    background: #d4edda;
+    color: #155724;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.error {
+    display: inline-block;
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* ORDERS */
+
+.section-title {
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.order {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+}
+
+.order-number {
+    font-size: 22px;
+    font-weight: bold;
+    color: #d62828;
 }
 
 .order-info {
-    background: #fff8e7;
-    padding: 12px;
-    border-radius: 10px;
+    line-height: 1.7;
+}
+
+.items {
     margin-top: 15px;
 }
 
 .item {
-    padding: 7px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.item:last-child {
-    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
 }
 
 .total {
+    text-align: right;
     font-size: 22px;
     font-weight: bold;
     color: #d62828;
     margin-top: 15px;
 }
 
+/* STATUS */
+
 .status {
-    display: inline-block;
-    padding: 7px 13px;
+    padding: 8px 12px;
     border-radius: 20px;
     font-weight: bold;
-    font-size: 13px;
+    display: inline-block;
 }
 
-.status-NEW {
+.status-new {
     background: #fff3cd;
     color: #856404;
 }
 
-.status-PREPARING {
-    background: #cfe2ff;
-    color: #084298;
+.status-preparing {
+    background: #cce5ff;
+    color: #004085;
 }
 
-.status-READY {
-    background: #d1e7dd;
-    color: #0f5132;
+.status-ready {
+    background: #d4edda;
+    color: #155724;
 }
 
-.status-COMPLETED {
+.status-completed {
     background: #e2e3e5;
-    color: #41464b;
+    color: #383d41;
 }
 
-.status-CANCELLED {
-    background: #f8d7da;
-    color: #842029;
-}
+/* BUTTONS */
 
-.buttons {
-    margin-top: 18px;
+.controls {
+    margin-top: 15px;
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
-button.action {
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+button {
     border: none;
     padding: 10px 15px;
-    border-radius: 10px;
-    color: white;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-weight: bold;
 }
 
-.prepare {
-    background: #1565c0;
+.refresh-button {
+    background: #007bff;
+    color: white;
 }
 
-.ready {
-    background: #2e7d32;
+.delete-button {
+    background: #dc3545;
+    color: white;
 }
 
-.complete {
-    background: #555;
-}
-
-.cancel {
-    background: #d62828;
-}
-
-button.action:hover {
+button:hover {
     opacity: 0.85;
 }
+
+/* EMPTY */
 
 .empty {
     background: white;
     padding: 40px;
     text-align: center;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: #777;
 }
 
-.error {
-    background: #f8d7da;
-    color: #842029;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    display: none;
+/* LOADING */
+
+.loading {
+    text-align: center;
+    padding: 30px;
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .order-number {
+        font-size: 19px;
+    }
+
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="header">
 
-<h1>👨‍🍳 RESTORAN WESTERN KING</h1>
+    <h1>👨‍💼 Western King Admin</h1>
 
-<p>📋 Admin Order Management System</p>
+    <p>Order Management Dashboard</p>
 
 </div>
 
 
 <div class="container">
 
+    <!-- CONNECTION -->
 
-<!-- ================= DASHBOARD ================= -->
+    <div class="connection">
 
-<div class="dashboard">
+        <span id="connectionStatus" class="connected">
+            🟢 Firebase Connected
+        </span>
 
-<div class="stat">
-
-<h2 id="newCount">0</h2>
-
-<p>🆕 NEW</p>
-
-</div>
+    </div>
 
 
-<div class="stat">
+    <!-- DASHBOARD -->
 
-<h2 id="preparingCount">0</h2>
+    <div class="dashboard">
 
-<p>👨‍🍳 PREPARING</p>
+        <div class="card">
 
-</div>
+            <h3>Total Orders</h3>
 
-
-<div class="stat">
-
-<h2 id="readyCount">0</h2>
-
-<p>🔔 READY</p>
-
-</div>
-
-
-<div class="stat">
-
-<h2 id="completedCount">0</h2>
-
-<p>✅ COMPLETED</p>
-
-</div>
-
-        <div class="stat">
-
-            <h2 id="totalRevenue">RM 0.00</h2>
-
-            <p>💰 TOTAL REVENUE</p>
+            <div class="number" id="totalOrders">
+                0
+            </div>
 
         </div>
 
+
+        <div class="card">
+
+            <h3>New Orders</h3>
+
+            <div class="number" id="newOrders">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Completed</h3>
+
+            <div class="number" id="completedOrders">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Total Revenue</h3>
+
+            <div class="number" id="totalRevenue">
+                RM 0.00
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- REFRESH -->
+
+    <div style="margin-bottom:20px;">
+
+        <button class="refresh-button" onclick="loadOrders()">
+            🔄 Refresh Orders
+        </button>
+
+    </div>
+
+
+    <!-- ORDERS -->
+
+    <h2 class="section-title">
+        📦 Customer Orders
+    </h2>
+
+
+    <div id="ordersContainer">
+
+        <div class="loading">
+            Loading orders...
+        </div>
+
+    </div>
+
 </div>
 
-
-<button
-class="refresh-button"
-onclick="loadOrders()">
-
-🔄 Refresh Orders
-
-</button>
-
-
-<div
-id="errorBox"
-class="error">
-
-</div>
-
-
-<!-- ================= ORDERS ================= -->
-
-<div
-id="orders"
-class="orders">
-
-<div class="empty">
-
-⏳ Loading orders...
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
 import {
     initializeApp
-}
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
 
 import {
     getFirestore,
     collection,
     onSnapshot,
+    doc,
     updateDoc,
-    doc
-}
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+    deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 
-
-/* ================= FIREBASE CONFIG ================= */
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
 
@@ -357,146 +404,258 @@ const firebaseConfig = {
 
     messagingSenderId: "866508888526",
 
-    appId: "1:866508888526:web:ad4c149c431fd5d286339f6"
+    appId: "1:866508888526:web:ad4c149c431fd5d286339f"
 
 };
 
 
-
-/* ================= INITIALIZE ================= */
+/* =========================
+   START FIREBASE
+========================= */
 
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
 
+/* =========================
+   LOAD ORDERS
+========================= */
 
-let allOrders = [];
+let unsubscribe = null;
 
-
-
-/* ================= LOAD ORDERS ================= */
 
 function loadOrders() {
 
-    const ordersRef = collection(db, "orders");
+    const container =
+        document.getElementById("ordersContainer");
 
 
-    onSnapshot(
-
-        ordersRef,
-
-        (snapshot) => {
-
-            allOrders = [];
+    container.innerHTML =
+        '<div class="loading">Loading orders...</div>';
 
 
-            snapshot.forEach((document) => {
+    if (unsubscribe) {
+        unsubscribe();
+    }
 
-                allOrders.push({
 
-                    id: document.id,
+    try {
 
-                    ...document.data()
+        const ordersRef = collection(db, "orders");
+
+
+        unsubscribe = onSnapshot(
+
+            ordersRef,
+
+            (snapshot) => {
+
+                let orders = [];
+
+
+                snapshot.forEach((documentSnapshot) => {
+
+                    orders.push({
+
+                        id: documentSnapshot.id,
+
+                        ...documentSnapshot.data()
+
+                    });
 
                 });
 
-            });
+
+                /* SORT NEWEST FIRST */
+
+                orders.sort((a, b) => {
+
+                    let timeA = getOrderTime(a);
+
+                    let timeB = getOrderTime(b);
+
+                    return timeB - timeA;
+
+                });
 
 
-            /*
+                updateDashboard(orders);
 
-            Sort newest order first.
+                displayOrders(orders);
 
-            */
-
-            allOrders.sort((a, b) => {
-
-                let timeA = 0;
-
-                let timeB = 0;
+            },
 
 
-                if (a.createdAt) {
+            (error) => {
 
-                    timeA =
-                        a.createdAt.seconds || 0;
+                console.error(error);
 
-                }
-
-
-                if (b.createdAt) {
-
-                    timeB =
-                        b.createdAt.seconds || 0;
-
-                }
+                document.getElementById(
+                    "connectionStatus"
+                ).className = "error";
 
 
-                return timeB - timeA;
-
-            });
-
-
-            displayOrders();
-
-            updateDashboard();
+                document.getElementById(
+                    "connectionStatus"
+                ).textContent =
+                    "🔴 Firebase Error";
 
 
-            document.getElementById("errorBox")
-                .style.display = "none";
+                document.getElementById(
+                    "ordersContainer"
+                ).innerHTML = `
 
-        },
+                    <div class="empty">
 
+                        ❌ Cannot load orders.
 
-        (error) => {
+                        <br><br>
 
-            console.error(error);
+                        Please check your Firestore rules.
 
+                    </div>
 
-            const errorBox =
-                document.getElementById("errorBox");
+                `;
 
+            }
 
-            errorBox.innerText =
-                "❌ Firebase Error: " +
-                error.message;
+        );
 
+    }
 
-            errorBox.style.display = "block";
+    catch (error) {
 
-        }
+        console.error(error);
 
-    );
+    }
 
 }
 
 
+/* =========================
+   GET TIME
+========================= */
 
-/* ================= DISPLAY ORDERS ================= */
+function getOrderTime(order) {
 
-function displayOrders() {
+    if (order.createdAt && order.createdAt.toMillis) {
 
-    const box =
-        document.getElementById("orders");
+        return order.createdAt.toMillis();
 
-
-    box.innerHTML = "";
+    }
 
 
-    if (allOrders.length === 0) {
+    if (order.time) {
 
-        box.innerHTML = `
+        let time = new Date(order.time).getTime();
+
+        if (!isNaN(time)) {
+
+            return time;
+
+        }
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(orders) {
+
+    let totalOrders = orders.length;
+
+    let newOrders = 0;
+
+    let completedOrders = 0;
+
+    let revenue = 0;
+
+
+    orders.forEach(order => {
+
+        let status =
+            String(order.status || "NEW").toUpperCase();
+
+
+        if (status === "NEW") {
+
+            newOrders++;
+
+        }
+
+
+        if (status === "COMPLETED") {
+
+            completedOrders++;
+
+        }
+
+
+        let total =
+            Number(order.total || 0);
+
+
+        if (!isNaN(total)) {
+
+            revenue += total;
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "totalOrders"
+    ).textContent = totalOrders;
+
+
+    document.getElementById(
+        "newOrders"
+    ).textContent = newOrders;
+
+
+    document.getElementById(
+        "completedOrders"
+    ).textContent = completedOrders;
+
+
+    document.getElementById(
+        "totalRevenue"
+    ).textContent =
+        "RM " + revenue.toFixed(2);
+
+}
+
+
+/* =========================
+   DISPLAY ORDERS
+========================= */
+
+function displayOrders(orders) {
+
+    const container =
+        document.getElementById("ordersContainer");
+
+
+    if (orders.length === 0) {
+
+        container.innerHTML = `
 
             <div class="empty">
 
-                <h2>📭 No Orders</h2>
+                📭 No orders yet.
 
-                <p>
+                <br><br>
 
-                There are currently no customer orders.
-
-                </p>
+                Customer orders will appear here automatically.
 
             </div>
 
@@ -507,32 +666,89 @@ function displayOrders() {
     }
 
 
+    container.innerHTML = "";
 
-    allOrders.forEach((order) => {
+
+    orders.forEach(order => {
+
+        const orderDiv =
+            document.createElement("div");
+
+
+        orderDiv.className = "order";
+
+
+        let status =
+            String(order.status || "NEW").toUpperCase();
+
+
+        let statusClass =
+            "status-new";
+
+
+        if (status === "PREPARING") {
+
+            statusClass = "status-preparing";
+
+        }
+
+        else if (status === "READY") {
+
+            statusClass = "status-ready";
+
+        }
+
+        else if (status === "COMPLETED") {
+
+            statusClass = "status-completed";
+
+        }
+
+
+        /* ITEMS */
 
         let itemsHTML = "";
 
 
-        if (order.items &&
-            Array.isArray(order.items)) {
+        if (Array.isArray(order.items)) {
+
+            order.items.forEach(item => {
+
+                let name =
+                    item.name || "Unknown Item";
 
 
-            order.items.forEach((item) => {
+                let quantity =
+                    Number(item.quantity || 0);
+
+
+                let subtotal =
+                    Number(
+                        item.subtotal ||
+                        (
+                            Number(item.price || 0)
+                            * quantity
+                        )
+                    );
+
 
                 itemsHTML += `
 
                     <div class="item">
 
-                        🍴 <b>
-                        ${escapeHTML(item.name)}
-                        </b>
+                        <span>
 
-                        × ${item.quantity}
+                            ${escapeHTML(name)}
 
-                        &nbsp;&nbsp;
+                            × ${quantity}
 
-                        RM ${Number(item.subtotal || 0)
-                            .toFixed(2)}
+                        </span>
+
+                        <span>
+
+                            RM ${subtotal.toFixed(2)}
+
+                        </span>
 
                     </div>
 
@@ -543,374 +759,242 @@ function displayOrders() {
         }
 
 
+        /* CUSTOMER */
 
-        let status =
-            order.status || "NEW";
-
-
-        let time =
-            order.time || "Unknown time";
-
-
-        let total =
-            Number(order.total || 0);
+        let customer =
+            escapeHTML(
+                order.customer || "Unknown"
+            );
 
 
+        /* ORDER TYPE */
 
-        box.innerHTML += `
-
-            <div class="order-card">
-
-
-                <div class="order-top">
-
-
-                    <div>
-
-                        <div class="order-number">
-
-                            #${escapeHTML(
-                                order.orderNumber ||
-                                order.id
-                            )}
-
-                        </div>
+        let orderType =
+            escapeHTML(
+                order.orderType || "-"
+            );
 
 
-                        <div class="customer">
+        /* TABLE */
 
-                            👤
+        let tableText = "";
 
-                            <b>
-                            ${escapeHTML(
-                                order.customer ||
-                                "Customer"
-                            )}
-                            </b>
 
-                        </div>
+        if (orderType === "Dine In") {
 
+            tableText =
+                "🍽️ Table: " +
+                escapeHTML(order.table || "-");
+
+        }
+
+        else {
+
+            tableText =
+                "🥡 Take Away";
+
+        }
+
+
+        /* DESCRIPTION */
+
+        let descriptionHTML = "";
+
+
+        if (order.description) {
+
+            descriptionHTML = `
+
+                <div>
+
+                    📝 <b>Note:</b>
+
+                    ${escapeHTML(
+                        order.description
+                    )}
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* TIME */
+
+        let orderTime = "";
+
+
+        if (order.createdAt &&
+            order.createdAt.toDate) {
+
+            orderTime =
+                order.createdAt
+                    .toDate()
+                    .toLocaleString();
+
+        }
+
+        else if (order.time) {
+
+            orderTime =
+                escapeHTML(
+                    String(order.time)
+                );
+
+        }
+
+        else {
+
+            orderTime = "-";
+
+        }
+
+
+        orderDiv.innerHTML = `
+
+            <div class="order-header">
+
+                <div>
+
+                    <div class="order-number">
+
+                        ${escapeHTML(
+                            order.orderNumber ||
+                            "NO NUMBER"
+                        )}
 
                     </div>
 
+                    <small>
 
-                    <div>
+                        ${orderTime}
 
-                        <span
-                        class="status status-${status}">
-
-                            ${status}
-
-                        </span>
-
-                    </div>
-
+                    </small>
 
                 </div>
 
 
+                <div>
 
-                <div class="order-info">
+                    <span class="status ${statusClass}">
 
+                        ${status}
 
-                        <p>
-
-    ${
-        order.orderType === "Take Away"
-
-        ?
-
-        `
-        🥡
-
-        <b>Order Type:</b>
-
-        Take Away
-        `
-
-        :
-
-        `
-        🍽️
-
-        <b>Order Type:</b>
-
-        Dine In
-        `
-
-    }
-
-</p>
-
-
-${
-    order.orderType !== "Take Away"
-
-    ?
-
-    `
- <p>
-
-    ${
-        order.orderType === "Take Away"
-
-        ?
-
-        `
-        🥡
-
-        <b>Order Type:</b>
-
-        Take Away
-        `
-
-        :
-
-        `
-        🍽️
-
-        <b>Order Type:</b>
-
-        Dine In
-        `
-
-    }
-
-</p>
-
-
-${
-    order.orderType !== "Take Away"
-
-    ?
-
-    `
-<p>
-
-    ${
-        order.orderType === "Take Away"
-
-        ?
-
-        `
-        🥡
-
-        <b>Order Type:</b>
-
-        Take Away
-        `
-
-        :
-
-        `
-        🍽️
-
-        <b>Order Type:</b>
-
-        Dine In
-        `
-
-    }
-
-</p>
-
-
-${
-    order.orderType !== "Take Away"
-
-    ?
-
-    `
-    <p>
-
-        🪑
-
-        <b>Table:</b>
-
-        ${escapeHTML(
-            String(
-                order.table || "-"
-            )
-        )}
-
-    </p>
-    `
-
-    :
-
-    ""
-
-}
-                   
-
-                        🕐
-
-                        <b>Time:</b>
-
-                        ${escapeHTML(time)}
-
-                    </p>
-
-
-                    <hr>
-
-
-                    <h3>🍴 Order Items</h3>
-
-
-                    ${itemsHTML}
-
-
-                    <div class="total">
-
-                        💰 Total:
-
-                        RM ${total.toFixed(2)}
-
-                    </div>
-
+                    </span>
 
                 </div>
 
+            </div>
 
 
-                <div class="buttons">
+            <div class="order-info">
+
+                👤 <b>Customer:</b>
+                ${customer}
+
+                <br>
+
+                📦 <b>Order Type:</b>
+                ${orderType}
+
+                <br>
+
+                ${tableText}
+
+                <br>
+
+                ${descriptionHTML}
+
+            </div>
 
 
-                    ${
-                        status === "NEW"
+            <div class="items">
 
-                        ?
+                <h3>🍔 Items</h3>
 
-                        `
+                ${itemsHTML}
 
-                        <button
-
-                        class="action prepare"
-
-                        onclick="changeStatus(
-                            '${order.id}',
-                            'PREPARING'
-                        )">
-
-                        👨‍🍳 Accept Order
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
+            </div>
 
 
+            <div class="total">
 
-                    ${
-                        status === "PREPARING"
+                Total:
+                RM ${Number(
+                    order.total || 0
+                ).toFixed(2)}
 
-                        ?
-
-                        `
-
-                        <button
-
-                        class="action ready"
-
-                        onclick="changeStatus(
-                            '${order.id}',
-                            'READY'
-                        )">
-
-                        🔔 Mark Ready
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
+            </div>
 
 
+            <div class="controls">
 
-                    ${
-                        status === "READY"
+                <select
+                    onchange="changeStatus(
+                        '${order.id}',
+                        this.value
+                    )"
+                >
 
-                        ?
-
-                        `
-
-                        <button
-
-                        class="action complete"
-
-                        onclick="changeStatus(
-                            '${order.id}',
-                            'COMPLETED'
-                        )">
-
-                        ✅ Complete
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
+                    <option
+                        value="NEW"
+                        ${status === "NEW" ? "selected" : ""}
+                    >
+                        🆕 NEW
+                    </option>
 
 
-
-                    ${
-                        status !== "COMPLETED" &&
-                        status !== "CANCELLED"
-
-                        ?
-
-                        `
-
-                        <button
-
-                        class="action cancel"
-
-                        onclick="changeStatus(
-                            '${order.id}',
-                            'CANCELLED'
-                        )">
-
-                        ❌ Cancel
-
-                        </button>
-
-                        `
-
-                        :
-
-                        ""
-
-                    }
+                    <option
+                        value="PREPARING"
+                        ${status === "PREPARING" ? "selected" : ""}
+                    >
+                        👨‍🍳 PREPARING
+                    </option>
 
 
-                </div>
+                    <option
+                        value="READY"
+                        ${status === "READY" ? "selected" : ""}
+                    >
+                        ✅ READY
+                    </option>
 
+
+                    <option
+                        value="COMPLETED"
+                        ${status === "COMPLETED" ? "selected" : ""}
+                    >
+                        ✔️ COMPLETED
+                    </option>
+
+                </select>
+
+
+                <button
+                    class="delete-button"
+                    onclick="deleteOrder('${order.id}')"
+                >
+
+                    🗑️ Delete
+
+                </button>
 
             </div>
 
         `;
+
+
+        container.appendChild(orderDiv);
 
     });
 
 }
 
 
-
-/* ================= CHANGE STATUS ================= */
+/* =========================
+   CHANGE STATUS
+========================= */
 
 window.changeStatus = async function(
     orderId,
@@ -919,30 +1003,15 @@ window.changeStatus = async function(
 
     try {
 
-
         await updateDoc(
 
             doc(db, "orders", orderId),
 
             {
-
                 status: newStatus
-
             }
 
         );
-
-
-        console.log(
-
-            "Order updated:",
-
-            orderId,
-
-            newStatus
-
-        );
-
 
     }
 
@@ -950,13 +1019,8 @@ window.changeStatus = async function(
 
         console.error(error);
 
-
         alert(
-
-            "❌ Failed to update order:\n\n" +
-
-            error.message
-
+            "Failed to update order status."
         );
 
     }
@@ -964,81 +1028,53 @@ window.changeStatus = async function(
 };
 
 
+/* =========================
+   DELETE ORDER
+========================= */
 
-/* ================= DASHBOARD ================= */
+window.deleteOrder = async function(
+    orderId
+) {
 
-function updateDashboard() {
-
-    let newCount = 0;
-
-    let preparingCount = 0;
-
-    let readyCount = 0;
-
-    let completedCount = 0;
-
-    let totalRevenue = 0;
+    const confirmDelete =
+        confirm(
+            "Delete this order?"
+        );
 
 
-    allOrders.forEach((order) => {
+    if (!confirmDelete) {
 
-        const status =
-            order.status || "NEW";
+        return;
 
-
-        if (status === "NEW") {
-
-            newCount++;
-
-        }
-
-        else if (status === "PREPARING") {
-
-            preparingCount++;
-
-        }
-
-        else if (status === "READY") {
-
-            readyCount++;
-
-        }
-
-        else if (status === "COMPLETED") {
-
-            completedCount++;
-
-            // Only completed orders count as revenue.
-            totalRevenue += Number(order.total || 0);
-
-        }
-
-    });
+    }
 
 
-    document.getElementById("newCount")
-        .innerText = newCount;
+    try {
+
+        await deleteDoc(
+
+            doc(db, "orders", orderId)
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Failed to delete order."
+        );
+
+    }
+
+};
 
 
-    document.getElementById("preparingCount")
-        .innerText = preparingCount;
-
-
-    document.getElementById("readyCount")
-        .innerText = readyCount;
-
-
-    document.getElementById("completedCount")
-        .innerText = completedCount;
-
-    document.getElementById("totalRevenue")
-        .innerText = "RM " + totalRevenue.toFixed(2);
-
-}
-
-
-
-/* ================= SECURITY ================= */
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHTML(value) {
 
@@ -1057,16 +1093,14 @@ function escapeHTML(value) {
 }
 
 
-
-/* ================= START ================= */
+/* =========================
+   START
+========================= */
 
 loadOrders();
 
 
 </script>
 
-
 </body>
-
 </html>
-```
