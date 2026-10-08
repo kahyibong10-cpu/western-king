@@ -1,1840 +1,731 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Restoran Western King</title>
+    <title>Restoran Western King</title>
 
-<style>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff4e6;
-    color: #333;
-}
+        header {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
 
-.header {
-    background: linear-gradient(135deg, #d62828, #f77f00);
-    color: white;
-    text-align: center;
-    padding: 30px 10px;
-}
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
 
-.header h1 {
-    margin: 0;
-    font-size: 32px;
-}
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
 
-.header p {
-    margin-top: 8px;
-}
+        h2 {
+            margin-top: 0;
+        }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-}
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
 
-.section-title {
-    background: #ffb703;
-    color: #222;
-    padding: 12px;
-    border-radius: 10px;
-    text-align: center;
-}
+        .food {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
 
-.menu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-}
+        .food h3 {
+            margin: 5px 0;
+        }
 
-.food {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    border: 2px solid #ffe0b2;
-}
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-.food h3 {
-    margin-top: 0;
-}
+        button {
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #222;
+            color: white;
+            margin-top: 8px;
+        }
 
-.price {
-    color: #d62828;
-    font-size: 20px;
-    font-weight: bold;
-}
+        button:hover {
+            opacity: 0.8;
+        }
 
-.add-button {
-    background: #d62828;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 15px;
-}
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
 
-.add-button:hover {
-    background: #a4161a;
-}
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
 
-.view-button {
-    background: #f77f00;
-    color: white;
-    border: none;
-    padding: 12px 22px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
+        .radio-group {
+            margin-bottom: 15px;
+        }
 
-.view-button:hover {
-    background: #d65f00;
-}
+        .radio-group label {
+            margin-right: 20px;
+        }
 
-.back-button {
-    background: #1565c0;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 15px;
-}
+        #tableBox {
+            display: none;
+        }
 
-.back-button:hover {
-    background: #0d47a1;
-}
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
 
-.ice-cream-entry {
-    background: linear-gradient(135deg, #fff, #fff3cd);
-    border: 3px solid #ffb703;
-    border-radius: 18px;
-    padding: 25px;
-    text-align: center;
-    margin-bottom: 25px;
-    cursor: pointer;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.12);
-}
+        .quantity button {
+            padding: 5px 10px;
+            margin: 0 3px;
+        }
 
-.ice-cream-entry h2 {
-    margin-top: 0;
-    font-size: 28px;
-}
+        .total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
 
-.ice-cream-entry p {
-    font-size: 17px;
-}
+        .place-order {
+            width: 100%;
+            background: #008000;
+            font-size: 18px;
+            padding: 14px;
+        }
 
-.cart {
-    background: white;
-    margin-top: 25px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    border: 2px solid #ffb703;
-}
+        #confirmation {
+            display: none;
+            background: #e8ffe8;
+            border: 1px solid #8bcf8b;
+        }
 
-.cart-item {
-    background: #fff8e7;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-}
-
-.small-button {
-    background: #f77f00;
-    color: white;
-    border: none;
-    padding: 5px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.delete-button {
-    background: #777;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.checkout {
-    background: #e8f5e9;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid #4caf50;
-}
-
-input {
-    padding: 10px;
-    width: 90%;
-    max-width: 400px;
-    border: 1px solid #aaa;
-    border-radius: 8px;
-}
-
-.confirm-button {
-    background: #2e7d32;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.confirm-button:disabled {
-    background: #999;
-    cursor: not-allowed;
-}
-
-.confirmed {
-    background: #e8f5e9;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid #2e7d32;
-}
-
-.new-order-button {
-    background: #1565c0;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-.total {
-    color: #d62828;
-    font-size: 22px;
-}
-
-.collection-box {
-    background: #fff3cd;
-    padding: 20px;
-    border-radius: 15px;
-    border: 3px solid #ffb703;
-    text-align: center;
-}
-
-.collection-number {
-    font-size: 45px;
-    color: #d62828;
-    margin: 10px;
-}
-
-.status-box {
-    background: #e8f5e9;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    margin-top: 15px;
-}
-
-.loading {
-    text-align: center;
-    color: #777;
-    margin-top: 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-</style>
-
-
-<!-- ============================
-     FIREBASE
-============================ -->
-
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-
-    apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
-
-    authDomain:
-        "western-king-restaurant.firebaseapp.com",
-
-    projectId:
-        "western-king-restaurant",
-
-    storageBucket:
-        "western-king-restaurant.firebasestorage.app",
-
-    messagingSenderId:
-        "866508888526",
-
-    appId:
-        "1:866508888526:web:ad4c149c431fd5d286339f"
-
-};
-
-
-const app =
-    initializeApp(firebaseConfig);
-
-const db =
-    getFirestore(app);
-
-
-window.db = db;
-
-window.firestoreCollection =
-    collection;
-
-window.firestoreAddDoc =
-    addDoc;
-
-window.firestoreServerTimestamp =
-    serverTimestamp;
-
-</script>
-
+        .order-number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-<!-- ============================
-     HEADER
-============================ -->
-
-<div class="header">
-
-    <h1>
-        🍔 RESTORAN WESTERN KING
-    </h1>
-
-    <p>
-        🍴 Delicious Food • Great Price • Happy Meal 🍴
-    </p>
-
-</div>
-
+<header>
+    <h1>🍽️ Restoran Western King</h1>
+    <p>Welcome to Western King!</p>
+</header>
 
 <div class="container">
 
+    <!-- MENU -->
+    <div class="card">
 
-<!-- ============================
-     ICE CREAM ENTRY
-============================ -->
+        <h2>🍗 Food Menu</h2>
 
-<div
-    id="iceCreamEntry"
-    class="ice-cream-entry"
-    onclick="openIceCream()">
+        <div class="menu">
 
-    <h2>
-        🍦 Ice Cream
-    </h2>
+            <div class="food">
+                <h3>Chicken Chop</h3>
+                <p class="price">RM15.00</p>
+                <button onclick="addToCart('Chicken Chop', 15)">
+                    Add to Cart
+                </button>
+            </div>
 
-    <p>
-        Choose your favourite ice cream!
-    </p>
+            <div class="food">
+                <h3>Spicy Chicken Chop</h3>
+                <p class="price">RM16.00</p>
+                <button onclick="addToCart('Spicy Chicken Chop', 16)">
+                    Add to Cart
+                </button>
+            </div>
 
-    <button
-        class="view-button"
-        onclick="event.stopPropagation(); openIceCream()">
+            <div class="food">
+                <h3>Spaghetti</h3>
+                <p class="price">RM10.00</p>
+                <button onclick="addToCart('Spaghetti', 10)">
+                    Add to Cart
+                </button>
+            </div>
 
-        🍦 View Ice Cream
+            <div class="food">
+                <h3>Creamy Chicken Pasta</h3>
+                <p class="price">RM13.90</p>
+                <button onclick="addToCart('Creamy Chicken Pasta', 13.90)">
+                    Add to Cart
+                </button>
+            </div>
 
-    </button>
+            <div class="food">
+                <h3>Chicken Burger</h3>
+                <p class="price">RM6.00</p>
+                <button onclick="addToCart('Chicken Burger', 6)">
+                    Add to Cart
+                </button>
+            </div>
 
-</div>
+            <div class="food">
+                <h3>Fish Burger</h3>
+                <p class="price">RM8.00</p>
+                <button onclick="addToCart('Fish Burger', 8)">
+                    Add to Cart
+                </button>
+            </div>
 
-
-<!-- ============================
-     ICE CREAM PAGE
-============================ -->
-
-<div
-    id="iceCreamPage"
-    class="hidden">
-
-    <h2 class="section-title">
-        🍦 Ice Cream Menu
-    </h2>
-
-
-    <div class="menu">
-
-
-        <!-- ORIGINAL -->
-
-        <div class="food">
-
-            <h3>
-                🍦 Original Ice Cream
-            </h3>
-
-            <p class="price">
-                RM 3.00
-            </p>
-
-            <button
-                class="add-button"
-                onclick="addToCart('Original Ice Cream', 3)">
-
-                Add to Cart
-
-            </button>
+            <div class="food">
+                <h3>French Fries</h3>
+                <p class="price">RM5.00</p>
+                <button onclick="addToCart('French Fries', 5)">
+                    Add to Cart
+                </button>
+            </div>
 
         </div>
-
-
-        <!-- CHOCOLATE -->
-
-        <div class="food">
-
-            <h3>
-                🍫 Chocolate Ice Cream
-            </h3>
-
-            <p class="price">
-                RM 4.00
-            </p>
-
-            <button
-                class="add-button"
-                onclick="addToCart('Chocolate Ice Cream', 4)">
-
-                Add to Cart
-
-            </button>
-
-        </div>
-
-
-        <!-- STRAWBERRY -->
-
-        <div class="food">
-
-            <h3>
-                🍓 Strawberry Ice Cream
-            </h3>
-
-            <p class="price">
-                RM 4.00
-            </p>
-
-            <button
-                class="add-button"
-                onclick="addToCart('Strawberry Ice Cream', 4)">
-
-                Add to Cart
-
-            </button>
-
-        </div>
-
-
-        <!-- VANILLA -->
-
-        <div class="food">
-
-            <h3>
-                🍨 Vanilla Ice Cream
-            </h3>
-
-            <p class="price">
-                RM 4.00
-            </p>
-
-            <button
-                class="add-button"
-                onclick="addToCart('Vanilla Ice Cream', 4)">
-
-                Add to Cart
-
-            </button>
-
-        </div>
-
 
     </div>
 
 
-    <br>
-
-
-    <button
-        class="back-button"
-        onclick="closeIceCream()">
-
-        ← Back to Menu
-
-    </button>
-
-
-</div>
-
-
-<!-- ============================
-     MAIN MENU
-============================ -->
-
-<div id="mainMenu">
-
-
-<!-- ============================
-     FOOD
-============================ -->
-
-<h2 class="section-title">
-    🍗 Food Menu
-</h2>
-
-
-<div class="menu">
-
-
-<div class="food">
-
-    <h3>
-        🍗 Chicken Chop
-    </h3>
-
-    <p class="price">
-        RM 15.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Chicken Chop', 15)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        🍝 Spaghetti
-    </h3>
-
-    <p class="price">
-        RM 10.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Spaghetti', 10)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        🍔 Chicken Burger
-    </h3>
-
-    <p class="price">
-        RM 6.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Chicken Burger', 6)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        🍟 French Fries
-    </h3>
-
-    <p class="price">
-        RM 5.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('French Fries', 5)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        🐟 Fish Burger
-    </h3>
-
-    <p class="price">
-        RM 8.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Fish Burger', 8)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-</div>
-
-
-<!-- ============================
-     DRINKS
-============================ -->
-
-<h2 class="section-title">
-    🥤 Drinks Menu
-</h2>
-
-
-<div class="menu">
-
-
-<div class="food">
-
-    <h3>
-        🥤 Ice Coca-Cola
-    </h3>
-
-    <p class="price">
-        RM 3.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Ice Coca-Cola', 3)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        💧 Ice Mineral Water
-    </h3>
-
-    <p class="price">
-        RM 2.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Ice Mineral Water', 2)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        🍋 Ice Lemon Tea
-    </h3>
-
-    <p class="price">
-        RM 3.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Ice Lemon Tea', 3)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        🥛 Ice Milo
-    </h3>
-
-    <p class="price">
-        RM 4.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Ice Milo', 4)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-<div class="food">
-
-    <h3>
-        🥤 Ice 100 Plus
-    </h3>
-
-    <p class="price">
-        RM 3.00
-    </p>
-
-    <button
-        class="add-button"
-        onclick="addToCart('Ice 100 Plus', 3)">
-
-        Add to Cart
-
-    </button>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-<!-- ============================
-     CART
-============================ -->
-
-<div class="cart">
-
-    <h2>
-        🛒 Your Order
-    </h2>
-
-
-    <div id="cart-items">
-
-        Your cart is empty.
+    <!-- DRINK MENU -->
+    <div class="card">
+
+        <h2>🥤 Drinks</h2>
+
+        <div class="menu">
+
+            <div class="food">
+                <h3>Ice Coca-Cola</h3>
+                <p class="price">RM3.00</p>
+                <button onclick="addToCart('Ice Coca-Cola', 3)">
+                    Add to Cart
+                </button>
+            </div>
+
+            <div class="food">
+                <h3>Ice Mineral Water</h3>
+                <p class="price">RM2.00</p>
+                <button onclick="addToCart('Ice Mineral Water', 2)">
+                    Add to Cart
+                </button>
+            </div>
+
+            <div class="food">
+                <h3>Ice Lemon Tea</h3>
+                <p class="price">RM3.00</p>
+                <button onclick="addToCart('Ice Lemon Tea', 3)">
+                    Add to Cart
+                </button>
+            </div>
+
+            <div class="food">
+                <h3>Ice Milo</h3>
+                <p class="price">RM4.00</p>
+                <button onclick="addToCart('Ice Milo', 4)">
+                    Add to Cart
+                </button>
+            </div>
+
+            <div class="food">
+                <h3>Ice 100 Plus</h3>
+                <p class="price">RM3.00</p>
+                <button onclick="addToCart('Ice 100 Plus', 3)">
+                    Add to Cart
+                </button>
+            </div>
+
+        </div>
 
     </div>
 
 
-    <h3 class="total">
+    <!-- CART -->
+    <div class="card">
 
-        Total: RM
+        <h2>🛒 Your Cart</h2>
 
-        <span id="total">
-            0.00
-        </span>
+        <div id="cart">
+            <p>Your cart is empty.</p>
+        </div>
 
-    </h3>
-
-
-    <button
-        class="add-button"
-        onclick="checkout()">
-
-        🛍️ Checkout / Order Now
-
-    </button>
-
-</div>
-
-
-<!-- ============================
-     CHECKOUT
-============================ -->
-
-<div
-    id="checkout"
-    class="checkout"
-    style="display:none;">
-
-    <h2>
-        🧾 Checkout
-    </h2>
-
-
-    <p>
-        👤 Customer Name
-    </p>
-
-    <input
-        type="text"
-        id="customerName"
-        placeholder="Enter your name">
-
-
-    <p>
-        🍽️ Order Type
-    </p>
-
-
-    <label>
-
-        <input
-            type="radio"
-            name="orderType"
-            value="Dine In"
-            checked
-            onchange="changeOrderType()">
-
-        🍽️ Dine In
-
-    </label>
-
-
-    <br><br>
-
-
-    <label>
-
-        <input
-            type="radio"
-            name="orderType"
-            value="Take Away"
-            onchange="changeOrderType()">
-
-        🥡 Take Away
-
-    </label>
-
-
-    <div id="tableBox">
-
-        <p>
-            🪑 Table Number
-        </p>
-
-        <input
-            type="number"
-            id="tableNumber"
-            placeholder="Enter table number">
+        <div class="total">
+            Total: RM <span id="total">0.00</span>
+        </div>
 
     </div>
 
 
-    <h3>
-        📋 Order Summary
-    </h3>
+    <!-- CUSTOMER INFORMATION -->
+    <div class="card">
+
+        <h2>📝 Customer Information</h2>
+
+        <form id="orderForm">
+
+            <!-- NAME -->
+            <label>
+                <strong>Name *</strong>
+            </label>
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Enter your name"
+                required
+            >
 
 
-    <div id="summary"></div>
+            <!-- DESCRIPTION -->
+            <label>
+                <strong>Description</strong>
+            </label>
+
+            <textarea
+                id="description"
+                placeholder="No onion, less spicy, extra sauce..."
+            ></textarea>
 
 
-    <h3 class="total">
+            <!-- ORDER TYPE -->
+            <label>
+                <strong>Order Type *</strong>
+            </label>
 
-        Total: RM
+            <div class="radio-group">
 
-        <span id="checkoutTotal">
-            0.00
-        </span>
+                <label>
+                    <input
+                        type="radio"
+                        name="orderType"
+                        value="Dine In"
+                        required
+                    >
+                    Dine In
+                </label>
 
-    </h3>
+                <label>
+                    <input
+                        type="radio"
+                        name="orderType"
+                        value="Take Away"
+                    >
+                    Take Away
+                </label>
 
-
-    <p
-        id="savingMessage"
-        class="loading"
-        style="display:none;">
-
-        ⏳ Sending order...
-
-    </p>
-
-
-    <button
-        id="confirmButton"
-        class="confirm-button"
-        onclick="confirmOrder()">
-
-        ✅ Confirm Order
-
-    </button>
-
-</div>
+            </div>
 
 
-<!-- ============================
-     CONFIRMED
-============================ -->
+            <!-- TABLE NUMBER -->
+            <div id="tableBox">
 
-<div
-    id="confirmed"
-    class="confirmed"
-    style="display:none;">
+                <label>
+                    <strong>Table Number *</strong>
+                </label>
 
-    <div id="confirmedOrder"></div>
+                <input
+                    type="number"
+                    id="tableNumber"
+                    placeholder="Enter table number"
+                    min="1"
+                >
 
-</div>
+            </div>
 
+
+            <button
+                type="submit"
+                class="place-order"
+            >
+                🛍️ Place Order
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- CONFIRMATION -->
+    <div class="card" id="confirmation">
+
+        <h2>✅ Order Successful!</h2>
+
+        <p>Your Order Number:</p>
+
+        <div class="order-number" id="orderNumber"></div>
+
+        <p id="confirmationInfo"></p>
+
+        <button onclick="newOrder()">
+            New Order
+        </button>
+
+    </div>
 
 </div>
 
 
 <script>
 
+    // =========================
+    // CART
+    // =========================
 
-/* ============================
-   CART
-============================ */
+    let cart = [];
 
-let cart = {};
 
+    function addToCart(name, price) {
 
-/* ============================
-   OPEN ICE CREAM
-============================ */
+        let existingItem = cart.find(item => item.name === name);
 
-function openIceCream() {
+        if (existingItem) {
 
-    document.getElementById("iceCreamEntry")
-        .style.display = "none";
+            existingItem.quantity++;
 
+        } else {
 
-    document.getElementById("mainMenu")
-        .style.display = "none";
-
-
-    document.getElementById("iceCreamPage")
-        .style.display = "block";
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-
-/* ============================
-   CLOSE ICE CREAM
-============================ */
-
-function closeIceCream() {
-
-    document.getElementById("iceCreamPage")
-        .style.display = "none";
-
-
-    document.getElementById("iceCreamEntry")
-        .style.display = "block";
-
-
-    document.getElementById("mainMenu")
-        .style.display = "block";
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-
-/* ============================
-   ADD TO CART
-============================ */
-
-function addToCart(name, price) {
-
-    if (cart[name]) {
-
-        cart[name].quantity++;
-
-    }
-
-    else {
-
-        cart[name] = {
-
-            price: price,
-
-            quantity: 1
-
-        };
-
-    }
-
-    showCart();
-
-}
-
-
-/* ============================
-   PLUS
-============================ */
-
-function plus(name) {
-
-    cart[name].quantity++;
-
-    showCart();
-
-}
-
-
-/* ============================
-   MINUS
-============================ */
-
-function minus(name) {
-
-    cart[name].quantity--;
-
-    if (cart[name].quantity <= 0) {
-
-        delete cart[name];
-
-    }
-
-    showCart();
-
-}
-
-
-/* ============================
-   DELETE
-============================ */
-
-function removeItem(name) {
-
-    delete cart[name];
-
-    showCart();
-
-}
-
-
-/* ============================
-   SHOW CART
-============================ */
-
-function showCart() {
-
-    let box =
-        document.getElementById("cart-items");
-
-
-    box.innerHTML = "";
-
-
-    let total = 0;
-
-
-    let names =
-        Object.keys(cart);
-
-
-    if (names.length === 0) {
-
-        box.innerHTML =
-            "Your cart is empty.";
-
-
-        document.getElementById("total")
-            .innerText = "0.00";
-
-
-        return;
-
-    }
-
-
-    for (
-        let i = 0;
-        i < names.length;
-        i++
-    ) {
-
-        let name = names[i];
-
-        let item = cart[name];
-
-
-        let subtotal =
-            item.price *
-            item.quantity;
-
-
-        total += subtotal;
-
-
-        box.innerHTML +=
-
-        '<div class="cart-item">' +
-
-        "🍴 <b>" +
-        name +
-        "</b>" +
-
-        "<br>" +
-
-        "RM " +
-        item.price.toFixed(2) +
-
-        "<br><br>" +
-
-
-        '<button class="small-button" ' +
-
-        'onclick="minus(\'' +
-        name +
-        '\')">' +
-
-        "−" +
-
-        "</button>" +
-
-        " " +
-
-        item.quantity +
-
-        " " +
-
-
-        '<button class="small-button" ' +
-
-        'onclick="plus(\'' +
-        name +
-        '\')">' +
-
-        "+" +
-
-        "</button>" +
-
-        " " +
-
-
-        '<button class="delete-button" ' +
-
-        'onclick="removeItem(\'' +
-        name +
-        '\')">' +
-
-        "🗑️ Delete" +
-
-        "</button>" +
-
-        "<br><br>" +
-
-        "Subtotal: RM " +
-
-        subtotal.toFixed(2) +
-
-        "</div>";
-
-    }
-
-
-    document.getElementById("total")
-        .innerText =
-        total.toFixed(2);
-
-}
-
-
-/* ============================
-   CHECKOUT
-============================ */
-
-function checkout() {
-
-    if (
-        Object.keys(cart).length === 0
-    ) {
-
-        alert(
-            "Your cart is empty!"
-        );
-
-        return;
-
-    }
-
-
-    document.getElementById("checkout")
-        .style.display = "block";
-
-
-    let summary =
-        document.getElementById("summary");
-
-
-    summary.innerHTML = "";
-
-
-    let total = 0;
-
-
-    let names =
-        Object.keys(cart);
-
-
-    for (
-        let i = 0;
-        i < names.length;
-        i++
-    ) {
-
-        let name = names[i];
-
-        let item = cart[name];
-
-
-        let subtotal =
-            item.price *
-            item.quantity;
-
-
-        total += subtotal;
-
-
-        summary.innerHTML +=
-
-        "<p>" +
-
-        "🍴 <b>" +
-
-        name +
-
-        "</b> × " +
-
-        item.quantity +
-
-        " = RM " +
-
-        subtotal.toFixed(2) +
-
-        "</p>";
-
-    }
-
-
-    document.getElementById(
-        "checkoutTotal"
-    ).innerText =
-        total.toFixed(2);
-
-
-    document.getElementById("checkout")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-}
-
-
-/* ============================
-   ORDER TYPE
-============================ */
-
-function changeOrderType() {
-
-    let orderType =
-        document.querySelector(
-            'input[name="orderType"]:checked'
-        ).value;
-
-
-    let tableBox =
-        document.getElementById(
-            "tableBox"
-        );
-
-
-    let tableNumber =
-        document.getElementById(
-            "tableNumber"
-        );
-
-
-    if (
-        orderType === "Take Away"
-    ) {
-
-        tableBox.style.display =
-            "none";
-
-        tableNumber.value = "";
-
-    }
-
-    else {
-
-        tableBox.style.display =
-            "block";
-
-    }
-
-}
-
-
-/* ============================
-   CONFIRM ORDER
-============================ */
-
-async function confirmOrder() {
-
-
-    let name =
-        document.getElementById(
-            "customerName"
-        ).value.trim();
-
-
-    let orderType =
-        document.querySelector(
-            'input[name="orderType"]:checked'
-        ).value;
-
-
-    /* FIXED TABLE */
-
-    let table =
-        document.getElementById(
-            "tableNumber"
-        ).value.trim();
-
-
-    if (name === "") {
-
-        alert(
-            "Please enter customer name."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        orderType === "Dine In" &&
-        table === ""
-    ) {
-
-        alert(
-            "Please enter table number."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        Object.keys(cart).length === 0
-    ) {
-
-        alert(
-            "Your cart is empty!"
-        );
-
-        return;
-
-    }
-
-
-    const button =
-        document.getElementById(
-            "confirmButton"
-        );
-
-
-    const message =
-        document.getElementById(
-            "savingMessage"
-        );
-
-
-    button.disabled = true;
-
-    message.style.display =
-        "block";
-
-
-    try {
-
-
-        /* ORDER NUMBER */
-
-        let orderNumber =
-            "WK" +
-            Math.floor(
-                1000 +
-                Math.random() * 9000
-            );
-
-
-        /* TIME */
-
-        let now =
-            new Date();
-
-
-        let time =
-            now.toLocaleString(
-                "en-MY"
-            );
-
-
-        /* ITEMS */
-
-        let items = [];
-
-
-        let names =
-            Object.keys(cart);
-
-
-        let total = 0;
-
-
-        for (
-            let i = 0;
-            i < names.length;
-            i++
-        ) {
-
-            let food =
-                names[i];
-
-
-            let item =
-                cart[food];
-
-
-            let subtotal =
-                item.price *
-                item.quantity;
-
-
-            total += subtotal;
-
-
-            items.push({
-
-                name: food,
-
-                price: item.price,
-
-                quantity:
-                    item.quantity,
-
-                subtotal:
-                    subtotal
-
+            cart.push({
+                name: name,
+                price: price,
+                quantity: 1
             });
 
         }
 
-
-        /* FIREBASE */
-
-        const docRef =
-            await window.firestoreAddDoc(
-
-                window.firestoreCollection(
-                    window.db,
-                    "orders"
-                ),
-
-                {
-
-                    orderNumber:
-                        orderNumber,
-
-                    customer:
-                        name,
-
-                    orderType:
-                        orderType,
-
-                    table:
-                        orderType === "Dine In"
-                            ? table
-                            : "",
-
-                    items:
-                        items,
-
-                    total:
-                        total,
-
-                    status:
-                        "NEW",
-
-                    time:
-                        time,
-
-                    createdAt:
-                        window.firestoreServerTimestamp()
-
-                }
-
-            );
+        displayCart();
+    }
 
 
-        console.log(
-            "Order saved:",
-            docRef.id
-        );
+    function increaseQuantity(index) {
+
+        cart[index].quantity++;
+
+        displayCart();
+    }
 
 
-        /* SUCCESS */
+    function decreaseQuantity(index) {
 
-        let result =
+        cart[index].quantity--;
 
-            "<h2>🎉 Order Confirmed!</h2>" +
+        if (cart[index].quantity <= 0) {
 
-
-            '<div class="collection-box">' +
-
-            "<h2>🔢 Collection Number</h2>" +
-
-            '<h1 class="collection-number">' +
-
-            orderNumber +
-
-            "</h1>" +
-
-            "<p><b>🍔 Please remember this number.</b></p>" +
-
-            "<p>" +
-
-            "When your food is ready, " +
-
-            "please collect your order using this number." +
-
-            "</p>" +
-
-            "</div>" +
-
-
-            "<p>🕐 Time: <b>" +
-
-            time +
-
-            "</b></p>" +
-
-
-            "<p>👤 Customer Name: <b>" +
-
-            name +
-
-            "</b></p>" +
-
-
-            "<p>🍽️ Order Type: <b>" +
-
-            orderType +
-
-            "</b></p>";
-
-
-        if (
-            orderType === "Dine In"
-        ) {
-
-            result +=
-
-                "<p>🪑 Table Number: <b>" +
-
-                table +
-
-                "</b></p>";
+            cart.splice(index, 1);
 
         }
 
-
-        result +=
-
-            "<p>📦 Status: " +
-
-            '<b style="color:#d62828;">' +
-
-            "NEW" +
-
-            "</b>" +
-
-            "</p>" +
+        displayCart();
+    }
 
 
-            "<h3>📋 Order:</h3>";
+    function removeItem(index) {
+
+        cart.splice(index, 1);
+
+        displayCart();
+    }
 
 
-        /* ITEMS */
+    function displayCart() {
 
-        for (
-            let i = 0;
-            i < names.length;
-            i++
-        ) {
+        const cartElement = document.getElementById("cart");
 
-            let food =
-                names[i];
+        if (cart.length === 0) {
+
+            cartElement.innerHTML =
+                "<p>Your cart is empty.</p>";
+
+            document.getElementById("total").innerText =
+                "0.00";
+
+            return;
+        }
 
 
-            let item =
-                cart[food];
+        let html = "";
+        let total = 0;
 
+
+        cart.forEach((item, index) => {
 
             let subtotal =
-                item.price *
-                item.quantity;
+                item.price * item.quantity;
+
+            total += subtotal;
 
 
-            result +=
+            html += `
+                <div class="cart-item">
 
-                "<p>" +
+                    <div>
+                        <strong>${item.name}</strong>
+                        <br>
+                        RM ${item.price.toFixed(2)}
+                    </div>
 
-                "🍴 " +
+                    <div class="quantity">
 
-                food +
+                        <button
+                            onclick="decreaseQuantity(${index})">
+                            -
+                        </button>
 
-                " × " +
+                        ${item.quantity}
 
-                item.quantity +
+                        <button
+                            onclick="increaseQuantity(${index})">
+                            +
+                        </button>
 
-                " = RM " +
+                        <button
+                            onclick="removeItem(${index})">
+                            🗑️
+                        </button>
 
-                subtotal.toFixed(2) +
+                    </div>
 
-                "</p>";
+                </div>
+            `;
 
-        }
-
-
-        /* TOTAL */
-
-        result +=
-
-            "<hr>" +
-
-            "<h2>💰 Total: RM " +
-
-            total.toFixed(2) +
-
-            "</h2>" +
-
-
-            '<div class="status-box">' +
-
-            "<h2>🟡 Order received!</h2>" +
-
-            "<p>Your order has been sent to the restaurant.</p>" +
-
-            "<p>Please wait for your food.</p>" +
-
-            "<h3>Collection Number:</h3>" +
-
-            '<h2 style="color:#d62828;">' +
-
-            orderNumber +
-
-            "</h2>" +
-
-            "</div>" +
-
-
-            "<br>" +
-
-
-            '<button class="new-order-button" ' +
-
-            'onclick="newOrder()">' +
-
-            "🛒 New Order" +
-
-            "</button>";
-
-
-        /* SHOW */
-
-        document.getElementById(
-            "confirmedOrder"
-        ).innerHTML =
-            result;
-
-
-        document.getElementById(
-            "confirmed"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "checkout"
-        ).style.display =
-            "none";
-
-
-        document.getElementById(
-            "confirmed"
-        ).scrollIntoView({
-            behavior: "smooth"
         });
 
 
+        cartElement.innerHTML = html;
+
+        document.getElementById("total").innerText =
+            total.toFixed(2);
     }
 
 
-    catch (error) {
+    // =========================
+    // ORDER TYPE
+    // =========================
 
-
-        console.error(
-            "Firebase error:",
-            error
+    const dineIn =
+        document.querySelector(
+            'input[value="Dine In"]'
         );
 
-
-        alert(
-
-            "❌ Order failed!\n\n" +
-
-            "Please check your Firebase Firestore settings."
-
+    const takeAway =
+        document.querySelector(
+            'input[value="Take Away"]'
         );
 
-    }
+    const tableBox =
+        document.getElementById("tableBox");
+
+    const tableNumber =
+        document.getElementById("tableNumber");
 
 
-    finally {
+    dineIn.addEventListener("change", function() {
 
-        button.disabled = false;
+        tableBox.style.display = "block";
 
-        message.style.display =
-            "none";
-
-    }
-
-}
-
-
-/* ============================
-   NEW ORDER
-============================ */
-
-function newOrder() {
-
-    cart = {};
-
-
-    document.getElementById(
-        "cart-items"
-    ).innerHTML =
-        "Your cart is empty.";
-
-
-    document.getElementById(
-        "total"
-    ).innerText =
-        "0.00";
-
-
-    document.getElementById(
-        "customerName"
-    ).value = "";
-
-
-    document.getElementById(
-        "tableNumber"
-    ).value = "";
-
-
-    document.getElementById(
-        "checkout"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "confirmed"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "iceCreamPage"
-    ).style.display =
-        "none";
-
-
-    document.getElementById(
-        "iceCreamEntry"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "mainMenu"
-    ).style.display =
-        "block";
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
+        tableNumber.required = true;
 
     });
 
-}
+
+    takeAway.addEventListener("change", function() {
+
+        tableBox.style.display = "none";
+
+        tableNumber.required = false;
+
+        tableNumber.value = "";
+
+    });
+
+
+    // =========================
+    // PLACE ORDER
+    // =========================
+
+    document.getElementById("orderForm")
+        .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        // Check cart
+        if (cart.length === 0) {
+
+            alert("Please add food to your cart first!");
+
+            return;
+        }
+
+
+        const name =
+            document.getElementById("customerName")
+                .value.trim();
+
+
+        const description =
+            document.getElementById("description")
+                .value.trim();
+
+
+        const orderType =
+            document.querySelector(
+                'input[name="orderType"]:checked'
+            ).value;
+
+
+        let table = "";
+
+
+        if (orderType === "Dine In") {
+
+            table =
+                document.getElementById("tableNumber")
+                    .value;
+
+        }
+
+
+        // Generate order number
+        const orderNumber =
+            "WK" +
+            Math.floor(
+                1000 + Math.random() * 9000
+            );
+
+
+        // Calculate total
+        let total = 0;
+
+        cart.forEach(item => {
+
+            total +=
+                item.price * item.quantity;
+
+        });
+
+
+        // Show confirmation
+        document.getElementById("orderNumber")
+            .innerText = orderNumber;
+
+
+        let info =
+            "Name: " + name +
+            "<br>" +
+            "Order Type: " + orderType;
+
+
+        if (orderType === "Dine In") {
+
+            info +=
+                "<br>Table Number: " +
+                table;
+
+        }
+
+
+        info +=
+            "<br>Total: RM " +
+            total.toFixed(2);
+
+
+        if (description) {
+
+            info +=
+                "<br>Description: " +
+                description;
+
+        }
+
+
+        document.getElementById("confirmationInfo")
+            .innerHTML = info;
+
+
+        document.getElementById("confirmation")
+            .style.display = "block";
+
+
+        document.getElementById("orderForm")
+            .style.display = "none";
+
+
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
+
+    });
+
+
+    // =========================
+    // NEW ORDER
+    // =========================
+
+    function newOrder() {
+
+        cart = [];
+
+        displayCart();
+
+        document.getElementById("orderForm")
+            .reset();
+
+        tableBox.style.display = "none";
+
+        tableNumber.required = false;
+
+        document.getElementById("confirmation")
+            .style.display = "none";
+
+        document.getElementById("orderForm")
+            .style.display = "block";
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    // Initial cart
+    displayCart();
 
 </script>
 
-
 </body>
-
-</html>                                                                                                                                                                                                                                                                                                                                                                                                                
+</html>
