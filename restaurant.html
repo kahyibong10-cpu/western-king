@@ -1,730 +1,788 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restoran Western King</title>
 
-    <title>Restoran Western King</title>
+<style>
+* { box-sizing: border-box; }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff8f0;
+    color: #292929;
+}
 
-        header {
-            background: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+header {
+    background: #a51d24;
+    color: white;
+    text-align: center;
+    padding: 24px 12px;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-        }
+header h1 { margin: 0 0 8px; }
+header p { margin: 5px; }
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
+.promo {
+    background: #ffdf80;
+    color: #642000;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+}
 
-        h2 {
-            margin-top: 0;
-        }
+main {
+    max-width: 1050px;
+    margin: auto;
+    padding: 16px;
+}
 
-        .menu {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
+h2 {
+    color: #a51d24;
+    border-bottom: 2px solid #ead6c7;
+    padding-bottom: 8px;
+}
 
-        .food {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+}
 
-        .food h3 {
-            margin: 5px 0;
-        }
+.item {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 7px #00000012;
+}
 
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-        }
+.item h3 { margin: 5px 0 10px; }
+.price { color: #a51d24; font-weight: bold; }
 
-        button {
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            background: #222;
-            color: white;
-            margin-top: 8px;
-        }
+button {
+    border: none;
+    border-radius: 7px;
+    padding: 10px 13px;
+    cursor: pointer;
+    font-size: 15px;
+}
 
-        button:hover {
-            opacity: 0.8;
-        }
+.add, .submit {
+    background: #a51d24;
+    color: white;
+}
 
-        input[type="text"],
-        input[type="number"],
-        textarea {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
-            margin-top: 6px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+.add { width: 100%; margin-top: 10px; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        textarea {
-            height: 80px;
-            resize: vertical;
-        }
+.panel {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 22px;
+    box-shadow: 0 2px 7px #00000012;
+}
 
-        .radio-group {
-            margin-bottom: 15px;
-        }
+label {
+    display: block;
+    margin-top: 14px;
+    font-weight: bold;
+}
 
-        .radio-group label {
-            margin-right: 20px;
-        }
+input, textarea, select {
+    width: 100%;
+    padding: 11px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 16px;
+}
 
-        #tableBox {
-            display: none;
-        }
+.radio-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-right: 18px;
+}
 
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
+.radio-label input { width: auto; }
 
-        .quantity button {
-            padding: 5px 10px;
-            margin: 0 3px;
-        }
+.cart-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
 
-        .total {
-            text-align: right;
-            font-size: 22px;
-            font-weight: bold;
-            margin-top: 15px;
-        }
+.cart-row button { padding: 7px 10px; }
+.remove { background: #eee; }
+.total { font-size: 21px; font-weight: bold; }
 
-        .place-order {
-            width: 100%;
-            background: #008000;
-            font-size: 18px;
-            padding: 14px;
-        }
+.notice {
+    padding: 12px;
+    border-radius: 7px;
+    margin: 12px 0;
+    background: #eee;
+    overflow-wrap: anywhere;
+}
 
-        #confirmation {
-            display: none;
-            background: #e8ffe8;
-            border: 1px solid #8bcf8b;
-        }
+.success {
+    background: #e2f7e7;
+    border: 1px solid #80c992;
+}
 
-        .order-number {
-            font-size: 28px;
-            font-weight: bold;
-        }
-    </style>
+.error {
+    background: #ffebeb;
+    border: 1px solid #e4aaaa;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #666;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>🍽️ Restoran Western King</h1>
-    <p>Welcome to Western King!</p>
+    <h1>🍗 Restoran Western King</h1>
+    <p>Welcome! Order your favourite food online.</p>
+    <p>Fresh Food • Great Taste • Great Price</p>
 </header>
 
-<div class="container">
+<div class="promo">
+    🎉 WEEKEND PROMOTION: 20% OFF eligible food orders!<br>
+    🍔 Chicken Burger Combo RM10<br>
+    🎁 Buy 1 Free 1 on eligible menu items
+</div>
 
-    <!-- MENU -->
-    <div class="card">
+<main>
 
-        <h2>🍗 Food Menu</h2>
-
-        <div class="menu">
-
-            <div class="food">
-                <h3>Chicken Chop</h3>
-                <p class="price">RM15.00</p>
-                <button onclick="addToCart('Chicken Chop', 15)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Spicy Chicken Chop</h3>
-                <p class="price">RM16.00</p>
-                <button onclick="addToCart('Spicy Chicken Chop', 16)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Spaghetti</h3>
-                <p class="price">RM10.00</p>
-                <button onclick="addToCart('Spaghetti', 10)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Creamy Chicken Pasta</h3>
-                <p class="price">RM13.90</p>
-                <button onclick="addToCart('Creamy Chicken Pasta', 13.90)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Chicken Burger</h3>
-                <p class="price">RM6.00</p>
-                <button onclick="addToCart('Chicken Burger', 6)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Fish Burger</h3>
-                <p class="price">RM8.00</p>
-                <button onclick="addToCart('Fish Burger', 8)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>French Fries</h3>
-                <p class="price">RM5.00</p>
-                <button onclick="addToCart('French Fries', 5)">
-                    Add to Cart
-                </button>
-            </div>
-
-        </div>
-
+    <div id="firebaseStatus" class="notice">
+        Connecting to Firebase...
     </div>
 
+    <h2>🍗 Food Menu</h2>
+    <div id="foodMenu" class="menu"></div>
 
-    <!-- DRINK MENU -->
-    <div class="card">
+    <h2>🥤 Drinks Menu</h2>
+    <div id="drinkMenu" class="menu"></div>
 
-        <h2>🥤 Drinks</h2>
+    <h2>🍦 Ice Cream Menu</h2>
+    <div id="iceCreamMenu" class="menu"></div>
 
-        <div class="menu">
+    <section class="panel">
+        <h2>🛒 Your Shopping Cart</h2>
+        <div id="cartItems">Your cart is empty.</div>
+        <p id="subtotal">Subtotal: RM0.00</p>
+        <p id="comboDiscount">Combo discount: RM0.00</p>
+        <p id="bogoDiscount">Buy 1 Free 1 discount: RM0.00</p>
+        <p id="weekendDiscount">Weekend discount: RM0.00</p>
+        <p class="total" id="grandTotal">Total: RM0.00</p>
+        <p id="promotionNote"></p>
+    </section>
 
-            <div class="food">
-                <h3>Ice Coca-Cola</h3>
-                <p class="price">RM3.00</p>
-                <button onclick="addToCart('Ice Coca-Cola', 3)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Ice Mineral Water</h3>
-                <p class="price">RM2.00</p>
-                <button onclick="addToCart('Ice Mineral Water', 2)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Ice Lemon Tea</h3>
-                <p class="price">RM3.00</p>
-                <button onclick="addToCart('Ice Lemon Tea', 3)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Ice Milo</h3>
-                <p class="price">RM4.00</p>
-                <button onclick="addToCart('Ice Milo', 4)">
-                    Add to Cart
-                </button>
-            </div>
-
-            <div class="food">
-                <h3>Ice 100 Plus</h3>
-                <p class="price">RM3.00</p>
-                <button onclick="addToCart('Ice 100 Plus', 3)">
-                    Add to Cart
-                </button>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- CART -->
-    <div class="card">
-
-        <h2>🛒 Your Cart</h2>
-
-        <div id="cart">
-            <p>Your cart is empty.</p>
-        </div>
-
-        <div class="total">
-            Total: RM <span id="total">0.00</span>
-        </div>
-
-    </div>
-
-
-    <!-- CUSTOMER INFORMATION -->
-    <div class="card">
-
-        <h2>📝 Customer Information</h2>
+    <section class="panel">
+        <h2>📝 Customer Details</h2>
 
         <form id="orderForm">
 
-            <!-- NAME -->
-            <label>
-                <strong>Name *</strong>
-            </label>
-
+            <label for="customerName">Customer Name *</label>
             <input
                 type="text"
                 id="customerName"
+                name="customerName"
                 placeholder="Enter your name"
                 required
+                maxlength="100"
             >
 
-
-            <!-- DESCRIPTION -->
-            <label>
-                <strong>Description</strong>
+            <label>Order Type *</label>
+            <label class="radio-label">
+                <input type="radio" name="orderType"
+                       value="Dine In" required>
+                Dine In
             </label>
 
+            <label class="radio-label">
+                <input type="radio" name="orderType"
+                       value="Take Away" required>
+                Take Away
+            </label>
+
+            <div id="tableSection">
+                <label for="tableNumber">Table Number *</label>
+                <input
+                    type="text"
+                    id="tableNumber"
+                    name="tableNumber"
+                    placeholder="Enter your table number"
+                    maxlength="30"
+                    disabled
+                >
+            </div>
+
+            <label for="description">
+                Special Requests (Optional)
+            </label>
             <textarea
                 id="description"
+                name="description"
+                rows="3"
+                maxlength="500"
                 placeholder="No onion, less spicy, extra sauce..."
             ></textarea>
 
+            <p id="formMessage" class="notice">
+                Please complete your details and check your order.
+            </p>
 
-            <!-- ORDER TYPE -->
-            <label>
-                <strong>Order Type *</strong>
-            </label>
-
-            <div class="radio-group">
-
-                <label>
-                    <input
-                        type="radio"
-                        name="orderType"
-                        value="Dine In"
-                        required
-                    >
-                    Dine In
-                </label>
-
-                <label>
-                    <input
-                        type="radio"
-                        name="orderType"
-                        value="Take Away"
-                    >
-                    Take Away
-                </label>
-
-            </div>
-
-
-            <!-- TABLE NUMBER -->
-            <div id="tableBox">
-
-                <label>
-                    <strong>Table Number *</strong>
-                </label>
-
-                <input
-                    type="number"
-                    id="tableNumber"
-                    placeholder="Enter table number"
-                    min="1"
-                >
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="place-order"
-            >
-                🛍️ Place Order
+            <button type="submit" id="submitButton"
+                    class="submit" style="width:100%">
+                Place Order
             </button>
 
         </form>
+    </section>
 
-    </div>
-
-
-    <!-- CONFIRMATION -->
-    <div class="card" id="confirmation">
-
+    <section id="confirmation" class="panel" hidden>
         <h2>✅ Order Successful!</h2>
-
-        <p>Your Order Number:</p>
-
-        <div class="order-number" id="orderNumber"></div>
-
-        <p id="confirmationInfo"></p>
-
-        <button onclick="newOrder()">
+        <p>Your order has been saved to Firebase.</p>
+        <p>Order Number:</p>
+        <h2 id="orderNumberDisplay"></h2>
+        <p>Please keep your order number.</p>
+        <button type="button" class="submit" id="newOrderButton">
             New Order
         </button>
+    </section>
 
-    </div>
+</main>
 
-</div>
+<footer>
+    Restoran Western King • Thank you for your order!
+</footer>
 
+<script type="module">
+import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
-<script>
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-    // =========================
-    // CART
-    // =========================
+/*
+IMPORTANT:
+Replace the example Firebase configuration below
+with the EXACT configuration from your Firebase project.
+Firebase Console -> Project settings -> Your apps -> SDK setup.
+Do not change the project to a different one.
+*/
 
-    let cart = [];
+const firebaseConfig = {
+    apiKey: "PASTE_YOUR_API_KEY_HERE",
+    authDomain: "western-king-restaurant.firebaseapp.com",
+    projectId: "western-king-restaurant",
+    storageBucket: "western-king-restaurant.firebasestorage.app",
+    messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID_HERE",
+    appId: "PASTE_YOUR_APP_ID_HERE"
+};
 
+const food = [
+    { name: "Chicken Chop", price: 15.00 },
+    { name: "Spaghetti", price: 10.00 },
+    { name: "Chicken Burger", price: 6.00 },
+    { name: "French Fries", price: 5.00 },
+    { name: "Fish Burger", price: 8.00 },
+    { name: "Spicy Chicken Chop", price: 16.00 },
+    { name: "Creamy Chicken Pasta", price: 13.90 },
+    { name: "Cheesy Fries", price: 6.00 }
+];
 
-    function addToCart(name, price) {
+const drinks = [
+    { name: "Ice Coca-Cola", price: 3.00 },
+    { name: "Ice Mineral Water", price: 2.00 },
+    { name: "Ice Lemon Tea", price: 3.00 },
+    { name: "Ice Milo", price: 4.00 },
+    { name: "Ice 100 Plus", price: 3.00 }
+];
 
-        let existingItem = cart.find(item => item.name === name);
+const iceCreams = [
+    { name: "Vanilla Ice Cream", price: 3.00 },
+    { name: "Chocolate Ice Cream", price: 3.50 },
+    { name: "Strawberry Ice Cream", price: 3.50 }
+];
 
-        if (existingItem) {
+let db = null;
+let cart = {};
+let isSaving = false;
 
-            existingItem.quantity++;
+const money = value => "RM" + value.toFixed(2);
 
-        } else {
+const firebaseStatus = document.getElementById("firebaseStatus");
+const cartItems = document.getElementById("cartItems");
+const orderForm = document.getElementById("orderForm");
+const submitButton = document.getElementById("submitButton");
+const formMessage = document.getElementById("formMessage");
 
-            cart.push({
-                name: name,
-                price: price,
-                quantity: 1
+function showMessage(element, message, type = "") {
+    element.textContent = message;
+    element.className = "notice" + (type ? " " + type : "");
+}
+
+function makeId(name) {
+    return name;
+}
+
+function renderMenu(items, containerId) {
+    const container = document.getElementById(containerId);
+    container.replaceChildren();
+
+    items.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "item";
+
+        const title = document.createElement("h3");
+        title.textContent = item.name;
+
+        const price = document.createElement("p");
+        price.className = "price";
+        price.textContent = money(item.price);
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "add";
+        button.textContent = "Add to Cart +";
+
+        button.addEventListener("click", () => {
+            const id = makeId(item.name);
+
+            if (!cart[id]) {
+                cart[id] = {
+                    name: item.name,
+                    price: item.price,
+                    quantity: 0
+                };
+            }
+
+            cart[id].quantity += 1;
+            renderCart();
+        });
+
+        card.append(title, price, button);
+        container.appendChild(card);
+    });
+}
+
+/*
+Promotion rules:
+1. Weekend discount: 20% off food items on Saturday and Sunday.
+2. Chicken Burger Combo: burger + fries + Coca-Cola for RM10.
+   Combo quantities are matched by the smallest available quantity.
+3. Buy 1 Free 1: eligible individual items are charged per pair.
+   For odd quantities, one item remains chargeable.
+4. Weekend discount is calculated after combo and BOGO discounts.
+*/
+
+function calculateOrder() {
+    const quantities = {};
+    const itemTotals = {};
+    let subtotal = 0;
+
+    Object.values(cart).forEach(item => {
+        quantities[item.name] = item.quantity;
+        itemTotals[item.name] = item.price * item.quantity;
+        subtotal += item.price * item.quantity;
+    });
+
+    let comboDiscount = 0;
+
+    const burgerCount = quantities["Chicken Burger"] || 0;
+    const friesCount = quantities["French Fries"] || 0;
+    const cokeCount = quantities["Ice Coca-Cola"] || 0;
+
+    const comboCount = Math.min(
+        burgerCount,
+        friesCount,
+        cokeCount
+    );
+
+    comboDiscount = comboCount * (
+        6.00 + 5.00 + 3.00 - 10.00
+    );
+
+    const eligibleBogo = new Set([
+        "Chicken Chop",
+        "Spaghetti",
+        "Chicken Burger",
+        "French Fries",
+        "Fish Burger",
+        "Spicy Chicken Chop",
+        "Creamy Chicken Pasta",
+        "Cheesy Fries",
+        "Ice Coca-Cola",
+        "Ice Mineral Water",
+        "Ice Lemon Tea",
+        "Ice Milo",
+        "Ice 100 Plus",
+        "Vanilla Ice Cream",
+        "Chocolate Ice Cream",
+        "Strawberry Ice Cream"
+    ]);
+
+    let bogoDiscount = 0;
+
+    Object.values(cart).forEach(item => {
+        if (eligibleBogo.has(item.name)) {
+            bogoDiscount +=
+                Math.floor(item.quantity / 2) * item.price;
+        }
+    });
+
+    const afterCombo = Math.max(0, subtotal - comboDiscount);
+    const afterBogo = Math.max(0, afterCombo - bogoDiscount);
+
+    const day = new Date().getDay();
+    const isWeekend = day === 0 || day === 6;
+
+    let weekendEligible = 0;
+
+    Object.values(cart).forEach(item => {
+        const isFood = food.some(
+            menuItem => menuItem.name === item.name
+        );
+
+        if (isFood) {
+            weekendEligible += item.price * item.quantity;
+        }
+    });
+
+    const weekendDiscount = isWeekend
+        ? Math.min(afterBogo, Math.max(0, weekendEligible) * 0.20)
+        : 0;
+
+    const total = Math.max(
+        0,
+        afterBogo - weekendDiscount
+    );
+
+    return {
+        subtotal,
+        comboDiscount,
+        bogoDiscount,
+        weekendDiscount,
+        total,
+        comboCount
+    };
+}
+
+function renderCart() {
+    cartItems.replaceChildren();
+
+    const items = Object.values(cart).filter(
+        item => item.quantity > 0
+    );
+
+    if (items.length === 0) {
+        cartItems.textContent = "Your cart is empty.";
+    } else {
+        items.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "cart-row";
+
+            const info = document.createElement("div");
+            info.textContent =
+                `${item.name} — ${money(item.price)} × ${item.quantity}`;
+
+            const controls = document.createElement("div");
+
+            const minus = document.createElement("button");
+            minus.type = "button";
+            minus.className = "remove";
+            minus.textContent = "−";
+            minus.setAttribute("aria-label", "Decrease " + item.name);
+
+            minus.addEventListener("click", () => {
+                item.quantity -= 1;
+
+                if (item.quantity <= 0) {
+                    delete cart[item.name];
+                }
+
+                renderCart();
             });
 
-        }
+            const plus = document.createElement("button");
+            plus.type = "button";
+            plus.textContent = "+";
+            plus.setAttribute("aria-label", "Increase " + item.name);
 
-        displayCart();
-    }
+            plus.addEventListener("click", () => {
+                item.quantity += 1;
+                renderCart();
+            });
 
+            const remove = document.createElement("button");
+            remove.type = "button";
+            remove.className = "remove";
+            remove.textContent = "Delete";
 
-    function increaseQuantity(index) {
+            remove.addEventListener("click", () => {
+                delete cart[item.name];
+                renderCart();
+            });
 
-        cart[index].quantity++;
-
-        displayCart();
-    }
-
-
-    function decreaseQuantity(index) {
-
-        cart[index].quantity--;
-
-        if (cart[index].quantity <= 0) {
-
-            cart.splice(index, 1);
-
-        }
-
-        displayCart();
-    }
-
-
-    function removeItem(index) {
-
-        cart.splice(index, 1);
-
-        displayCart();
-    }
-
-
-    function displayCart() {
-
-        const cartElement = document.getElementById("cart");
-
-        if (cart.length === 0) {
-
-            cartElement.innerHTML =
-                "<p>Your cart is empty.</p>";
-
-            document.getElementById("total").innerText =
-                "0.00";
-
-            return;
-        }
-
-
-        let html = "";
-        let total = 0;
-
-
-        cart.forEach((item, index) => {
-
-            let subtotal =
-                item.price * item.quantity;
-
-            total += subtotal;
-
-
-            html += `
-                <div class="cart-item">
-
-                    <div>
-                        <strong>${item.name}</strong>
-                        <br>
-                        RM ${item.price.toFixed(2)}
-                    </div>
-
-                    <div class="quantity">
-
-                        <button
-                            onclick="decreaseQuantity(${index})">
-                            -
-                        </button>
-
-                        ${item.quantity}
-
-                        <button
-                            onclick="increaseQuantity(${index})">
-                            +
-                        </button>
-
-                        <button
-                            onclick="removeItem(${index})">
-                            🗑️
-                        </button>
-
-                    </div>
-
-                </div>
-            `;
-
+            controls.append(minus, plus, remove);
+            row.append(info, controls);
+            cartItems.appendChild(row);
         });
-
-
-        cartElement.innerHTML = html;
-
-        document.getElementById("total").innerText =
-            total.toFixed(2);
     }
 
+    const result = calculateOrder();
 
-    // =========================
-    // ORDER TYPE
-    // =========================
+    document.getElementById("subtotal").textContent =
+        "Subtotal: " + money(result.subtotal);
 
-    const dineIn =
-        document.querySelector(
-            'input[value="Dine In"]'
+    document.getElementById("comboDiscount").textContent =
+        "Combo discount: -" + money(result.comboDiscount);
+
+    document.getElementById("bogoDiscount").textContent =
+        "Buy 1 Free 1 discount: -" + money(result.bogoDiscount);
+
+    document.getElementById("weekendDiscount").textContent =
+        "Weekend discount: -" + money(result.weekendDiscount);
+
+    document.getElementById("grandTotal").textContent =
+        "Total: " + money(result.total);
+
+    const notes = [];
+
+    if (result.comboCount > 0) {
+        notes.push(
+            result.comboCount + " Chicken Burger Combo(s) applied."
         );
+    }
 
-    const takeAway =
-        document.querySelector(
-            'input[value="Take Away"]'
-        );
+    if (new Date().getDay() === 0 || new Date().getDay() === 6) {
+        notes.push("Weekend discount is active.");
+    } else {
+        notes.push("Weekend discount applies on Saturday and Sunday.");
+    }
 
-    const tableBox =
-        document.getElementById("tableBox");
+    notes.push("Buy 1 Free 1 applies to eligible items in pairs.");
 
-    const tableNumber =
-        document.getElementById("tableNumber");
+    document.getElementById("promotionNote").textContent =
+        notes.join(" ");
+}
 
+function updateOrderType() {
+    const selected = document.querySelector(
+        'input[name="orderType"]:checked'
+    );
 
-    dineIn.addEventListener("change", function() {
+    const tableNumber = document.getElementById("tableNumber");
+    const dineIn = selected && selected.value === "Dine In";
 
-        tableBox.style.display = "block";
+    tableNumber.disabled = !dineIn;
+    tableNumber.required = !!dineIn;
 
-        tableNumber.required = true;
-
-    });
-
-
-    takeAway.addEventListener("change", function() {
-
-        tableBox.style.display = "none";
-
-        tableNumber.required = false;
-
+    if (!dineIn) {
         tableNumber.value = "";
+    }
+}
 
-    });
+document.querySelectorAll('input[name="orderType"]').forEach(radio => {
+    radio.addEventListener("change", updateOrderType);
+});
 
+orderForm.addEventListener("submit", async event => {
+    event.preventDefault();
 
-    // =========================
-    // PLACE ORDER
-    // =========================
+    if (isSaving) return;
 
-    document.getElementById("orderForm")
-        .addEventListener("submit", function(event) {
-
-        event.preventDefault();
-
-
-        // Check cart
-        if (cart.length === 0) {
-
-            alert("Please add food to your cart first!");
-
-            return;
-        }
-
-
-        const name =
-            document.getElementById("customerName")
-                .value.trim();
-
-
-        const description =
-            document.getElementById("description")
-                .value.trim();
-
-
-        const orderType =
-            document.querySelector(
-                'input[name="orderType"]:checked'
-            ).value;
-
-
-        let table = "";
-
-
-        if (orderType === "Dine In") {
-
-            table =
-                document.getElementById("tableNumber")
-                    .value;
-
-        }
-
-
-        // Generate order number
-        const orderNumber =
-            "WK" +
-            Math.floor(
-                1000 + Math.random() * 9000
-            );
-
-
-        // Calculate total
-        let total = 0;
-
-        cart.forEach(item => {
-
-            total +=
-                item.price * item.quantity;
-
-        });
-
-
-        // Show confirmation
-        document.getElementById("orderNumber")
-            .innerText = orderNumber;
-
-
-        let info =
-            "Name: " + name +
-            "<br>" +
-            "Order Type: " + orderType;
-
-
-        if (orderType === "Dine In") {
-
-            info +=
-                "<br>Table Number: " +
-                table;
-
-        }
-
-
-        info +=
-            "<br>Total: RM " +
-            total.toFixed(2);
-
-
-        if (description) {
-
-            info +=
-                "<br>Description: " +
-                description;
-
-        }
-
-
-        document.getElementById("confirmationInfo")
-            .innerHTML = info;
-
-
-        document.getElementById("confirmation")
-            .style.display = "block";
-
-
-        document.getElementById("orderForm")
-            .style.display = "none";
-
-
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth"
-        });
-
-    });
-
-
-    // =========================
-    // NEW ORDER
-    // =========================
-
-    function newOrder() {
-
-        cart = [];
-
-        displayCart();
-
-        document.getElementById("orderForm")
-            .reset();
-
-        tableBox.style.display = "none";
-
-        tableNumber.required = false;
-
-        document.getElementById("confirmation")
-            .style.display = "none";
-
-        document.getElementById("orderForm")
-            .style.display = "block";
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
+    if (!db) {
+        showMessage(
+            formMessage,
+            "Firebase is not ready. Please check your Firebase configuration.",
+            "error"
+        );
+        return;
     }
 
+    const items = Object.values(cart)
+        .filter(item => item.quantity > 0)
+        .map(item => ({
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            subtotal: Number(
+                (item.price * item.quantity).toFixed(2)
+            )
+        }));
 
-    // Initial cart
-    displayCart();
+    if (items.length === 0) {
+        showMessage(formMessage, "Please add food to your cart first.", "error");
+        return;
+    }
 
+    const customer = document.getElementById("customerName")
+        .value.trim();
+
+    const orderTypeInput = document.querySelector(
+        'input[name="orderType"]:checked'
+    );
+
+    if (!customer || !orderTypeInput) {
+        showMessage(formMessage, "Please enter your name and select an order type.", "error");
+        return;
+    }
+
+    const orderType = orderTypeInput.value;
+    const table = orderType === "Dine In"
+        ? document.getElementById("tableNumber").value.trim()
+        : "";
+
+    if (orderType === "Dine In" && !table) {
+        showMessage(formMessage, "Please enter your table number.", "error");
+        return;
+    }
+
+    const description = document.getElementById("description")
+        .value.trim();
+
+    const result = calculateOrder();
+
+    const orderNumber =
+        "WK" + Date.now().toString().slice(-8) +
+        Math.floor(Math.random() * 90 + 10);
+
+    const orderData = {
+        orderNumber: orderNumber,
+        customer: customer,
+        orderType: orderType,
+        table: table,
+        description: description,
+        items: items,
+        subtotal: Number(result.subtotal.toFixed(2)),
+        comboDiscount: Number(result.comboDiscount.toFixed(2)),
+        bogoDiscount: Number(result.bogoDiscount.toFixed(2)),
+        weekendDiscount: Number(result.weekendDiscount.toFixed(2)),
+        total: Number(result.total.toFixed(2)),
+        status: "NEW",
+        time: new Date().toLocaleString(),
+        createdAt: serverTimestamp()
+    };
+
+    isSaving = true;
+    submitButton.disabled = true;
+    submitButton.textContent = "Saving Order...";
+
+    try {
+        // Save to the same Firestore collection used by admin.html.
+        await addDoc(collection(db, "orders"), orderData);
+
+        document.getElementById("orderNumberDisplay").textContent =
+            orderNumber;
+
+        document.getElementById("confirmation").hidden = false;
+        document.getElementById("confirmation").scrollIntoView({
+            behavior: "smooth"
+        });
+
+        showMessage(
+            formMessage,
+            "Order saved successfully!",
+            "success"
+        );
+
+        cart = {};
+        renderCart();
+
+    } catch (error) {
+        console.error("Firebase order save failed:", error);
+
+        let message = "Could not save order. ";
+
+        if (error.code === "permission-denied") {
+            message += "Firestore rules denied access. Check your database rules.";
+        } else if (error.code === "unavailable") {
+            message += "Internet or Firebase service is unavailable. Please try again.";
+        } else {
+            message += error.message || "Please check your Firebase settings.";
+        }
+
+        showMessage(formMessage, message, "error");
+
+    } finally {
+        isSaving = false;
+        submitButton.disabled = false;
+        submitButton.textContent = "Place Order";
+    }
+});
+
+document.getElementById("newOrderButton").addEventListener("click", () => {
+    orderForm.reset();
+    cart = {};
+    renderCart();
+    updateOrderType();
+
+    document.getElementById("confirmation").hidden = true;
+
+    showMessage(
+        formMessage,
+        "Please complete your details and check your order."
+    );
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+renderMenu(food, "foodMenu");
+renderMenu(drinks, "drinkMenu");
+renderMenu(iceCreams, "iceCreamMenu");
+renderCart();
+updateOrderType();
+
+try {
+    if (
+        !firebaseConfig.apiKey ||
+        firebaseConfig.apiKey === "PASTE_YOUR_API_KEY_HERE" ||
+        !firebaseConfig.appId ||
+        firebaseConfig.appId === "PASTE_YOUR_APP_ID_HERE" ||
+        !firebaseConfig.messagingSenderId ||
+        firebaseConfig.messagingSenderId === "PASTE_YOUR_MESSAGING_SENDER_ID_HERE"
+    ) {
+        throw new Error(
+            "Please paste the real Firebase configuration into the code."
+        );
+    }
+
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+
+    showMessage(
+        firebaseStatus,
+        "Firebase initialized. Ready to place orders.",
+        "success"
+    );
+
+} catch (error) {
+    console.error("Firebase initialization failed:", error);
+
+    showMessage(
+        firebaseStatus,
+        "Firebase setup required: " + error.message,
+        "error"
+    );
+}
 </script>
 
 </body>
