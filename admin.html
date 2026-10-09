@@ -1,13 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Western King - Admin</title>
+<title>Western King - Admin Dashboard</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -15,1091 +14,640 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    color: #333;
+    background: #f3f5f9;
+    color: #202536;
 }
 
-/* HEADER */
-
-.header {
-    background: linear-gradient(135deg, #d62828, #f77f00);
+header {
+    background: #172033;
     color: white;
-    padding: 25px;
-    text-align: center;
+    padding: 22px 20px;
 }
 
-.header h1 {
+header h1 {
+    margin: 0 0 8px;
+    font-size: 25px;
+}
+
+header p {
     margin: 0;
-    font-size: 32px;
+    color: #cbd5e1;
 }
-
-.header p {
-    margin: 8px 0 0;
-}
-
-/* CONTAINER */
 
 .container {
-    max-width: 1200px;
+    max-width: 1250px;
     margin: auto;
     padding: 20px;
 }
 
-/* DASHBOARD */
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+.connection {
+    padding: 12px 15px;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #e1e5ed;
+    font-size: 14px;
 }
 
-.card {
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.stat {
     background: white;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    text-align: center;
+    border-radius: 12px;
+    border: 1px solid #e1e5ed;
 }
 
-.card h3 {
+.stat p {
+    margin: 0 0 12px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.stat h2 {
     margin: 0;
-    color: #666;
-    font-size: 16px;
+    font-size: 27px;
+    overflow-wrap: anywhere;
 }
 
-.card .number {
-    margin-top: 10px;
-    font-size: 30px;
-    font-weight: bold;
-    color: #d62828;
+.toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
 }
 
-/* CONNECTION */
-
-.connection {
-    text-align: center;
-    margin-bottom: 20px;
+input, select, button {
+    font: inherit;
+    padding: 11px 13px;
+    border-radius: 8px;
+    border: 1px solid #d4dae5;
 }
 
-.connected {
-    display: inline-block;
-    background: #d4edda;
-    color: #155724;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-weight: bold;
+input, .toolbar select {
+    background: white;
 }
 
-.error {
-    display: inline-block;
-    background: #f8d7da;
-    color: #721c24;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-weight: bold;
+button {
+    cursor: pointer;
+    background: #172033;
+    color: white;
+    border: none;
 }
 
-/* ORDERS */
+button:hover {
+    opacity: 0.88;
+}
 
-.section-title {
-    font-size: 25px;
-    margin-bottom: 15px;
+.orders {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
 }
 
 .order {
     background: white;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 18px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    border: 1px solid #e1e5ed;
+    border-radius: 12px;
+    padding: 18px;
+    min-width: 0;
 }
 
-.order-header {
+.order-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     gap: 10px;
+    align-items: flex-start;
     flex-wrap: wrap;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #edf0f5;
     padding-bottom: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
-.order-number {
-    font-size: 22px;
+.order h3 {
+    margin: 0 0 6px;
+    overflow-wrap: anywhere;
+}
+
+.muted {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.status {
+    font-size: 12px;
     font-weight: bold;
-    color: #d62828;
+    padding: 6px 9px;
+    border-radius: 20px;
+    background: #e2e8f0;
+    color: #334155;
 }
 
-.order-info {
-    line-height: 1.7;
+.status.NEW {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status.PREPARING {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status.READY {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status.COMPLETED {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.details {
+    line-height: 1.8;
+    font-size: 14px;
+    overflow-wrap: anywhere;
 }
 
 .items {
-    margin-top: 15px;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 0;
 }
 
-.item {
+.item-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px dashed #ddd;
+    gap: 12px;
+    padding: 5px 0;
+    font-size: 14px;
 }
 
 .total {
-    text-align: right;
-    font-size: 22px;
-    font-weight: bold;
-    color: #d62828;
-    margin-top: 15px;
-}
-
-/* STATUS */
-
-.status {
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-weight: bold;
-    display: inline-block;
-}
-
-.status-new {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-preparing {
-    background: #cce5ff;
-    color: #004085;
-}
-
-.status-ready {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status-completed {
-    background: #e2e3e5;
-    color: #383d41;
-}
-
-/* BUTTONS */
-
-.controls {
-    margin-top: 15px;
     display: flex;
+    justify-content: space-between;
     gap: 10px;
-    flex-wrap: wrap;
-}
-
-select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-}
-
-button {
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
+    font-size: 19px;
     font-weight: bold;
+    padding: 12px 0;
 }
 
-.refresh-button {
-    background: #007bff;
-    color: white;
+.order-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
-.delete-button {
-    background: #dc3545;
-    color: white;
+.order-actions select {
+    flex: 1;
+    min-width: 140px;
+    background: white;
 }
-
-button:hover {
-    opacity: 0.85;
-}
-
-/* EMPTY */
 
 .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 45px 15px;
     background: white;
-    padding: 40px;
-    text-align: center;
-    border-radius: 15px;
-    color: #777;
+    border-radius: 12px;
+    color: #64748b;
 }
 
-/* LOADING */
-
-.loading {
-    text-align: center;
-    padding: 30px;
+.error {
+    color: #b91c1c;
 }
 
-/* MOBILE */
-
-@media (max-width: 800px) {
-
-    .dashboard {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-@media (max-width: 500px) {
-
-    .dashboard {
+@media (max-width: 750px) {
+    .stats {
         grid-template-columns: 1fr;
     }
 
-    .header h1 {
-        font-size: 25px;
+    .orders {
+        grid-template-columns: 1fr;
     }
 
-    .order-number {
-        font-size: 19px;
+    .container {
+        padding: 12px;
     }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="header">
+<header>
+    <h1>🍗 Western King</h1>
+    <p>Restaurant Admin Dashboard</p>
+</header>
 
-    <h1>👨‍💼 Western King Admin</h1>
+<main class="container">
 
-    <p>Order Management Dashboard</p>
-
-</div>
-
-
-<div class="container">
-
-    <!-- CONNECTION -->
-
-    <div class="connection">
-
-        <span id="connectionStatus" class="connected">
-            🟢 Firebase Connected
-        </span>
-
+    <div class="connection" id="connection">
+        🟡 Connecting to Firebase...
     </div>
 
-
-    <!-- DASHBOARD -->
-
-    <div class="dashboard">
-
-        <div class="card">
-
-            <h3>Total Orders</h3>
-
-            <div class="number" id="totalOrders">
-                0
-            </div>
-
+    <section class="stats">
+        <div class="stat">
+            <p>Total Orders</p>
+            <h2 id="totalOrders">0</h2>
         </div>
 
-
-        <div class="card">
-
-            <h3>New Orders</h3>
-
-            <div class="number" id="newOrders">
-                0
-            </div>
-
+        <div class="stat">
+            <p>New / Preparing Orders</p>
+            <h2 id="pendingOrders">0</h2>
         </div>
 
-
-        <div class="card">
-
-            <h3>Completed</h3>
-
-            <div class="number" id="completedOrders">
-                0
-            </div>
-
+        <div class="stat">
+            <p>Completed Order Revenue</p>
+            <h2 id="revenue">RM 0.00</h2>
         </div>
+    </section>
 
+    <div class="toolbar">
+        <input
+            id="search"
+            type="search"
+            placeholder="Search order number or customer..."
+        >
 
-        <div class="card">
+        <select id="filter">
+            <option value="ALL">All Orders</option>
+            <option value="NEW">New</option>
+            <option value="PREPARING">Preparing</option>
+            <option value="READY">Ready</option>
+            <option value="COMPLETED">Completed</option>
+        >
 
-            <h3>Total Revenue</h3>
+        </select>
 
-            <div class="number" id="totalRevenue">
-                RM 0.00
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- REFRESH -->
-
-    <div style="margin-bottom:20px;">
-
-        <button class="refresh-button" onclick="loadOrders()">
-            🔄 Refresh Orders
+        <button id="refreshButton" type="button">
+            Refresh Orders
         </button>
-
     </div>
 
+    <section id="orders" class="orders">
+        <div class="empty">Loading orders...</div>
+    </section>
 
-    <!-- ORDERS -->
-
-    <h2 class="section-title">
-        📦 Customer Orders
-    </h2>
-
-
-    <div id="ordersContainer">
-
-        <div class="loading">
-            Loading orders...
-        </div>
-
-    </div>
-
-</div>
-
+</main>
 
 <script type="module">
-
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-
+import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
 import {
     getFirestore,
     collection,
     onSnapshot,
-    doc,
+    query,
+    orderBy,
     updateDoc,
-    deleteDoc
+    doc
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-
-/* =========================
-   FIREBASE CONFIG
-========================= */
+/*
+IMPORTANT:
+Copy the EXACT firebaseConfig object from restaurant.html.
+Do not use example API keys or create a different Firebase project.
+*/
 
 const firebaseConfig = {
-
-    apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
-
+    apiKey: "PASTE_YOUR_API_KEY_HERE",
     authDomain: "western-king-restaurant.firebaseapp.com",
-
     projectId: "western-king-restaurant",
-
-    storageBucket: "western-king-restaurant.firebasestorage.app",
-
-    messagingSenderId: "866508888526",
-
-    appId: "1:866508888526:web:ad4c149c431fd5d286339f"
-
+    storageBucket: "PASTE_YOUR_STORAGE_BUCKET_HERE",
+    messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID_HERE",
+    appId: "PASTE_YOUR_APP_ID_HERE"
 };
 
+const connection = document.getElementById("connection");
+const ordersContainer = document.getElementById("orders");
+const searchInput = document.getElementById("search");
+const filterSelect = document.getElementById("filter");
 
-/* =========================
-   START FIREBASE
-========================= */
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-
-/* =========================
-   LOAD ORDERS
-========================= */
-
+let db;
+let allOrders = [];
 let unsubscribe = null;
+let isConnected = false;
 
+const money = value =>
+    "RM " + Number(value || 0).toFixed(2);
 
-function loadOrders() {
+const escapeHTML = value =>
+    String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
 
-    const container =
-        document.getElementById("ordersContainer");
+function formatTime(value) {
+    if (!value) return "Time unavailable";
 
+    let date;
 
-    container.innerHTML =
-        '<div class="loading">Loading orders...</div>';
-
-
-    if (unsubscribe) {
-        unsubscribe();
+    if (typeof value.toDate === "function") {
+        date = value.toDate();
+    } else {
+        date = new Date(value);
     }
 
+    if (Number.isNaN(date.getTime())) {
+        return "Time unavailable";
+    }
 
-    try {
+    return date.toLocaleString();
+}
 
-        const ordersRef = collection(db, "orders");
+function getItems(order) {
+    if (!Array.isArray(order.items)) return [];
 
+    return order.items.map(item => {
+        const quantity = Number(item.quantity || 0);
+        const price = Number(item.price || 0);
 
-        unsubscribe = onSnapshot(
+        const subtotal = item.subtotal != null
+            ? Number(item.subtotal)
+            : price * quantity;
 
-            ordersRef,
+        return {
+            name: item.name || item.title || "Food item",
+            quantity,
+            price,
+            subtotal
+        };
+    });
+}
 
-            (snapshot) => {
+function getStatus(order) {
+    const validStatuses = [
+        "NEW", "PREPARING", "READY", "COMPLETED"
+    ];
 
-                let orders = [];
+    const status = String(order.status || "NEW").toUpperCase();
 
+    return validStatuses.includes(status) ? status : "NEW";
+}
 
-                snapshot.forEach((documentSnapshot) => {
+function renderStats() {
+    document.getElementById("totalOrders").textContent =
+        allOrders.length;
 
-                    orders.push({
+    document.getElementById("pendingOrders").textContent =
+        allOrders.filter(order =>
+            ["NEW", "PREPARING"].includes(getStatus(order))
+        ).length;
 
-                        id: documentSnapshot.id,
+    const completedRevenue = allOrders
+        .filter(order => getStatus(order) === "COMPLETED")
+        .reduce((sum, order) => sum + Number(order.total || 0), 0);
 
-                        ...documentSnapshot.data()
+    document.getElementById("revenue").textContent =
+        money(completedRevenue);
+}
 
-                    });
+function renderOrders() {
+    const keyword = searchInput.value.trim().toLowerCase();
+    const selectedStatus = filterSelect.value;
 
-                });
+    const filtered = allOrders.filter(order => {
+        const status = getStatus(order);
 
+        const searchable = [
+            order.orderNumber,
+            order.customer,
+            order.orderType,
+            order.table
+        ].join(" ").toLowerCase();
 
-                /* SORT NEWEST FIRST */
-
-                orders.sort((a, b) => {
-
-                    let timeA = getOrderTime(a);
-
-                    let timeB = getOrderTime(b);
-
-                    return timeB - timeA;
-
-                });
-
-
-                updateDashboard(orders);
-
-                displayOrders(orders);
-
-            },
-
-
-            (error) => {
-
-                console.error(error);
-
-                document.getElementById(
-                    "connectionStatus"
-                ).className = "error";
-
-
-                document.getElementById(
-                    "connectionStatus"
-                ).textContent =
-                    "🔴 Firebase Error";
-
-
-                document.getElementById(
-                    "ordersContainer"
-                ).innerHTML = `
-
-                    <div class="empty">
-
-                        ❌ Cannot load orders.
-
-                        <br><br>
-
-                        Please check your Firestore rules.
-
-                    </div>
-
-                `;
-
-            }
-
+        return (
+            (selectedStatus === "ALL" || status === selectedStatus) &&
+            searchable.includes(keyword)
         );
-
-    }
-
-    catch (error) {
-
-        console.error(error);
-
-    }
-
-}
-
-
-/* =========================
-   GET TIME
-========================= */
-
-function getOrderTime(order) {
-
-    if (order.createdAt && order.createdAt.toMillis) {
-
-        return order.createdAt.toMillis();
-
-    }
-
-
-    if (order.time) {
-
-        let time = new Date(order.time).getTime();
-
-        if (!isNaN(time)) {
-
-            return time;
-
-        }
-
-    }
-
-
-    return 0;
-
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-function updateDashboard(orders) {
-
-    let totalOrders = orders.length;
-
-    let newOrders = 0;
-
-    let completedOrders = 0;
-
-    let revenue = 0;
-
-
-    orders.forEach(order => {
-
-        let status =
-            String(order.status || "NEW").toUpperCase();
-
-
-        if (status === "NEW") {
-
-            newOrders++;
-
-        }
-
-
-        if (status === "COMPLETED") {
-
-            completedOrders++;
-
-        }
-
-
-        let total =
-            Number(order.total || 0);
-
-
-        if (!isNaN(total)) {
-
-            revenue += total;
-
-        }
-
     });
 
-
-    document.getElementById(
-        "totalOrders"
-    ).textContent = totalOrders;
-
-
-    document.getElementById(
-        "newOrders"
-    ).textContent = newOrders;
-
-
-    document.getElementById(
-        "completedOrders"
-    ).textContent = completedOrders;
-
-
-    document.getElementById(
-        "totalRevenue"
-    ).textContent =
-        "RM " + revenue.toFixed(2);
-
-}
-
-
-/* =========================
-   DISPLAY ORDERS
-========================= */
-
-function displayOrders(orders) {
-
-    const container =
-        document.getElementById("ordersContainer");
-
-
-    if (orders.length === 0) {
-
-        container.innerHTML = `
-
+    if (filtered.length === 0) {
+        ordersContainer.innerHTML = `
             <div class="empty">
-
-                📭 No orders yet.
-
-                <br><br>
-
-                Customer orders will appear here automatically.
-
+                No orders found.<br>
+                Customer orders will appear here when saved
+                to the same Firestore database.
             </div>
-
         `;
-
         return;
-
     }
 
+    ordersContainer.innerHTML = filtered.map(order => {
+        const status = getStatus(order);
+        const items = getItems(order);
 
-    container.innerHTML = "";
-
-
-    orders.forEach(order => {
-
-        const orderDiv =
-            document.createElement("div");
-
-
-        orderDiv.className = "order";
-
-
-        let status =
-            String(order.status || "NEW").toUpperCase();
-
-
-        let statusClass =
-            "status-new";
-
-
-        if (status === "PREPARING") {
-
-            statusClass = "status-preparing";
-
-        }
-
-        else if (status === "READY") {
-
-            statusClass = "status-ready";
-
-        }
-
-        else if (status === "COMPLETED") {
-
-            statusClass = "status-completed";
-
-        }
-
-
-        /* ITEMS */
-
-        let itemsHTML = "";
-
-
-        if (Array.isArray(order.items)) {
-
-            order.items.forEach(item => {
-
-                let name =
-                    item.name || "Unknown Item";
-
-
-                let quantity =
-                    Number(item.quantity || 0);
-
-
-                let subtotal =
-                    Number(
-                        item.subtotal ||
-                        (
-                            Number(item.price || 0)
-                            * quantity
-                        )
-                    );
-
-
-                itemsHTML += `
-
-                    <div class="item">
-
-                        <span>
-
-                            ${escapeHTML(name)}
-
-                            × ${quantity}
-
+        const itemsHTML = items.length
+            ? items.map(item => `
+                <div class="item-row">
+                    <span>
+                        ${escapeHTML(item.name)}
+                        × ${item.quantity}
+                        <br>
+                        <span class="muted">
+                            ${money(item.price)} each
                         </span>
-
-                        <span>
-
-                            RM ${subtotal.toFixed(2)}
-
-                        </span>
-
-                    </div>
-
-                `;
-
-            });
-
-        }
-
-
-        /* CUSTOMER */
-
-        let customer =
-            escapeHTML(
-                order.customer || "Unknown"
-            );
-
-
-        /* ORDER TYPE */
-
-        let orderType =
-            escapeHTML(
-                order.orderType || "-"
-            );
-
-
-        /* TABLE */
-
-        let tableText = "";
-
-
-        if (orderType === "Dine In") {
-
-            tableText =
-                "🍽️ Table: " +
-                escapeHTML(order.table || "-");
-
-        }
-
-        else {
-
-            tableText =
-                "🥡 Take Away";
-
-        }
-
-
-        /* DESCRIPTION */
-
-        let descriptionHTML = "";
-
-
-        if (order.description) {
-
-            descriptionHTML = `
-
-                <div>
-
-                    📝 <b>Note:</b>
-
-                    ${escapeHTML(
-                        order.description
-                    )}
-
-                </div>
-
-            `;
-
-        }
-
-
-        /* TIME */
-
-        let orderTime = "";
-
-
-        if (order.createdAt &&
-            order.createdAt.toDate) {
-
-            orderTime =
-                order.createdAt
-                    .toDate()
-                    .toLocaleString();
-
-        }
-
-        else if (order.time) {
-
-            orderTime =
-                escapeHTML(
-                    String(order.time)
-                );
-
-        }
-
-        else {
-
-            orderTime = "-";
-
-        }
-
-
-        orderDiv.innerHTML = `
-
-            <div class="order-header">
-
-                <div>
-
-                    <div class="order-number">
-
-                        ${escapeHTML(
-                            order.orderNumber ||
-                            "NO NUMBER"
-                        )}
-
-                    </div>
-
-                    <small>
-
-                        ${orderTime}
-
-                    </small>
-
-                </div>
-
-
-                <div>
-
-                    <span class="status ${statusClass}">
-
-                        ${status}
-
                     </span>
+                    <strong>${money(item.subtotal)}</strong>
+                </div>
+            `).join("")
+            : `<div class="muted">No item details available.</div>`;
 
+        const orderNumber =
+            order.orderNumber || order.id;
+
+        const orderType = String(order.orderType || "Not specified");
+
+        const tableText = orderType.toLowerCase().includes("take")
+            ? "Not applicable"
+            : (order.table || "Not specified");
+
+        return `
+            <article class="order">
+                <div class="order-top">
+                    <div>
+                        <h3>Order #${escapeHTML(orderNumber)}</h3>
+                        <div class="muted">
+                            ${escapeHTML(formatTime(order.createdAt || order.time))}
+                        </div>
+                    </div>
+                    <span class="status ${status}">
+                        ${status}
+                    </span>
                 </div>
 
-            </div>
+                <div class="details">
+                    <strong>Customer:</strong>
+                    ${escapeHTML(order.customer || "Not specified")}
+                    <br>
 
+                    <strong>Order Type:</strong>
+                    ${escapeHTML(orderType)}
+                    <br>
 
-            <div class="order-info">
+                    <strong>Table:</strong>
+                    ${escapeHTML(tableText)}
+                    <br>
 
-                👤 <b>Customer:</b>
-                ${customer}
+                    <strong>Remarks:</strong>
+                    ${escapeHTML(order.description || "None")}
+                </div>
 
-                <br>
+                <div class="items">
+                    ${itemsHTML}
+                </div>
 
-                📦 <b>Order Type:</b>
-                ${orderType}
+                <div class="total">
+                    <span>Total</span>
+                    <span>${money(order.total)}</span>
+                </div>
 
-                <br>
-
-                ${tableText}
-
-                <br>
-
-                ${descriptionHTML}
-
-            </div>
-
-
-            <div class="items">
-
-                <h3>🍔 Items</h3>
-
-                ${itemsHTML}
-
-            </div>
-
-
-            <div class="total">
-
-                Total:
-                RM ${Number(
-                    order.total || 0
-                ).toFixed(2)}
-
-            </div>
-
-
-            <div class="controls">
-
-                <select
-                    onchange="changeStatus(
-                        '${order.id}',
-                        this.value
-                    )"
-                >
-
-                    <option
-                        value="NEW"
-                        ${status === "NEW" ? "selected" : ""}
+                <div class="order-actions">
+                    <select
+                        class="statusSelect"
+                        data-id="${escapeHTML(order.id)}"
+                        aria-label="Change order status"
                     >
-                        🆕 NEW
-                    </option>
+                        <option value="NEW" ${status === "NEW" ? "selected" : ""}>
+                            NEW
+                        </option>
+                        <option value="PREPARING" ${status === "PREPARING" ? "selected" : ""}>
+                            PREPARING
+                        </option>
+                        <option value="READY" ${status === "READY" ? "selected" : ""}>
+                            READY
+                        </option>
+                        <option value="COMPLETED" ${status === "COMPLETED" ? "selected" : ""}>
+                            COMPLETED
+                        </option>
+                    </select>
 
-
-                    <option
-                        value="PREPARING"
-                        ${status === "PREPARING" ? "selected" : ""}
+                    <button
+                        class="updateButton"
+                        data-id="${escapeHTML(order.id)}"
+                        type="button"
                     >
-                        👨‍🍳 PREPARING
-                    </option>
-
-
-                    <option
-                        value="READY"
-                        ${status === "READY" ? "selected" : ""}
-                    >
-                        ✅ READY
-                    </option>
-
-
-                    <option
-                        value="COMPLETED"
-                        ${status === "COMPLETED" ? "selected" : ""}
-                    >
-                        ✔️ COMPLETED
-                    </option>
-
-                </select>
-
-
-                <button
-                    class="delete-button"
-                    onclick="deleteOrder('${order.id}')"
-                >
-
-                    🗑️ Delete
-
-                </button>
-
-            </div>
-
+                        Update Status
+                    </button>
+                </div>
+            </article>
         `;
-
-
-        container.appendChild(orderDiv);
-
-    });
-
+    }).join("");
 }
 
+function startListening() {
+    if (unsubscribe) unsubscribe();
 
-/* =========================
-   CHANGE STATUS
-========================= */
+    isConnected = false;
+    connection.textContent = "🟡 Connecting to Firestore...";
 
-window.changeStatus = async function(
-    orderId,
-    newStatus
-) {
+    const ordersQuery = query(
+        collection(db, "orders"),
+        orderBy("createdAt", "desc")
+    );
 
-    try {
+    unsubscribe = onSnapshot(
+        ordersQuery,
+        snapshot => {
+            isConnected = true;
 
-        await updateDoc(
+            connection.textContent =
+                "🟢 Firebase Connected — Live orders enabled";
 
-            doc(db, "orders", orderId),
+            allOrders = snapshot.docs.map(document => ({
+                id: document.id,
+                ...document.data()
+            }));
 
-            {
-                status: newStatus
-            }
+            renderStats();
+            renderOrders();
+        },
+        error => {
+            isConnected = false;
 
-        );
+            connection.innerHTML =
+                `<span class="error">🔴 Firebase Error: ${
+                    escapeHTML(error.message)
+                }</span>`;
 
-    }
+            console.error("Firestore listener error:", error);
+        }
+    );
+}
 
-    catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Failed to update order status."
-        );
-
-    }
-
-};
-
-
-/* =========================
-   DELETE ORDER
-========================= */
-
-window.deleteOrder = async function(
-    orderId
-) {
-
-    const confirmDelete =
-        confirm(
-            "Delete this order?"
-        );
-
-
-    if (!confirmDelete) {
-
+async function updateOrderStatus(id, status) {
+    if (!isConnected) {
+        alert("Firebase is not connected.");
         return;
-
     }
-
 
     try {
+        await updateDoc(doc(db, "orders", id), {
+            status: status
+        });
 
-        await deleteDoc(
-
-            doc(db, "orders", orderId)
-
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(error);
+        alert("Order status updated successfully!");
+    } catch (error) {
+        console.error("Status update failed:", error);
 
         alert(
-            "Failed to delete order."
+            "Could not update order status. Check Firestore permissions."
         );
-
     }
-
-};
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHTML(value) {
-
-    return String(value)
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
 }
 
+ordersContainer.addEventListener("click", async event => {
+    const button = event.target.closest(".updateButton");
 
-/* =========================
-   START
-========================= */
+    if (!button) return;
 
-loadOrders();
+    const id = button.dataset.id;
+    const select = ordersContainer.querySelector(
+        `.statusSelect[data-id="${CSS.escape(id)}"]`
+    );
 
+    if (!select) return;
 
+    button.disabled = true;
+
+    try {
+        await updateOrderStatus(id, select.value);
+    } finally {
+        button.disabled = false;
+    }
+});
+
+searchInput.addEventListener("input", renderOrders);
+filterSelect.addEventListener("change", renderOrders);
+
+document.getElementById("refreshButton").addEventListener("click", () => {
+    if (db) startListening();
+});
+
+try {
+    const app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    startListening();
+} catch (error) {
+    connection.innerHTML =
+        `<span class="error">Firebase setup error: ${
+            escapeHTML(error.message)
+        }</span>`;
+
+    console.error(error);
+}
 </script>
 
 </body>
