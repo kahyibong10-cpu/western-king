@@ -1,277 +1,822 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Restoran Western King</title>
+<h1 style="color:red;">TEST 123</h1>
 
 <style>
-* { box-sizing: border-box; }
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #fff8f0;
-    color: #292929;
+    background: #fff4e6;
+    color: #333;
 }
 
-header {
-    background: #a51d24;
+/* ===== HEADER ===== */
+
+.header {
+    background: linear-gradient(135deg, #d62828, #f77f00);
     color: white;
     text-align: center;
-    padding: 24px 12px;
+    padding: 30px 10px;
 }
 
-header h1 { margin: 0 0 8px; }
-header p { margin: 5px; }
-
-.promo {
-    background: #ffdf80;
-    color: #642000;
-    padding: 12px;
-    text-align: center;
-    font-weight: bold;
+.header h1 {
+    margin: 0;
+    font-size: 32px;
 }
 
-main {
-    max-width: 1050px;
+.header p {
+    margin-top: 10px;
+}
+
+/* ===== CONTAINER ===== */
+
+.container {
+    max-width: 1100px;
     margin: auto;
-    padding: 16px;
+    padding: 20px;
 }
 
-h2 {
-    color: #a51d24;
-    border-bottom: 2px solid #ead6c7;
-    padding-bottom: 8px;
+/* ===== PROMOTION ===== */
+
+.promotion-section {
+    margin-bottom: 30px;
 }
+
+.promotion-title {
+    background: linear-gradient(135deg, #d62828, #f77f00);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.promotion-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 15px;
+}
+
+.promotion-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    border: 2px solid #ffb703;
+}
+
+.promotion-card h3 {
+    margin-top: 0;
+    color: #d62828;
+    font-size: 20px;
+}
+
+.promotion-card p {
+    line-height: 1.6;
+}
+
+.discount {
+    color: #d62828;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.buy1free1 {
+    color: #2e7d32;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* ===== NEW DISHES ===== */
+
+.new-dishes-title {
+    background: #2e7d32;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 30px;
+}
+
+/* ===== SECTION TITLE ===== */
+
+.section-title {
+    background: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* ===== MENU ===== */
 
 .menu {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
 }
 
-.item {
+.food {
     background: white;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 2px 7px #00000012;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.item h3 { margin: 5px 0 10px; }
-.price { color: #a51d24; font-weight: bold; }
+.food h3 {
+    margin-top: 0;
+}
 
-button {
+.price {
+    color: #d62828;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.add-button {
+    background: #2e7d32;
+    color: white;
     border: none;
-    border-radius: 7px;
-    padding: 10px 13px;
+    padding: 10px 18px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
 }
 
-.add, .submit {
-    background: #a51d24;
-    color: white;
+.add-button:hover {
+    background: #1b5e20;
 }
 
-.add { width: 100%; margin-top: 10px; }
-button:disabled { opacity: 0.5; cursor: not-allowed; }
+/* ===== CART ===== */
 
-.panel {
+.cart {
     background: white;
-    padding: 18px;
-    border-radius: 12px;
-    margin-top: 22px;
-    box-shadow: 0 2px 7px #00000012;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-label {
-    display: block;
-    margin-top: 14px;
-    font-weight: bold;
-}
-
-input, textarea, select {
-    width: 100%;
-    padding: 11px;
-    margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 16px;
-}
-
-.radio-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    margin-right: 18px;
-}
-
-.radio-label input { width: auto; }
-
-.cart-row {
+.cart-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    border-bottom: 1px solid #eee;
     padding: 12px 0;
+    border-bottom: 1px solid #ddd;
 }
 
-.cart-row button { padding: 7px 10px; }
-.remove { background: #eee; }
-.total { font-size: 21px; font-weight: bold; }
+.cart-controls button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
-.notice {
+.plus {
+    background: #2e7d32;
+    color: white;
+}
+
+.minus {
+    background: #f9a825;
+    color: white;
+}
+
+.delete {
+    background: #d62828;
+    color: white;
+}
+
+.total {
+    text-align: right;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* ===== CHECKOUT ===== */
+
+.checkout {
+    background: white;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.checkout input,
+.checkout textarea {
+    width: 100%;
     padding: 12px;
-    border-radius: 7px;
-    margin: 12px 0;
-    background: #eee;
-    overflow-wrap: anywhere;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
-.success {
-    background: #e2f7e7;
-    border: 1px solid #80c992;
+.checkout textarea {
+    min-height: 90px;
+    resize: vertical;
 }
 
-.error {
-    background: #ffebeb;
-    border: 1px solid #e4aaaa;
+.checkout label {
+    display: block;
+    margin: 8px 0;
 }
 
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #666;
+.checkout button {
+    width: 100%;
+    padding: 14px;
+    background: #d62828;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
 }
+
+.checkout button:hover {
+    background: #a51d1d;
+}
+
+/* ===== TABLE ===== */
+
+.table-box {
+    margin-top: 15px;
+    background: #fff8e7;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* ===== CONFIRMED ===== */
+
+.confirmed {
+    display: none;
+    background: #e8f5e9;
+    border: 2px solid #2e7d32;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.confirmed h2 {
+    color: #2e7d32;
+}
+
+.confirmed-description {
+    background: #fff8e7;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+.new-order {
+    background: #2e7d32 !important;
+    margin-top: 10px;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
-<header>
-    <h1>🍗 Restoran Western King</h1>
-    <p>Welcome! Order your favourite food online.</p>
-    <p>Fresh Food • Great Taste • Great Price</p>
-</header>
+<div class="header">
 
-<div class="promo">
-    🎉 WEEKEND PROMOTION: 20% OFF eligible food orders!<br>
-    🍔 Chicken Burger Combo RM10<br>
-    🎁 Buy 1 Free 1 on eligible menu items
+    <h1>🍔 RESTORAN WESTERN KING</h1>
+
+    <p>🍴 Delicious Food • Great Price • Happy Meal 🍴</p>
+
 </div>
 
-<main>
 
-    <div id="firebaseStatus" class="notice">
-        Connecting to Firebase...
-    </div>
+<div class="container">
 
-    <h2>🍗 Food Menu</h2>
-    <div id="foodMenu" class="menu"></div>
 
-    <h2>🥤 Drinks Menu</h2>
-    <div id="drinkMenu" class="menu"></div>
+<!-- ================= PROMOTION ================= -->
 
-    <h2>🍦 Ice Cream Menu</h2>
-    <div id="iceCreamMenu" class="menu"></div>
+<div class="promotion-section">
 
-    <section class="panel">
-        <h2>🛒 Your Shopping Cart</h2>
-        <div id="cartItems">Your cart is empty.</div>
-        <p id="subtotal">Subtotal: RM0.00</p>
-        <p id="comboDiscount">Combo discount: RM0.00</p>
-        <p id="bogoDiscount">Buy 1 Free 1 discount: RM0.00</p>
-        <p id="weekendDiscount">Weekend discount: RM0.00</p>
-        <p class="total" id="grandTotal">Total: RM0.00</p>
-        <p id="promotionNote"></p>
-    </section>
+    <h2 class="promotion-title">🔥 PROMOTION 🔥</h2>
 
-    <section class="panel">
-        <h2>📝 Customer Details</h2>
+    <div class="promotion-menu">
 
-        <form id="orderForm">
+        <div class="promotion-card">
 
-            <label for="customerName">Customer Name *</label>
-            <input
-                type="text"
-                id="customerName"
-                name="customerName"
-                placeholder="Enter your name"
-                required
-                maxlength="100"
-            >
+            <h3>🎉 Weekend Promotion</h3>
 
-            <label>Order Type *</label>
-            <label class="radio-label">
-                <input type="radio" name="orderType"
-                       value="Dine In" required>
-                Dine In
-            </label>
-
-            <label class="radio-label">
-                <input type="radio" name="orderType"
-                       value="Take Away" required>
-                Take Away
-            </label>
-
-            <div id="tableSection">
-                <label for="tableNumber">Table Number *</label>
-                <input
-                    type="text"
-                    id="tableNumber"
-                    name="tableNumber"
-                    placeholder="Enter your table number"
-                    maxlength="30"
-                    disabled
-                >
+            <div class="discount">
+                20% OFF
             </div>
 
-            <label for="description">
-                Special Requests (Optional)
-            </label>
-            <textarea
-                id="description"
-                name="description"
-                rows="3"
-                maxlength="500"
-                placeholder="No onion, less spicy, extra sauce..."
-            ></textarea>
-
-            <p id="formMessage" class="notice">
-                Please complete your details and check your order.
+            <p>
+                Enjoy our special weekend promotion!
             </p>
 
-            <button type="submit" id="submitButton"
-                    class="submit" style="width:100%">
-                Place Order
-            </button>
+        </div>
 
-        </form>
-    </section>
 
-    <section id="confirmation" class="panel" hidden>
-        <h2>✅ Order Successful!</h2>
-        <p>Your order has been saved to Firebase.</p>
-        <p>Order Number:</p>
-        <h2 id="orderNumberDisplay"></h2>
-        <p>Please keep your order number.</p>
-        <button type="button" class="submit" id="newOrderButton">
-            New Order
+        <div class="promotion-card">
+
+    <h3>🍔 Chicken Burger Combo</h3>
+
+    <p>
+        🍔 Chicken Burger
+        <br>
+        🍟 French Fries
+        <br>
+        🥤 Coca-Cola
+    </p>
+
+    <div class="discount">
+        RM 10.00
+    </div>
+
+    <button
+        class="add-button"
+        onclick="addToCart('Chicken Burger Combo', 10)">
+        Add to Cart
+    </button>
+
+</div>
+
+           
+
+
+        <div class="promotion-card">
+
+            <h3>🎁 Buy 1 Free 1</h3>
+
+            <div class="buy1free1">
+                BUY 1 FREE 1
+            </div>
+
+            <p>
+                Enjoy our Buy 1 Free 1 promotion!
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NEW DISHES ================= -->
+
+<h2 class="new-dishes-title">
+    🆕 NEW DISHES
+</h2>
+
+
+<div class="menu">
+
+
+    <div class="food">
+
+        <h3>🍗 Spicy Chicken Chop</h3>
+
+        <p class="price">
+            RM 16.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Spicy Chicken Chop', 16)">
+            Add to Cart
         </button>
-    </section>
 
-</main>
+    </div>
 
-<footer>
-    Restoran Western King • Thank you for your order!
-</footer>
+
+    <div class="food">
+
+        <h3>🍝 Creamy Chicken Pasta</h3>
+
+        <p class="price">
+            RM 13.90
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Creamy Chicken Pasta', 13.90)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🧀 Cheesy Fries</h3>
+
+        <p class="price">
+            RM 6.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Cheesy Fries', 6)">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOD ================= -->
+
+<h2 class="section-title">
+    🍗 Food Menu
+</h2>
+
+
+<div class="menu">
+
+
+    <div class="food">
+
+        <h3>🍗 Chicken Chop</h3>
+
+        <p class="price">
+            RM 15.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Chicken Chop', 15)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍝 Spaghetti</h3>
+
+        <p class="price">
+            RM 10.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Spaghetti', 10)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍔 Chicken Burger</h3>
+
+        <p class="price">
+            RM 6.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Chicken Burger', 6)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍟 French Fries</h3>
+
+        <p class="price">
+            RM 5.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('French Fries', 5)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🐟 Fish Burger</h3>
+
+        <p class="price">
+            RM 8.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Fish Burger', 8)">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= DRINKS ================= -->
+
+<h2 class="section-title">
+    🥤 Drinks
+</h2>
+
+
+<div class="menu">
+
+
+    <div class="food">
+
+        <h3>🥤 Ice Coca-Cola</h3>
+
+        <p class="price">
+            RM 3.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Coca-Cola', 3)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>💧 Ice Mineral Water</h3>
+
+        <p class="price">
+            RM 2.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Mineral Water', 2)">
+            Add to Cart
+
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🍋 Ice Lemon Tea</h3>
+
+        <p class="price">
+            RM 3.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Lemon Tea', 3)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🥛 Ice Milo</h3>
+
+        <p class="price">
+            RM 4.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice Milo', 4)">
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <div class="food">
+
+        <h3>🥤 Ice 100 Plus</h3>
+
+        <p class="price">
+            RM 3.00
+        </p>
+
+        <button
+            class="add-button"
+            onclick="addToCart('Ice 100 Plus', 3)">
+            Add to Cart
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CART ================= -->
+
+<div class="cart">
+
+    <h2>🛒 Your Cart</h2>
+
+    <div id="cartItems">
+        Your cart is empty.
+    </div>
+
+    <div class="total" id="cartTotal">
+        Total: RM 0.00
+    </div>
+
+</div>
+
+
+<!-- ================= CHECKOUT ================= -->
+
+<div class="checkout">
+
+    <h2>📝 Checkout</h2>
+
+
+    <label>
+        Customer Name
+    </label>
+
+    <input
+        type="text"
+        id="customerName"
+        placeholder="Enter your name"
+    >
+
+
+    <label>
+        Description (Optional)
+    </label>
+
+    <textarea
+        id="description"
+        placeholder="Example: No onion, less spicy, extra sauce (optional)"
+    ></textarea>
+
+    <label>
+        Order Type
+    </label>
+
+
+    <label>
+        <input
+            type="radio"
+            name="orderType"
+            value="Dine In"
+            checked
+            onchange="changeOrderType()"
+        >
+        Dine In
+    </label>
+
+
+    <label>
+        <input
+            type="radio"
+            name="orderType"
+            value="Take Away"
+            onchange="changeOrderType()"
+        >
+        Take Away
+    </label>
+
+
+    <div
+        class="table-box"
+        id="tableBox"
+    >
+
+        <label>
+            Table Number
+        </label>
+
+        <input
+            type="text"
+            id="tableNumber"
+            placeholder="Example: T01"
+        >
+
+    </div>
+
+
+    <button onclick="checkout()">
+        🛒 Proceed to Order
+    </button>
+
+</div>
+
+
+<!-- ================= CONFIRMED ================= -->
+
+<div
+    class="confirmed"
+    id="confirmed"
+>
+
+    <h2>
+        ✅ Order Confirmed!
+    </h2>
+
+    <p>
+        Order Number:
+        <b id="confirmedOrderNumber"></b>
+    </p>
+
+    <p>
+        Customer:
+        <b id="confirmedCustomer"></b>
+    </p>
+
+    <p>
+        Order Type:
+        <b id="confirmedOrderType"></b>
+    </p>
+
+    <p id="confirmedTableText">
+    </p>
+
+    <div
+        id="confirmedDescription"
+        class="confirmed-description"
+        style="display:none;"
+    ></div>
+
+    <p>
+        Total:
+        <b id="confirmedTotal"></b>
+    </p>
+
+
+    <button
+        class="new-order"
+        onclick="newOrder()"
+    >
+        ➕ New Order
+    </button>
+
+</div>
+
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
-import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+
 
 import {
     getFirestore,
@@ -280,510 +825,563 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-/*
-IMPORTANT:
-Replace the example Firebase configuration below
-with the EXACT configuration from your Firebase project.
-Firebase Console -> Project settings -> Your apps -> SDK setup.
-Do not change the project to a different one.
-*/
 
 const firebaseConfig = {
-    apiKey: "PASTE_YOUR_API_KEY_HERE",
-    authDomain: "western-king-restaurant.firebaseapp.com",
-    projectId: "western-king-restaurant",
-    storageBucket: "western-king-restaurant.firebasestorage.app",
-    messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID_HERE",
-    appId: "PASTE_YOUR_APP_ID_HERE"
+
+    apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
+
+    authDomain:
+        "western-king-restaurant.firebaseapp.com",
+const firebaseConfig = {
+  apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
+  authDomain: "western-king-restaurant.firebaseapp.com",
+  projectId: "western-king-restaurant",
+  storageBucket: "western-king-restaurant.firebasestorage.app",
+  messagingSenderId: "866508888526",
+  appId: "1:866508888526:web:946900a5945bb56286339f"
 };
 
-const food = [
-    { name: "Chicken Chop", price: 15.00 },
-    { name: "Spaghetti", price: 10.00 },
-    { name: "Chicken Burger", price: 6.00 },
-    { name: "French Fries", price: 5.00 },
-    { name: "Fish Burger", price: 8.00 },
-    { name: "Spicy Chicken Chop", price: 16.00 },
-    { name: "Creamy Chicken Pasta", price: 13.90 },
-    { name: "Cheesy Fries", price: 6.00 }
-];
 
-const drinks = [
-    { name: "Ice Coca-Cola", price: 3.00 },
-    { name: "Ice Mineral Water", price: 2.00 },
-    { name: "Ice Lemon Tea", price: 3.00 },
-    { name: "Ice Milo", price: 4.00 },
-    { name: "Ice 100 Plus", price: 3.00 }
-];
+const app =
+    initializeApp(firebaseConfig);
 
-const iceCreams = [
-    { name: "Vanilla Ice Cream", price: 3.00 },
-    { name: "Chocolate Ice Cream", price: 3.50 },
-    { name: "Strawberry Ice Cream", price: 3.50 }
-];
 
-let db = null;
+const db =
+    getFirestore(app);
+
+
+/* Make Firebase available to normal script */
+
+window.db = db;
+
+window.ordersCollection =
+    collection(db, "orders");
+window.addDoc = addDoc;
+
+window.serverTimestamp =
+    serverTimestamp;
+</script>
+
+
+<script>
+
+/* ================= CART ================= */
+
 let cart = {};
-let isSaving = false;
 
-const money = value => "RM" + value.toFixed(2);
 
-const firebaseStatus = document.getElementById("firebaseStatus");
-const cartItems = document.getElementById("cartItems");
-const orderForm = document.getElementById("orderForm");
-const submitButton = document.getElementById("submitButton");
-const formMessage = document.getElementById("formMessage");
+/* ADD */
 
-function showMessage(element, message, type = "") {
-    element.textContent = message;
-    element.className = "notice" + (type ? " " + type : "");
-}
+function addToCart(name, price) {
 
-function makeId(name) {
-    return name;
-}
+    if (cart[name]) {
 
-function renderMenu(items, containerId) {
-    const container = document.getElementById(containerId);
-    container.replaceChildren();
+        cart[name].quantity++;
 
-    items.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "item";
-
-        const title = document.createElement("h3");
-        title.textContent = item.name;
-
-        const price = document.createElement("p");
-        price.className = "price";
-        price.textContent = money(item.price);
-
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "add";
-        button.textContent = "Add to Cart +";
-
-        button.addEventListener("click", () => {
-            const id = makeId(item.name);
-
-            if (!cart[id]) {
-                cart[id] = {
-                    name: item.name,
-                    price: item.price,
-                    quantity: 0
-                };
-            }
-
-            cart[id].quantity += 1;
-            renderCart();
-        });
-
-        card.append(title, price, button);
-        container.appendChild(card);
-    });
-}
-
-/*
-Promotion rules:
-1. Weekend discount: 20% off food items on Saturday and Sunday.
-2. Chicken Burger Combo: burger + fries + Coca-Cola for RM10.
-   Combo quantities are matched by the smallest available quantity.
-3. Buy 1 Free 1: eligible individual items are charged per pair.
-   For odd quantities, one item remains chargeable.
-4. Weekend discount is calculated after combo and BOGO discounts.
-*/
-
-function calculateOrder() {
-    const quantities = {};
-    const itemTotals = {};
-    let subtotal = 0;
-
-    Object.values(cart).forEach(item => {
-        quantities[item.name] = item.quantity;
-        itemTotals[item.name] = item.price * item.quantity;
-        subtotal += item.price * item.quantity;
-    });
-
-    let comboDiscount = 0;
-
-    const burgerCount = quantities["Chicken Burger"] || 0;
-    const friesCount = quantities["French Fries"] || 0;
-    const cokeCount = quantities["Ice Coca-Cola"] || 0;
-
-    const comboCount = Math.min(
-        burgerCount,
-        friesCount,
-        cokeCount
-    );
-
-    comboDiscount = comboCount * (
-        6.00 + 5.00 + 3.00 - 10.00
-    );
-
-    const eligibleBogo = new Set([
-        "Chicken Chop",
-        "Spaghetti",
-        "Chicken Burger",
-        "French Fries",
-        "Fish Burger",
-        "Spicy Chicken Chop",
-        "Creamy Chicken Pasta",
-        "Cheesy Fries",
-        "Ice Coca-Cola",
-        "Ice Mineral Water",
-        "Ice Lemon Tea",
-        "Ice Milo",
-        "Ice 100 Plus",
-        "Vanilla Ice Cream",
-        "Chocolate Ice Cream",
-        "Strawberry Ice Cream"
-    ]);
-
-    let bogoDiscount = 0;
-
-    Object.values(cart).forEach(item => {
-        if (eligibleBogo.has(item.name)) {
-            bogoDiscount +=
-                Math.floor(item.quantity / 2) * item.price;
-        }
-    });
-
-    const afterCombo = Math.max(0, subtotal - comboDiscount);
-    const afterBogo = Math.max(0, afterCombo - bogoDiscount);
-
-    const day = new Date().getDay();
-    const isWeekend = day === 0 || day === 6;
-
-    let weekendEligible = 0;
-
-    Object.values(cart).forEach(item => {
-        const isFood = food.some(
-            menuItem => menuItem.name === item.name
-        );
-
-        if (isFood) {
-            weekendEligible += item.price * item.quantity;
-        }
-    });
-
-    const weekendDiscount = isWeekend
-        ? Math.min(afterBogo, Math.max(0, weekendEligible) * 0.20)
-        : 0;
-
-    const total = Math.max(
-        0,
-        afterBogo - weekendDiscount
-    );
-
-    return {
-        subtotal,
-        comboDiscount,
-        bogoDiscount,
-        weekendDiscount,
-        total,
-        comboCount
-    };
-}
-
-function renderCart() {
-    cartItems.replaceChildren();
-
-    const items = Object.values(cart).filter(
-        item => item.quantity > 0
-    );
-
-    if (items.length === 0) {
-        cartItems.textContent = "Your cart is empty.";
     } else {
-        items.forEach(item => {
-            const row = document.createElement("div");
-            row.className = "cart-row";
 
-            const info = document.createElement("div");
-            info.textContent =
-                `${item.name} — ${money(item.price)} × ${item.quantity}`;
+        cart[name] = {
 
-            const controls = document.createElement("div");
+            price: price,
 
-            const minus = document.createElement("button");
-            minus.type = "button";
-            minus.className = "remove";
-            minus.textContent = "−";
-            minus.setAttribute("aria-label", "Decrease " + item.name);
+            quantity: 1
 
-            minus.addEventListener("click", () => {
-                item.quantity -= 1;
+        };
 
-                if (item.quantity <= 0) {
-                    delete cart[item.name];
-                }
-
-                renderCart();
-            });
-
-            const plus = document.createElement("button");
-            plus.type = "button";
-            plus.textContent = "+";
-            plus.setAttribute("aria-label", "Increase " + item.name);
-
-            plus.addEventListener("click", () => {
-                item.quantity += 1;
-                renderCart();
-            });
-
-            const remove = document.createElement("button");
-            remove.type = "button";
-            remove.className = "remove";
-            remove.textContent = "Delete";
-
-            remove.addEventListener("click", () => {
-                delete cart[item.name];
-                renderCart();
-            });
-
-            controls.append(minus, plus, remove);
-            row.append(info, controls);
-            cartItems.appendChild(row);
-        });
     }
 
-    const result = calculateOrder();
+    showCart();
 
-    document.getElementById("subtotal").textContent =
-        "Subtotal: " + money(result.subtotal);
-
-    document.getElementById("comboDiscount").textContent =
-        "Combo discount: -" + money(result.comboDiscount);
-
-    document.getElementById("bogoDiscount").textContent =
-        "Buy 1 Free 1 discount: -" + money(result.bogoDiscount);
-
-    document.getElementById("weekendDiscount").textContent =
-        "Weekend discount: -" + money(result.weekendDiscount);
-
-    document.getElementById("grandTotal").textContent =
-        "Total: " + money(result.total);
-
-    const notes = [];
-
-    if (result.comboCount > 0) {
-        notes.push(
-            result.comboCount + " Chicken Burger Combo(s) applied."
-        );
-    }
-
-    if (new Date().getDay() === 0 || new Date().getDay() === 6) {
-        notes.push("Weekend discount is active.");
-    } else {
-        notes.push("Weekend discount applies on Saturday and Sunday.");
-    }
-
-    notes.push("Buy 1 Free 1 applies to eligible items in pairs.");
-
-    document.getElementById("promotionNote").textContent =
-        notes.join(" ");
 }
 
-function updateOrderType() {
-    const selected = document.querySelector(
-        'input[name="orderType"]:checked'
-    );
 
-    const tableNumber = document.getElementById("tableNumber");
-    const dineIn = selected && selected.value === "Dine In";
+/* PLUS */
 
-    tableNumber.disabled = !dineIn;
-    tableNumber.required = !!dineIn;
+function plus(name) {
 
-    if (!dineIn) {
-        tableNumber.value = "";
+    if (cart[name]) {
+
+        cart[name].quantity++;
+
     }
+
+    showCart();
+
 }
 
-document.querySelectorAll('input[name="orderType"]').forEach(radio => {
-    radio.addEventListener("change", updateOrderType);
-});
 
-orderForm.addEventListener("submit", async event => {
-    event.preventDefault();
+/* MINUS */
 
-    if (isSaving) return;
+function minus(name) {
 
-    if (!db) {
-        showMessage(
-            formMessage,
-            "Firebase is not ready. Please check your Firebase configuration.",
-            "error"
-        );
+    if (cart[name]) {
+
+        cart[name].quantity--;
+
+        if (cart[name].quantity <= 0) {
+
+            delete cart[name];
+
+        }
+
+    }
+
+    showCart();
+
+}
+
+
+/* DELETE */
+
+function removeItem(name) {
+
+    delete cart[name];
+
+    showCart();
+
+}
+
+
+/* ================= SHOW CART ================= */
+
+function showCart() {
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    const names =
+        Object.keys(cart);
+
+
+    if (names.length === 0) {
+
+        cartItems.innerHTML =
+            "Your cart is empty.";
+
+        cartTotal.innerHTML =
+            "Total: RM 0.00";
+
         return;
+
     }
 
-    const items = Object.values(cart)
-        .filter(item => item.quantity > 0)
-        .map(item => ({
-            name: item.name,
+
+    let html = "";
+
+    let total = 0;
+
+
+    names.forEach(function(name) {
+
+        const item = cart[name];
+
+        const subtotal =
+            item.price * item.quantity;
+
+        total += subtotal;
+
+
+        html += `
+
+            <div class="cart-item">
+
+                <div>
+
+                    <b>${escapeHTML(name)}</b>
+
+                    <br>
+
+                    RM ${item.price.toFixed(2)}
+                    ×
+                    ${item.quantity}
+
+                    =
+                    RM ${subtotal.toFixed(2)}
+
+                </div>
+
+
+                <div class="cart-controls">
+
+                    <button
+                        class="minus"
+                        onclick="minus('${escapeHTML(name)}')">
+                        −
+                    </button>
+
+
+                    <button
+                        class="plus"
+                        onclick="plus('${escapeHTML(name)}')">
+                        +
+                    </button>
+
+
+                    <button
+                        class="delete"
+                        onclick="removeItem('${escapeHTML(name)}')">
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    cartItems.innerHTML = html;
+
+
+    cartTotal.innerHTML =
+        "Total: RM " + total.toFixed(2);
+
+}
+
+
+/* ================= CHECKOUT ================= */
+
+function checkout() {
+
+    const names =
+        Object.keys(cart);
+
+
+    if (names.length === 0) {
+
+        alert("Please add food to your cart.");
+
+        return;
+
+    }
+
+
+    const customer =
+        document.getElementById("customerName").value.trim();
+
+
+    if (!customer) {
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+
+    const orderType =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        ).value;
+
+
+    if (
+        orderType === "Dine In" &&
+        !document
+            .getElementById("tableNumber")
+            .value.trim()
+    ) {
+
+        alert("Please enter your table number.");
+
+        return;
+
+    }
+
+
+    confirmOrder();
+
+}
+
+
+/* ================= ORDER TYPE ================= */
+
+function changeOrderType() {
+
+    const orderType =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        ).value;
+
+
+    const tableBox =
+        document.getElementById("tableBox");
+
+
+    if (orderType === "Dine In") {
+
+        tableBox.style.display = "block";
+
+    } else {
+
+        tableBox.style.display = "none";
+
+    }
+
+}
+
+
+/* ================= CONFIRM ORDER ================= */
+
+async function confirmOrder() {
+
+    const customer =
+        document.getElementById("customerName")
+        .value
+        .trim();
+
+
+    const orderType =
+        document.querySelector(
+            'input[name="orderType"]:checked'
+        ).value;
+
+
+    const table =
+        document.getElementById("tableNumber")
+        .value
+        .trim();
+
+
+    let total = 0;
+
+    const items = [];
+
+
+    Object.keys(cart).forEach(function(name) {
+
+        const item = cart[name];
+
+        const subtotal =
+            item.price * item.quantity;
+
+        total += subtotal;
+
+
+        items.push({
+
+            name: name,
+
             price: item.price,
+
             quantity: item.quantity,
-            subtotal: Number(
-                (item.price * item.quantity).toFixed(2)
-            )
-        }));
 
-    if (items.length === 0) {
-        showMessage(formMessage, "Please add food to your cart first.", "error");
-        return;
-    }
+            subtotal: subtotal
 
-    const customer = document.getElementById("customerName")
-        .value.trim();
+        });
 
-    const orderTypeInput = document.querySelector(
-        'input[name="orderType"]:checked'
-    );
+    });
 
-    if (!customer || !orderTypeInput) {
-        showMessage(formMessage, "Please enter your name and select an order type.", "error");
-        return;
-    }
-
-    const orderType = orderTypeInput.value;
-    const table = orderType === "Dine In"
-        ? document.getElementById("tableNumber").value.trim()
-        : "";
-
-    if (orderType === "Dine In" && !table) {
-        showMessage(formMessage, "Please enter your table number.", "error");
-        return;
-    }
-
-    const description = document.getElementById("description")
-        .value.trim();
-
-    const result = calculateOrder();
 
     const orderNumber =
-        "WK" + Date.now().toString().slice(-8) +
-        Math.floor(Math.random() * 90 + 10);
+        "WK" +
+        Math.floor(
+            1000 + Math.random() * 9000
+        );
 
-    const orderData = {
-        orderNumber: orderNumber,
-        customer: customer,
-        orderType: orderType,
-        table: table,
-        description: description,
-        items: items,
-        subtotal: Number(result.subtotal.toFixed(2)),
-        comboDiscount: Number(result.comboDiscount.toFixed(2)),
-        bogoDiscount: Number(result.bogoDiscount.toFixed(2)),
-        weekendDiscount: Number(result.weekendDiscount.toFixed(2)),
-        total: Number(result.total.toFixed(2)),
-        status: "NEW",
-        time: new Date().toLocaleString(),
-        createdAt: serverTimestamp()
-    };
-
-    isSaving = true;
-    submitButton.disabled = true;
-    submitButton.textContent = "Saving Order...";
 
     try {
-        // Save to the same Firestore collection used by admin.html.
-        await addDoc(collection(db, "orders"), orderData);
 
-        document.getElementById("orderNumberDisplay").textContent =
+        await addDoc(
+            window.ordersCollection,
+            {
+
+                orderNumber:
+                    orderNumber,
+
+                customer:
+                    customer,
+
+                orderType:
+                    orderType,
+
+                table:
+                    orderType === "Dine In"
+                        ? table
+                        : "",
+
+                description:
+                    description,
+
+                items:
+                    items,
+
+                total:
+                    total,
+
+                status:
+                    "NEW",
+
+                time:
+                    new Date().toLocaleString(),
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        document.getElementById(
+            "confirmedOrderNumber"
+        ).textContent =
             orderNumber;
 
-        document.getElementById("confirmation").hidden = false;
-        document.getElementById("confirmation").scrollIntoView({
-            behavior: "smooth"
-        });
 
-        showMessage(
-            formMessage,
-            "Order saved successfully!",
-            "success"
-        );
+        document.getElementById(
+            "confirmedCustomer"
+        ).textContent =
+            customer;
 
-        cart = {};
-        renderCart();
 
-    } catch (error) {
-        console.error("Firebase order save failed:", error);
+        document.getElementById(
+            "confirmedOrderType"
+        ).textContent =
+            orderType;
 
-        let message = "Could not save order. ";
 
-        if (error.code === "permission-denied") {
-            message += "Firestore rules denied access. Check your database rules.";
-        } else if (error.code === "unavailable") {
-            message += "Internet or Firebase service is unavailable. Please try again.";
+        document.getElementById(
+            "confirmedTotal"
+        ).textContent =
+            "RM " + total.toFixed(2);
+
+
+        const tableText =
+            document.getElementById(
+                "confirmedTableText"
+            );
+
+
+        if (orderType === "Dine In") {
+
+            tableText.textContent =
+                "Table: " + table;
+
         } else {
-            message += error.message || "Please check your Firebase settings.";
+
+            tableText.textContent =
+                "Take Away";
+
         }
 
-        showMessage(formMessage, message, "error");
+        const confirmedDescription =
+            document.getElementById("confirmedDescription");
 
-    } finally {
-        isSaving = false;
-        submitButton.disabled = false;
-        submitButton.textContent = "Place Order";
-    }
-});
+        if (description) {
+            confirmedDescription.textContent =
+                "📝 Description: " + description;
+            confirmedDescription.style.display = "block";
+        } else {
+            confirmedDescription.style.display = "none";
+            confirmedDescription.textContent = "";
+        }
 
-document.getElementById("newOrderButton").addEventListener("click", () => {
-    orderForm.reset();
-    cart = {};
-    renderCart();
-    updateOrderType();
 
-    document.getElementById("confirmation").hidden = true;
+        document.getElementById(
+            "confirmed"
+        ).style.display = "block";
 
-    showMessage(
-        formMessage,
-        "Please complete your details and check your order."
-    );
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
+        window.scrollTo({
 
-renderMenu(food, "foodMenu");
-renderMenu(drinks, "drinkMenu");
-renderMenu(iceCreams, "iceCreamMenu");
-renderCart();
-updateOrderType();
+            top:
+                document.body.scrollHeight,
 
-try {
-    if (
-        !firebaseConfig.apiKey ||
-        firebaseConfig.apiKey === "PASTE_YOUR_API_KEY_HERE" ||
-        !firebaseConfig.appId ||
-        firebaseConfig.appId === "PASTE_YOUR_APP_ID_HERE" ||
-        !firebaseConfig.messagingSenderId ||
-        firebaseConfig.messagingSenderId === "PASTE_YOUR_MESSAGING_SENDER_ID_HERE"
-    ) {
-        throw new Error(
-            "Please paste the real Firebase configuration into the code."
+            behavior:
+                "smooth"
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Order failed. Please try again."
         );
+
     }
 
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-
-    showMessage(
-        firebaseStatus,
-        "Firebase initialized. Ready to place orders.",
-        "success"
-    );
-
-} catch (error) {
-    console.error("Firebase initialization failed:", error);
-
-    showMessage(
-        firebaseStatus,
-        "Firebase setup required: " + error.message,
-        "error"
-    );
 }
+
+
+/* ================= NEW ORDER ================= */
+
+function newOrder() {
+
+    cart = {};
+
+
+    document.getElementById(
+        "customerName"
+    ).value = "";
+
+
+    document.getElementById(
+        "tableNumber"
+    ).value = "";
+
+
+    document.getElementById(
+        "confirmed"
+    ).style.display = "none";
+
+
+    document.querySelector(
+        'input[name="orderType"][value="Dine In"]'
+    ).checked = true;
+
+
+    changeOrderType();
+
+    showCart();
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ================= START ================= */
+
+showCart();
+
+changeOrderType();
+
 </script>
 
 </body>
-</html>
+
+</html>                                                                                                                                    
