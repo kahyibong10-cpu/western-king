@@ -1,837 +1,335 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Restoran Western King</title>
-<h1 style="color:red;">TEST 123</h1>
 
 <style>
+* { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff4e6;
-    color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f6f8;
+  color: #222;
 }
 
-/* ===== HEADER ===== */
-
-.header {
-    background: linear-gradient(135deg, #d62828, #f77f00);
-    color: white;
-    text-align: center;
-    padding: 30px 10px;
+header {
+  background: #a51d24;
+  color: white;
+  padding: 24px 16px;
+  text-align: center;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 32px;
-}
+header h1 { margin: 0 0 8px; }
+header p { margin: 5px 0; }
 
-.header p {
-    margin-top: 10px;
+.promo {
+  background: #fff1d6;
+  color: #763a00;
+  padding: 14px;
+  text-align: center;
+  line-height: 1.7;
 }
-
-/* ===== CONTAINER ===== */
 
 .container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
+  width: min(1100px, 94%);
+  margin: 22px auto;
 }
 
-/* ===== PROMOTION ===== */
+h2 { margin-top: 0; }
 
-.promotion-section {
-    margin-bottom: 30px;
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 15px;
 }
 
-.promotion-title {
-    background: linear-gradient(135deg, #d62828, #f77f00);
-    color: white;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 15px;
+.menu-item, .panel {
+  background: white;
+  border-radius: 12px;
+  padding: 17px;
+  box-shadow: 0 2px 8px #0000000c;
 }
 
-.promotion-menu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 15px;
-}
-
-.promotion-card {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    border: 2px solid #ffb703;
-}
-
-.promotion-card h3 {
-    margin-top: 0;
-    color: #d62828;
-    font-size: 20px;
-}
-
-.promotion-card p {
-    line-height: 1.6;
-}
-
-.discount {
-    color: #d62828;
-    font-size: 32px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.buy1free1 {
-    color: #2e7d32;
-    font-size: 25px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-/* ===== NEW DISHES ===== */
-
-.new-dishes-title {
-    background: #2e7d32;
-    color: white;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 25px;
-    margin-top: 30px;
-}
-
-/* ===== SECTION TITLE ===== */
-
-.section-title {
-    background: #333;
-    color: white;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* ===== MENU ===== */
-
-.menu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.food {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.food h3 {
-    margin-top: 0;
-}
+.menu-item h3 { margin: 0 0 8px; }
+.menu-item p { color: #666; min-height: 20px; }
 
 .price {
-    color: #d62828;
-    font-size: 22px;
-    font-weight: bold;
+  font-size: 19px;
+  font-weight: bold;
+  color: #a51d24;
+  margin: 12px 0;
 }
 
-.add-button {
-    background: #2e7d32;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
+button {
+  border: 0;
+  border-radius: 7px;
+  padding: 11px 15px;
+  cursor: pointer;
+  font-size: 15px;
 }
 
-.add-button:hover {
-    background: #1b5e20;
+.add-btn, .submit-btn {
+  background: #a51d24;
+  color: white;
 }
 
-/* ===== CART ===== */
-
-.cart {
-    background: white;
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
 }
 
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #ddd;
+.secondary-btn {
+  background: #eee;
+  color: #222;
 }
 
-.cart-controls button {
-    padding: 5px 10px;
-    margin: 2px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
 }
 
-.plus {
-    background: #2e7d32;
-    color: white;
+.cart-row:last-child { border-bottom: 0; }
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.minus {
-    background: #f9a825;
-    color: white;
+.quantity button { padding: 5px 10px; }
+
+input, textarea, select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 16px;
+  background: white;
 }
 
-.delete {
-    background: #d62828;
-    color: white;
+label {
+  display: block;
+  margin: 15px 0;
+  font-weight: bold;
 }
 
-.total {
-    text-align: right;
-    font-size: 22px;
-    font-weight: bold;
-    margin-top: 15px;
+.radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-right: 18px;
+  font-weight: normal;
 }
 
-/* ===== CHECKOUT ===== */
+.radio-label input { width: auto; }
 
-.checkout {
-    background: white;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
-.checkout input,
-.checkout textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+.grand-total {
+  border-top: 1px solid #ddd;
+  padding-top: 14px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.checkout textarea {
-    min-height: 90px;
-    resize: vertical;
+.message {
+  padding: 13px;
+  border-radius: 7px;
+  margin: 12px 0;
+  overflow-wrap: anywhere;
 }
 
-.checkout label {
-    display: block;
-    margin: 8px 0;
+.error {
+  background: #ffe8e8;
+  color: #9b1515;
 }
 
-.checkout button {
-    width: 100%;
-    padding: 14px;
-    background: #d62828;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    cursor: pointer;
+.success {
+  background: #e6f7e9;
+  color: #17652a;
 }
 
-.checkout button:hover {
-    background: #a51d1d;
+.info {
+  background: #eaf2ff;
+  color: #174b8b;
 }
 
-/* ===== TABLE ===== */
+.hidden { display: none !important; }
 
-.table-box {
-    margin-top: 15px;
-    background: #fff8e7;
-    padding: 15px;
-    border-radius: 10px;
+footer {
+  text-align: center;
+  color: #666;
+  padding: 25px;
 }
 
-/* ===== CONFIRMED ===== */
-
-.confirmed {
-    display: none;
-    background: #e8f5e9;
-    border: 2px solid #2e7d32;
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 15px;
+@media (max-width: 500px) {
+  .cart-row { align-items: flex-start; }
+  .menu-grid { grid-template-columns: 1fr; }
 }
-
-.confirmed h2 {
-    color: #2e7d32;
-}
-
-.confirmed-description {
-    background: #fff8e7;
-    padding: 12px;
-    border-radius: 10px;
-    margin-top: 10px;
-    white-space: pre-wrap;
-}
-
-.new-order {
-    background: #2e7d32 !important;
-    margin-top: 10px;
-}
-
-/* ===== MOBILE ===== */
-
-@media (max-width: 600px) {
-
-    .header h1 {
-        font-size: 25px;
-    }
-
-    .container {
-        padding: 12px;
-    }
-
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
+<header>
+  <h1>🍗 Restoran Western King</h1>
+  <p>Welcome! Order your favourite food online.</p>
+  <p id="connectionStatus">Connecting to Firebase...</p>
+</header>
 
-    <h1>🍔 RESTORAN WESTERN KING</h1>
-
-    <p>🍴 Delicious Food • Great Price • Happy Meal 🍴</p>
-
+<div class="promo">
+  <strong>🎉 SPECIAL PROMOTIONS</strong><br>
+  Buy 1 Free 1 on eligible menu items!<br>
+  Weekend Promotion: Extra 20% OFF after Buy 1 Free 1.<br>
+  Chicken Burger Combo: RM10 (burger, fries and Coca-Cola).
 </div>
 
+<main class="container">
 
-<div class="container">
+  <section>
+    <h2>🍽️ Food Menu</h2>
+    <div id="foodMenu" class="menu-grid"></div>
+  </section>
 
+  <section style="margin-top:28px">
+    <h2>🥤 Drinks Menu</h2>
+    <div id="drinkMenu" class="menu-grid"></div>
+  </section>
 
-<!-- ================= PROMOTION ================= -->
+  <section class="panel" style="margin-top:28px">
+    <h2>🛒 Your Shopping Cart</h2>
+    <div id="cartItems">Your cart is empty.</div>
 
-<div class="promotion-section">
-
-    <h2 class="promotion-title">🔥 PROMOTION 🔥</h2>
-
-    <div class="promotion-menu">
-
-        <div class="promotion-card">
-
-            <h3>🎉 Weekend Promotion</h3>
-
-            <div class="discount">
-                20% OFF
-            </div>
-
-            <p>
-                Enjoy our special weekend promotion!
-            </p>
-
-        </div>
-
-
-        <div class="promotion-card">
-
-    <h3>🍔 Chicken Burger Combo</h3>
-
-    <p>
-        🍔 Chicken Burger
-        <br>
-        🍟 French Fries
-        <br>
-        🥤 Coca-Cola
-    </p>
-
-    <div class="discount">
-        RM 10.00
+    <div id="priceSummary" class="hidden">
+      <div class="total-line">
+        <span>Original Subtotal</span>
+        <span id="originalSubtotal">RM0.00</span>
+      </div>
+      <div class="total-line">
+        <span>Buy 1 Free 1 Savings</span>
+        <span id="bogoSavings">-RM0.00</span>
+      </div>
+      <div class="total-line" id="weekendRow">
+        <span>Weekend Discount (20%)</span>
+        <span id="weekendSavings">-RM0.00</span>
+      </div>
+      <div class="total-line grand-total">
+        <span>Total to Pay</span>
+        <span id="grandTotal">RM0.00</span>
+      </div>
+      <p style="color:#666;font-size:13px">
+        Promotions are calculated automatically. The weekend discount
+        applies on Saturday and Sunday.
+      </p>
     </div>
+  </section>
 
-    <button
-        class="add-button"
-        onclick="addToCart('Chicken Burger Combo', 10)">
-        Add to Cart
-    </button>
+  <section class="panel" style="margin-top:22px">
+    <h2>📝 Customer Details</h2>
 
-</div>
-
-           
-
-
-        <div class="promotion-card">
-
-            <h3>🎁 Buy 1 Free 1</h3>
-
-            <div class="buy1free1">
-                BUY 1 FREE 1
-            </div>
-
-            <p>
-                Enjoy our Buy 1 Free 1 promotion!
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ================= NEW DISHES ================= -->
-
-<h2 class="new-dishes-title">
-    🆕 NEW DISHES
-</h2>
-
-
-<div class="menu">
-
-
-    <div class="food">
-
-        <h3>🍗 Spicy Chicken Chop</h3>
-
-        <p class="price">
-            RM 16.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Spicy Chicken Chop', 16)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🍝 Creamy Chicken Pasta</h3>
-
-        <p class="price">
-            RM 13.90
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Creamy Chicken Pasta', 13.90)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🧀 Cheesy Fries</h3>
-
-        <p class="price">
-            RM 6.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Cheesy Fries', 6)">
-            Add to Cart
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ================= FOOD ================= -->
-
-<h2 class="section-title">
-    🍗 Food Menu
-</h2>
-
-
-<div class="menu">
-
-
-    <div class="food">
-
-        <h3>🍗 Chicken Chop</h3>
-
-        <p class="price">
-            RM 15.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Chicken Chop', 15)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🍝 Spaghetti</h3>
-
-        <p class="price">
-            RM 10.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Spaghetti', 10)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🍔 Chicken Burger</h3>
-
-        <p class="price">
-            RM 6.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Chicken Burger', 6)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🍟 French Fries</h3>
-
-        <p class="price">
-            RM 5.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('French Fries', 5)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🐟 Fish Burger</h3>
-
-        <p class="price">
-            RM 8.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Fish Burger', 8)">
-            Add to Cart
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ================= DRINKS ================= -->
-
-<h2 class="section-title">
-    🥤 Drinks
-</h2>
-
-
-<div class="menu">
-
-
-    <div class="food">
-
-        <h3>🥤 Ice Coca-Cola</h3>
-
-        <p class="price">
-            RM 3.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Ice Coca-Cola', 3)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>💧 Ice Mineral Water</h3>
-
-        <p class="price">
-            RM 2.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Ice Mineral Water', 2)">
-            Add to Cart
-
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🍋 Ice Lemon Tea</h3>
-
-        <p class="price">
-            RM 3.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Ice Lemon Tea', 3)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🥛 Ice Milo</h3>
-
-        <p class="price">
-            RM 4.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Ice Milo', 4)">
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <div class="food">
-
-        <h3>🥤 Ice 100 Plus</h3>
-
-        <p class="price">
-            RM 3.00
-        </p>
-
-        <button
-            class="add-button"
-            onclick="addToCart('Ice 100 Plus', 3)">
-            Add to Cart
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ================= CART ================= -->
-
-<div class="cart">
-
-    <h2>🛒 Your Cart</h2>
-
-    <div id="cartItems">
-        Your cart is empty.
-    </div>
-
-    <div class="total" id="cartTotal">
-        Total: RM 0.00
-    </div>
-
-</div>
-
-
-<!-- ================= CHECKOUT ================= -->
-
-<div class="checkout">
-
-    <h2>📝 Checkout</h2>
-
-
-    <label>
-        Customer Name
-    </label>
-
-    <input
-        type="text"
-        id="customerName"
-        placeholder="Enter your name"
-    >
-
-
-    <label>
-        Description (Optional)
-    </label>
-
-    <textarea
-        id="description"
-        placeholder="Example: No onion, less spicy, extra sauce (optional)"
-    ></textarea>
-
-    <label>
-        Order Type
-    </label>
-
-
-    <label>
+    <form id="orderForm">
+      <label for="customerName">
+        Customer Name *
         <input
-            type="radio"
-            name="orderType"
-            value="Dine In"
-            checked
-            onchange="changeOrderType()"
+          id="customerName"
+          name="customerName"
+          type="text"
+          maxlength="100"
+          autocomplete="name"
+          required
+          placeholder="Enter your name"
         >
+      </label>
+
+      <label>Order Type *</label>
+      <label class="radio-label">
+        <input type="radio" name="orderType" value="Dine In" required>
         Dine In
-    </label>
-
-
-    <label>
-        <input
-            type="radio"
-            name="orderType"
-            value="Take Away"
-            onchange="changeOrderType()"
-        >
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="orderType" value="Take Away" required>
         Take Away
-    </label>
+      </label>
 
-
-    <div
-        class="table-box"
-        id="tableBox"
-    >
-
-        <label>
-            Table Number
-        </label>
-
+      <label id="tableLabel" for="tableNumber" class="hidden">
+        Table Number *
         <input
-            type="text"
-            id="tableNumber"
-            placeholder="Example: T01"
+          id="tableNumber"
+          name="tableNumber"
+          type="text"
+          maxlength="20"
+          placeholder="Enter your table number"
         >
+      </label>
 
-    </div>
+      <label for="description">
+        Special Requests (Optional)
+        <textarea
+          id="description"
+          name="description"
+          rows="3"
+          maxlength="500"
+          placeholder="No onion, less spicy, extra sauce..."
+        ></textarea>
+      </label>
 
+      <div id="formMessage" aria-live="polite"></div>
 
-    <button onclick="checkout()">
-        🛒 Proceed to Order
+      <button
+        type="submit"
+        id="submitButton"
+        class="submit-btn"
+        style="width:100%"
+      >
+        Place Order
+      </button>
+    </form>
+  </section>
+
+  <section id="confirmation" class="panel hidden" style="margin-top:22px">
+    <h2>✅ Order Submitted!</h2>
+    <div id="confirmationDetails"></div>
+    <button class="add-btn" id="newOrderButton">
+      Place Another Order
     </button>
+  </section>
 
-</div>
+</main>
 
-
-<!-- ================= CONFIRMED ================= -->
-
-<div
-    class="confirmed"
-    id="confirmed"
->
-
-    <h2>
-        ✅ Order Confirmed!
-    </h2>
-
-    <p>
-        Order Number:
-        <b id="confirmedOrderNumber"></b>
-    </p>
-
-    <p>
-        Customer:
-        <b id="confirmedCustomer"></b>
-    </p>
-
-    <p>
-        Order Type:
-        <b id="confirmedOrderType"></b>
-    </p>
-
-    <p id="confirmedTableText">
-    </p>
-
-    <div
-        id="confirmedDescription"
-        class="confirmed-description"
-        style="display:none;"
-    ></div>
-
-    <p>
-        Total:
-        <b id="confirmedTotal"></b>
-    </p>
-
-
-    <button
-        class="new-order"
-        onclick="newOrder()"
-    >
-        ➕ New Order
-    </button>
-
-</div>
-
-
-</div>
-
-
-<!-- ================= FIREBASE ================= -->
+<footer>
+  Restoran Western King · Thank you for your order!
+</footer>
 
 <script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
 import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-
-
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
-
-const firebaseConfig = {
-
-    apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
-
-    authDomain:
-        "western-king-restaurant.firebaseapp.com",
+/*
+  IMPORTANT:
+  This is the ONLY Firebase configuration in this file.
+  Use the exact configuration shown in your Firebase Console.
+*/
 const firebaseConfig = {
   apiKey: "AIzaSyDnRYJQTPVFbeMjTFNwiBn7tfRbMRYACWQ",
   authDomain: "western-king-restaurant.firebaseapp.com",
@@ -841,547 +339,419 @@ const firebaseConfig = {
   appId: "1:866508888526:web:946900a5945bb56286339f"
 };
 
+const connectionStatus =
+  document.getElementById("connectionStatus");
 
-const app =
-    initializeApp(firebaseConfig);
+const formMessage =
+  document.getElementById("formMessage");
 
+const submitButton =
+  document.getElementById("submitButton");
 
-const db =
-    getFirestore(app);
+let db = null;
+let firebaseReady = false;
 
+try {
+  const app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+  firebaseReady = true;
+  connectionStatus.textContent = "🟢 Firebase Connected";
+} catch (error) {
+  console.error("Firebase initialization failed:", error);
+  connectionStatus.textContent = "🔴 Firebase Connection Failed";
+}
 
-/* Make Firebase available to normal script */
+const foodItems = [
+  { id: "chicken-chop", name: "Chicken Chop", price: 15.00,
+    description: "Classic Western favourite" },
+  { id: "spaghetti", name: "Spaghetti", price: 10.00,
+    description: "Delicious pasta" },
+  { id: "chicken-burger", name: "Chicken Burger", price: 6.00,
+    description: "Juicy chicken burger" },
+  { id: "french-fries", name: "French Fries", price: 5.00,
+    description: "Crispy golden fries" },
+  { id: "fish-burger", name: "Fish Burger", price: 8.00,
+    description: "Crispy fish burger" },
+  { id: "spicy-chicken-chop", name: "Spicy Chicken Chop", price: 16.00,
+    description: "A spicy Western favourite" },
+  { id: "creamy-chicken-pasta", name: "Creamy Chicken Pasta", price: 13.90,
+    description: "Creamy pasta with chicken" },
+  { id: "chicken-burger-combo", name: "Chicken Burger Combo", price: 10.00,
+    description: "Chicken burger, fries and Coca-Cola" }
+];
 
-window.db = db;
+const drinkItems = [
+  { id: "coca-cola", name: "Ice Coca-Cola", price: 3.00,
+    description: "Refreshing cold drink" },
+  { id: "mineral-water", name: "Ice Mineral Water", price: 2.00,
+    description: "Drinking water" },
+  { id: "lemon-tea", name: "Ice Lemon Tea", price: 3.00,
+    description: "Refreshing lemon tea" },
+  { id: "milo", name: "Ice Milo", price: 4.00,
+    description: "Chocolate malt drink" },
+  { id: "100-plus", name: "Ice 100 Plus", price: 3.00,
+    description: "Isotonic drink" }
+];
 
-window.ordersCollection =
-    collection(db, "orders");
-window.addDoc = addDoc;
+const allItems = [...foodItems, ...drinkItems];
+const itemById = new Map(allItems.map(item => [item.id, item]));
+const cart = new Map();
 
-window.serverTimestamp =
-    serverTimestamp;
-</script>
+function money(value) {
+  return "RM" + Number(value).toFixed(2);
+}
 
+function isWeekend() {
+  const day = new Date().getDay();
+  return day === 0 || day === 6;
+}
 
-<script>
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
 
-/* ================= CART ================= */
+function renderMenu(items, containerId) {
+  const container = document.getElementById(containerId);
 
-let cart = {};
+  container.innerHTML = items.map(item => `
+    <article class="menu-item">
+      <h3>${escapeHtml(item.name)}</h3>
+      <p>${escapeHtml(item.description)}</p>
+      <div class="price">${money(item.price)}</div>
+      <button type="button" class="add-btn" data-add="${item.id}">
+        Add to Cart
+      </button>
+    </article>
+  `).join("");
+}
 
+renderMenu(foodItems, "foodMenu");
+renderMenu(drinkItems, "drinkMenu");
 
-/* ADD */
+document.addEventListener("click", event => {
+  const addButton = event.target.closest("[data-add]");
+  if (!addButton) return;
 
-function addToCart(name, price) {
+  const id = addButton.dataset.add;
+  const item = itemById.get(id);
+  if (!item) return;
 
-    if (cart[name]) {
+  const existing = cart.get(id);
 
-        cart[name].quantity++;
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.set(id, { ...item, quantity: 1 });
+  }
 
+  renderCart();
+});
+
+function getTotals() {
+  let originalSubtotal = 0;
+  let payableBeforeWeekend = 0;
+
+  const orderItems = [];
+
+  for (const item of cart.values()) {
+    const originalLine = item.price * item.quantity;
+
+    // Buy one, get one free for each eligible menu item.
+    // For odd quantities, the customer pays for the rounded-up half.
+    const payableUnits = Math.ceil(item.quantity / 2);
+    const payableLine = payableUnits * item.price;
+    const bogoDiscount = originalLine - payableLine;
+
+    originalSubtotal += originalLine;
+    payableBeforeWeekend += payableLine;
+
+    orderItems.push({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      quantity: item.quantity,
+      payableUnits,
+      bogoDiscount: Number(bogoDiscount.toFixed(2)),
+      subtotal: Number(payableLine.toFixed(2))
+    });
+  }
+
+  const bogoSavings = originalSubtotal - payableBeforeWeekend;
+  const weekendDiscount = isWeekend()
+    ? payableBeforeWeekend * 0.20
+    : 0;
+
+  const total = Math.max(0, payableBeforeWeekend - weekendDiscount);
+
+  return {
+    orderItems,
+    originalSubtotal: Number(originalSubtotal.toFixed(2)),
+    bogoSavings: Number(bogoSavings.toFixed(2)),
+    weekendDiscount: Number(weekendDiscount.toFixed(2)),
+    total: Number(total.toFixed(2))
+  };
+}
+
+function renderCart() {
+  const container = document.getElementById("cartItems");
+  const summary = document.getElementById("priceSummary");
+
+  if (cart.size === 0) {
+    container.textContent = "Your cart is empty.";
+    summary.classList.add("hidden");
+    return;
+  }
+
+  summary.classList.remove("hidden");
+
+  container.innerHTML = [...cart.values()].map(item => `
+    <div class="cart-row">
+      <div>
+        <strong>${escapeHtml(item.name)}</strong><br>
+        <small>${money(item.price)} each</small>
+      </div>
+      <div class="quantity">
+        <button type="button" class="secondary-btn"
+          data-minus="${item.id}" aria-label="Decrease quantity">−</button>
+        <span>${item.quantity}</span>
+        <button type="button" class="secondary-btn"
+          data-plus="${item.id}" aria-label="Increase quantity">+</button>
+        <button type="button" class="secondary-btn"
+          data-remove="${item.id}" aria-label="Remove item">✕</button>
+      </div>
+    </div>
+  `).join("");
+
+  const totals = getTotals();
+
+  document.getElementById("originalSubtotal").textContent =
+    money(totals.originalSubtotal);
+
+  document.getElementById("bogoSavings").textContent =
+    "-" + money(totals.bogoSavings);
+
+  document.getElementById("weekendSavings").textContent =
+    "-" + money(totals.weekendDiscount);
+
+  document.getElementById("weekendRow").classList.toggle(
+    "hidden", !isWeekend()
+  );
+
+  document.getElementById("grandTotal").textContent =
+    money(totals.total);
+}
+
+document.addEventListener("click", event => {
+  const plus = event.target.closest("[data-plus]");
+  const minus = event.target.closest("[data-minus]");
+  const remove = event.target.closest("[data-remove]");
+
+  if (plus) {
+    const item = cart.get(plus.dataset.plus);
+    if (item) item.quantity += 1;
+    renderCart();
+  }
+
+  if (minus) {
+    const item = cart.get(minus.dataset.minus);
+    if (item) {
+      item.quantity -= 1;
+      if (item.quantity <= 0) cart.delete(minus.dataset.minus);
+    }
+    renderCart();
+  }
+
+  if (remove) {
+    cart.delete(remove.dataset.remove);
+    renderCart();
+  }
+});
+
+const tableLabel = document.getElementById("tableLabel");
+const tableNumber = document.getElementById("tableNumber");
+
+document.querySelectorAll('input[name="orderType"]').forEach(radio => {
+  radio.addEventListener("change", () => {
+    const dineIn = radio.checked && radio.value === "Dine In";
+
+    // Use the currently selected radio value.
+    const selected = document.querySelector(
+      'input[name="orderType"]:checked'
+    );
+
+    const needsTable = selected && selected.value === "Dine In";
+
+    tableLabel.classList.toggle("hidden", !needsTable);
+    tableNumber.required = Boolean(needsTable);
+
+    if (!needsTable) tableNumber.value = "";
+  });
+});
+
+function showMessage(message, type = "error") {
+  formMessage.className = "message " + type;
+  formMessage.textContent = message;
+}
+
+document.getElementById("orderForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!firebaseReady || !db) {
+    showMessage(
+      "Firebase is not initialized. Please check the Firebase configuration.",
+      "error"
+    );
+    return;
+  }
+
+  if (cart.size === 0) {
+    showMessage("Please add at least one item to your cart.");
+    return;
+  }
+
+  const customer = document.getElementById("customerName")
+    .value.trim();
+
+  const selectedType = document.querySelector(
+    'input[name="orderType"]:checked'
+  );
+
+  if (!customer) {
+    showMessage("Please enter your name.");
+    return;
+  }
+
+  if (!selectedType) {
+    showMessage("Please choose Dine In or Take Away.");
+    return;
+  }
+
+  const orderType = selectedType.value;
+  const table = orderType === "Dine In"
+    ? tableNumber.value.trim()
+    : "";
+
+  if (orderType === "Dine In" && !table) {
+    showMessage("Please enter your table number.");
+    return;
+  }
+
+  const description = document.getElementById("description")
+    .value.trim();
+
+  const totals = getTotals();
+
+  const orderNumber = "WK" +
+    Math.floor(1000 + Math.random() * 9000);
+
+  const promotionParts = ["Buy 1 Free 1"];
+
+  if (isWeekend()) {
+    promotionParts.push("Weekend 20% OFF");
+  }
+
+  const orderData = {
+    orderNumber,
+    customer,
+    orderType,
+    table,
+    description,
+    items: totals.orderItems,
+    subtotal: totals.originalSubtotal,
+    bogoDiscount: totals.bogoSavings,
+    weekendDiscount: totals.weekendDiscount,
+    discount: Number(
+      (totals.bogoSavings +
+       totals.weekendDiscount).toFixed(2)
+    ),
+    total: totals.total,
+    promotion: promotionParts.join(" + "),
+    status: "NEW",
+    time: new Date().toLocaleString(),
+    createdAt: serverTimestamp()
+  };
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting Order...";
+  showMessage("Submitting your order. Please wait.", "info");
+
+  try {
+    // Save the order to the Firestore "orders" collection.
+    const documentRef = await addDoc(
+      collection(db, "orders"),
+      orderData
+    );
+
+    console.log("Order saved successfully:", documentRef.id);
+
+    cart.clear();
+    renderCart();
+
+    document.getElementById("confirmationDetails").innerHTML = `
+      <div class="message success">
+        <strong>Order Number: ${escapeHtml(orderNumber)}</strong><br>
+        Please keep your order number for collection.
+      </div>
+      <p><strong>Customer:</strong> ${escapeHtml(customer)}</p>
+      <p><strong>Order Type:</strong> ${escapeHtml(orderType)}</p>
+      ${table ? `<p><strong>Table:</strong> ${escapeHtml(table)}</p>` : ""}
+      <p><strong>Promotion:</strong> ${escapeHtml(orderData.promotion)}</p>
+      <p><strong>Total:</strong> ${money(totals.total)}</p>
+      <p><strong>Status:</strong> NEW</p>
+    `;
+
+    document.getElementById("confirmation").classList.remove("hidden");
+    document.getElementById("confirmation").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+    document.getElementById("orderForm").reset();
+    tableLabel.classList.add("hidden");
+    tableNumber.required = false;
+    showMessage("", "success");
+
+  } catch (error) {
+    console.error("Order submission failed:", error);
+
+    let message = "Order failed. ";
+
+    if (error.code === "permission-denied" ||
+        error.code === "firestore/permission-denied") {
+      message +=
+        "Firestore denied this request. Please check Firestore Security Rules.";
+    } else if (error.code === "unavailable") {
+      message +=
+        "Firebase is temporarily unavailable. Please try again.";
     } else {
-
-        cart[name] = {
-
-            price: price,
-
-            quantity: 1
-
-        };
-
+      message += error.code
+        ? error.code + ": " + error.message
+        : error.message;
     }
 
-    showCart();
-
-}
-
-
-/* PLUS */
-
-function plus(name) {
-
-    if (cart[name]) {
-
-        cart[name].quantity++;
-
-    }
-
-    showCart();
-
-}
-
-
-/* MINUS */
-
-function minus(name) {
-
-    if (cart[name]) {
-
-        cart[name].quantity--;
-
-        if (cart[name].quantity <= 0) {
-
-            delete cart[name];
-
-        }
-
-    }
-
-    showCart();
-
-}
-
-
-/* DELETE */
-
-function removeItem(name) {
-
-    delete cart[name];
-
-    showCart();
-
-}
-
-
-/* ================= SHOW CART ================= */
-
-function showCart() {
-
-    const cartItems =
-        document.getElementById("cartItems");
-
-    const cartTotal =
-        document.getElementById("cartTotal");
-
-
-    const names =
-        Object.keys(cart);
-
-
-    if (names.length === 0) {
-
-        cartItems.innerHTML =
-            "Your cart is empty.";
-
-        cartTotal.innerHTML =
-            "Total: RM 0.00";
-
-        return;
-
-    }
-
-
-    let html = "";
-
-    let total = 0;
-
-
-    names.forEach(function(name) {
-
-        const item = cart[name];
-
-        const subtotal =
-            item.price * item.quantity;
-
-        total += subtotal;
-
-
-        html += `
-
-            <div class="cart-item">
-
-                <div>
-
-                    <b>${escapeHTML(name)}</b>
-
-                    <br>
-
-                    RM ${item.price.toFixed(2)}
-                    ×
-                    ${item.quantity}
-
-                    =
-                    RM ${subtotal.toFixed(2)}
-
-                </div>
-
-
-                <div class="cart-controls">
-
-                    <button
-                        class="minus"
-                        onclick="minus('${escapeHTML(name)}')">
-                        −
-                    </button>
-
-
-                    <button
-                        class="plus"
-                        onclick="plus('${escapeHTML(name)}')">
-                        +
-                    </button>
-
-
-                    <button
-                        class="delete"
-                        onclick="removeItem('${escapeHTML(name)}')">
-                        Delete
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-
-    cartItems.innerHTML = html;
-
-
-    cartTotal.innerHTML =
-        "Total: RM " + total.toFixed(2);
-
-}
-
-
-/* ================= CHECKOUT ================= */
-
-function checkout() {
-
-    const names =
-        Object.keys(cart);
-
-
-    if (names.length === 0) {
-
-        alert("Please add food to your cart.");
-
-        return;
-
-    }
-
-
-    const customer =
-        document.getElementById("customerName").value.trim();
-
-
-    if (!customer) {
-
-        alert("Please enter your name.");
-
-        return;
-
-    }
-
-
-    const orderType =
-        document.querySelector(
-            'input[name="orderType"]:checked'
-        ).value;
-
-
-    if (
-        orderType === "Dine In" &&
-        !document
-            .getElementById("tableNumber")
-            .value.trim()
-    ) {
-
-        alert("Please enter your table number.");
-
-        return;
-
-    }
-
-
-    confirmOrder();
-
-}
-
-
-/* ================= ORDER TYPE ================= */
-
-function changeOrderType() {
-
-    const orderType =
-        document.querySelector(
-            'input[name="orderType"]:checked'
-        ).value;
-
-
-    const tableBox =
-        document.getElementById("tableBox");
-
-
-    if (orderType === "Dine In") {
-
-        tableBox.style.display = "block";
-
-    } else {
-
-        tableBox.style.display = "none";
-
-    }
-
-}
-
-
-/* ================= CONFIRM ORDER ================= */
-
-async function confirmOrder() {
-
-    const customer =
-        document.getElementById("customerName")
-        .value
-        .trim();
-
-
-    const orderType =
-        document.querySelector(
-            'input[name="orderType"]:checked'
-        ).value;
-
-
-    const table =
-        document.getElementById("tableNumber")
-        .value
-        .trim();
-
-
-    let total = 0;
-
-    const items = [];
-
-
-    Object.keys(cart).forEach(function(name) {
-
-        const item = cart[name];
-
-        const subtotal =
-            item.price * item.quantity;
-
-        total += subtotal;
-
-
-        items.push({
-
-            name: name,
-
-            price: item.price,
-
-            quantity: item.quantity,
-
-            subtotal: subtotal
-
-        });
-
-    });
-
-
-    const orderNumber =
-        "WK" +
-        Math.floor(
-            1000 + Math.random() * 9000
-        );
-
-
-    try {
-
-        await addDoc(
-            window.ordersCollection,
-            {
-
-                orderNumber:
-                    orderNumber,
-
-                customer:
-                    customer,
-
-                orderType:
-                    orderType,
-
-                table:
-                    orderType === "Dine In"
-                        ? table
-                        : "",
-
-                description:
-                    description,
-
-                items:
-                    items,
-
-                total:
-                    total,
-
-                status:
-                    "NEW",
-
-                time:
-                    new Date().toLocaleString(),
-
-                createdAt:
-                    serverTimestamp()
-
-            }
-        );
-
-
-        document.getElementById(
-            "confirmedOrderNumber"
-        ).textContent =
-            orderNumber;
-
-
-        document.getElementById(
-            "confirmedCustomer"
-        ).textContent =
-            customer;
-
-
-        document.getElementById(
-            "confirmedOrderType"
-        ).textContent =
-            orderType;
-
-
-        document.getElementById(
-            "confirmedTotal"
-        ).textContent =
-            "RM " + total.toFixed(2);
-
-
-        const tableText =
-            document.getElementById(
-                "confirmedTableText"
-            );
-
-
-        if (orderType === "Dine In") {
-
-            tableText.textContent =
-                "Table: " + table;
-
-        } else {
-
-            tableText.textContent =
-                "Take Away";
-
-        }
-
-        const confirmedDescription =
-            document.getElementById("confirmedDescription");
-
-        if (description) {
-            confirmedDescription.textContent =
-                "📝 Description: " + description;
-            confirmedDescription.style.display = "block";
-        } else {
-            confirmedDescription.style.display = "none";
-            confirmedDescription.textContent = "";
-        }
-
-
-        document.getElementById(
-            "confirmed"
-        ).style.display = "block";
-
-
-        window.scrollTo({
-
-            top:
-                document.body.scrollHeight,
-
-            behavior:
-                "smooth"
-
-        });
-
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(
-            "Order failed. Please try again."
-        );
-
-    }
-
-}
-
-
-/* ================= NEW ORDER ================= */
-
-function newOrder() {
-
-    cart = {};
-
-
-    document.getElementById(
-        "customerName"
-    ).value = "";
-
-
-    document.getElementById(
-        "tableNumber"
-    ).value = "";
-
-
-    document.getElementById(
-        "confirmed"
-    ).style.display = "none";
-
-
-    document.querySelector(
-        'input[name="orderType"][value="Dine In"]'
-    ).checked = true;
-
-
-    changeOrderType();
-
-    showCart();
-
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-}
-
-
-/* ================= ESCAPE HTML ================= */
-
-function escapeHTML(value) {
-
-    return String(value)
-
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* ================= START ================= */
-
-showCart();
-
-changeOrderType();
-
+    showMessage(message, "error");
+
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Place Order";
+  }
+});
+
+document.getElementById("newOrderButton").addEventListener("click", () => {
+  document.getElementById("confirmation").classList.add("hidden");
+  document.getElementById("customerName").focus();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+renderCart();
 </script>
 
 </body>
+</html>
 
-</html>                                                                                                                                    
