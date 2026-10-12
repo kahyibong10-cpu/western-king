@@ -3,550 +3,314 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Restoran Western King</title>
-
 <style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    color: #222;
-}
-
-header {
-    background: #18392b;
-    color: white;
-    text-align: center;
-    padding: 25px 12px;
-}
-
-header h1 {
-    margin: 0 0 8px;
-}
-
-nav {
-    background: #244c39;
-    padding: 12px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    margin: 5px 10px;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 15px;
-}
-
-.section {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px #00000012;
-}
-
-.member {
-    text-align: center;
-    background: #fff0bd;
-    border: 2px solid #d6ad45;
-}
-
-.member a {
-    display: inline-block;
-    background: #18392b;
-    color: white;
-    padding: 12px 20px;
-    margin: 8px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.promotions {
-    background: #fff5f0;
-    border-left: 5px solid #dc5638;
-}
-
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 15px;
-}
-
-.food {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    background: #fff;
-}
-
-.food h3 {
-    margin-top: 0;
-}
-
-.price {
-    color: #168049;
-    font-size: 19px;
-    font-weight: bold;
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 14px;
-    font-size: 15px;
-}
-
-.add-btn {
-    background: #198754;
-    color: white;
-    width: 100%;
-}
-
-.quantity-btn {
-    background: #e7e7e7;
-    min-width: 35px;
-}
-
-.delete-btn {
-    background: #dc3545;
-    color: white;
-}
-
-.primary-btn {
-    background: #18392b;
-    color: white;
-    width: 100%;
-    padding: 14px;
-    font-weight: bold;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 7px 0 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-}
-
-label {
-    font-weight: bold;
-}
-
-.cart-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.cart-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.total {
-    font-size: 23px;
-    font-weight: bold;
-    color: #168049;
-}
-
-#message {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    line-height: 1.7;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #18392b;
-    color: white;
-}
-
-@media (max-width: 500px) {
-    .container {
-        padding: 10px;
-    }
-
-    .section {
-        padding: 15px;
-    }
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#222}
+header,footer{background:#18392b;color:white;text-align:center;padding:22px 12px}
+nav{background:#244c39;padding:12px;text-align:center}
+nav a{color:white;text-decoration:none;margin:6px 10px;display:inline-block}
+.container{max-width:1000px;margin:20px auto;padding:12px}
+.section{background:white;padding:20px;margin-bottom:20px;border-radius:12px;box-shadow:0 2px 8px #0001}
+.member{background:#fff0bd;text-align:center;border:2px solid #d6ad45}
+.promotions{background:#fff5f0;border-left:5px solid #dc5638}
+.member a{display:inline-block;background:#18392b;color:white;padding:12px;margin:6px;border-radius:8px;text-decoration:none}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.food{border:1px solid #ddd;border-radius:10px;padding:14px}
+.food h3{margin-top:0}
+.price,.total{color:#168049;font-weight:bold}
+.price{font-size:19px}
+button{cursor:pointer;border:0;border-radius:6px;padding:10px 13px;font-size:15px}
+.add-btn{background:#198754;color:white;width:100%}
+.quantity-btn{background:#e7e7e7}
+.delete-btn{background:#dc3545;color:white}
+.primary-btn{background:#18392b;color:white;width:100%;padding:14px;font-weight:bold}
+input,select,textarea{width:100%;padding:12px;margin:7px 0 15px;border:1px solid #ccc;border-radius:6px;font-size:16px}
+label{font-weight:bold}
+.cart-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #eee}
+.cart-controls{display:flex;align-items:center;gap:8px}
+#message{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;margin-top:15px}
+[hidden]{display:none!important}
+@media(max-width:500px){.container{padding:8px}.section{padding:14px}}
 </style>
 </head>
-
 <body>
 
 <header>
-    <h1>👑 Restoran Western King</h1>
-    <p>Delicious Food, Happy Customers!</p>
-    <p id="firebaseStatus">🟡 Connecting to Firebase...</p>
+<h1>👑 Restoran Western King</h1>
+<p>Delicious Food, Happy Customers!</p>
+<p id="firebaseStatus">🟡 Connecting to Firebase...</p>
 </header>
 
 <nav>
-    <a href="#member">Member App</a>
-    <a href="#promotions">Promotions</a>
-    <a href="#menu">Menu</a>
-    <a href="#cart">My Cart</a>
-    <a href="#checkout">Checkout</a>
+<a href="#member">Member App</a>
+<a href="#promotions">Promotions</a>
+<a href="#menu">Menu</a>
+<a href="#cart">My Cart</a>
+<a href="#checkout">Checkout</a>
 </nav>
 
-<div class="container">
+<main class="container">
 
-    <!-- MEMBER APP -->
-    <section class="section member" id="member">
-        <h2>👑 Western King Member App</h2>
-        <p>Join our member programme and discover exclusive offers!</p>
+<section class="section member" id="member">
+<h2>👑 Western King Member App</h2>
+<p>Join our member programme for exclusive offers!</p>
+<p>🥉 VIP Member: 30% OFF<br>
+🥇 Gold Member: 40% OFF<br>
+💎 Diamond Member: 50% OFF</p>
+<p>VIP: 100 completed orders<br>
+Gold: RM1,000 total spending<br>
+Diamond: Visit 15 days in one month</p>
+<a href="exp://0d11e4d7-73ba-42bc-8e45-46da7190ae53-00-14uzqp8jalhn0.expo.pike.replit.dev">📱 Open Member App</a>
+<a href="https://play.google.com/store/apps/details?id=host.exp.exponent" target="_blank" rel="noopener">Get Expo Go for Android</a>
+<p>Member discounts require verified membership. This restaurant page does not automatically apply member discounts.</p>
+</section>
 
-        <p>
-            🥉 VIP Member: 30% OFF<br>
-            🥇 Gold Member: 40% OFF<br>
-            💎 Diamond Member: 50% OFF
-        </p>
+<section class="section promotions" id="promotions">
+<h2>🎉 Promotions</h2>
+<p>🔥 Weekend Promotion: 20% OFF</p>
+<p>🍔 Chicken Burger Combo: RM10</p>
+<p>🎁 Buy 1 Free 1</p>
+<p>Promotions are advertised here but are not automatically deducted from the checkout total.</p>
+</section>
 
-        <p>
-            VIP: 100 completed orders<br>
-            Gold: RM1,000 total spending<br>
-            Diamond: Visit 15 days in one month
-        </p>
+<section class="section" id="menu">
+<h2>🍦 Ice Cream</h2>
+<div class="menu-grid" id="iceCreamMenu"></div>
+<h2>🍗 Food</h2>
+<div class="menu-grid" id="foodMenu"></div>
+<h2>🥤 Drinks</h2>
+<div class="menu-grid" id="drinkMenu"></div>
+</section>
 
-        <a href="exp://0d11e4d7-73ba-42bc-8e45-46da7190ae53-00-14uzqp8jalhn0.expo.pike.replit.dev">
-            📱 Open Member App
-        </a>
+<section class="section" id="cart">
+<h2>🛒 My Cart</h2>
+<div id="cartItems">Your cart is empty.</div>
+<hr>
+<p>Total items: <span id="itemCount">0</span></p>
+<p class="total">Total: RM <span id="cartTotal">0.00</span></p>
+</section>
 
-        <br>
+<section class="section" id="checkout">
+<h2>📝 Customer Information</h2>
+<form id="orderForm">
+<label for="customerName">Customer Name *</label>
+<input id="customerName" maxlength="80" autocomplete="name" required placeholder="Enter your name">
 
-        <a href="https://play.google.com/store/apps/details?id=host.exp.exponent"
-           target="_blank" rel="noopener noreferrer">
-            Get Expo Go for Android
-        </a>
+<label for="orderType">Order Type *</label>
+<select id="orderType" required>
+<option value="">-- Select Order Type --</option>
+<option value="Dine In">Dine In</option>
+<option value="Take Away">Take Away</option>
+</select>
 
-        <p>
-            Note: The project link requires a running Expo development
-            session. Member discounts are subject to verified membership
-            and applicable promotion rules.
-        </p>
-    </section>
-
-    <!-- PROMOTIONS -->
-    <section class="section promotions" id="promotions">
-        <h2>🎉 Current Promotions</h2>
-        <p>🔥 Weekend Promotion: 20% OFF</p>
-        <p>🍔 Chicken Burger Combo: RM10</p>
-        <p>🎁 Buy 1 Free 1</p>
-        <p>
-            Ask our staff about promotion eligibility and terms.
-            Promotional prices are not automatically deducted by this page.
-        </p>
-    </section>
-
-    <!-- MENU -->
-    <section class="section" id="menu">
-        <h2>🍦 Ice Cream</h2>
-        <div class="menu-grid" id="iceCreamMenu"></div>
-
-        <h2>🍗 Food</h2>
-        <div class="menu-grid" id="foodMenu"></div>
-
-        <h2>🥤 Drinks</h2>
-        <div class="menu-grid" id="drinkMenu"></div>
-    </section>
-
-    <!-- CART -->
-    <section class="section" id="cart">
-        <h2>🛒 My Cart</h2>
-        <div id="cartItems">Your cart is empty.</div>
-        <hr>
-        <p>Total items: <span id="itemCount">0</span></p>
-        <p class="total">Total: RM <span id="cartTotal">0.00</span></p>
-    </section>
-
-    <!-- CHECKOUT -->
-    <section class="section" id="checkout">
-        <h2>📝 Customer Information</h2>
-
-        <form id="orderForm">
-
-            <label for="customerName">Customer Name *</label>
-            <input
-                type="text"
-                id="customerName"
-                maxlength="80"
-                autocomplete="name"
-                required
-                placeholder="Enter your name">
-
-            <label for="orderType">Order Type *</label>
-            <select id="orderType" required>
-                <option value="">-- Select Order Type --</option>
-                <option value="Dine In">Dine In</option>
-                <option value="Take Away">Take Away</option>
-            </select>
-
-            <div id="tableGroup" hidden>
-                <label for="tableNumber">Table Number *</label>
-                <input
-                    type="text"
-                    id="tableNumber"
-                    maxlength="20"
-                    placeholder="Enter table number"
-                    disabled>
-            </div>
-
-            <label for="description">Special Requests (Optional)</label>
-            <textarea
-                id="description"
-                rows="3"
-                maxlength="500"
-                placeholder="No onion, less spicy, extra sauce..."></textarea>
-
-            <button type="submit" class="primary-btn" id="submitBtn">
-                Confirm Order
-            </button>
-        </form>
-
-        <div id="message" role="status" aria-live="polite"></div>
-    </section>
-
+<div id="tableGroup" hidden>
+<label for="tableNumber">Table Number *</label>
+<input id="tableNumber" maxlength="20" placeholder="Enter table number" disabled>
 </div>
 
+<label for="description">Special Requests (Optional)</label>
+<textarea id="description" rows="3" maxlength="500" placeholder="No onion, less spicy, extra sauce..."></textarea>
+
+<button type="submit" class="primary-btn" id="submitBtn">Confirm Order</button>
+</form>
+<div id="message" role="status" aria-live="polite"></div>
+</section>
+
+</main>
+
 <footer>
-    <p>© 2026 Restoran Western King</p>
-    <p>Thank you for ordering with us! ❤️</p>
+<p>© 2026 Restoran Western King</p>
+<p>Thank you for ordering with us! ❤️</p>
 </footer>
 
 <script type="module">
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+import { initializeApp, getApps }
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
 
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+  getFirestore, collection, addDoc, serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 
 /*
-====================================================
-IMPORTANT: REPLACE THE CONFIG BELOW WITH YOUR
-REAL FIREBASE WEB APP CONFIGURATION.
-Firebase Console > Project settings > Your apps
-====================================================
+IMPORTANT:
+Replace every placeholder below with the REAL values
+from Firebase Console > Project settings > Your apps > Config.
+Do not leave any PASTE_ values in this configuration.
 */
 
 const firebaseConfig = {
-    apiKey: "PASTE_YOUR_REAL_API_KEY",
-    authDomain: "western-king-restaurant.firebaseapp.com",
-    projectId: "western-king-restaurant",
-    storageBucket: "PASTE_YOUR_REAL_STORAGE_BUCKET",
-    messagingSenderId: "PASTE_YOUR_REAL_MESSAGING_SENDER_ID",
-    appId: "PASTE_YOUR_REAL_APP_ID"
+  apiKey: "PASTE_YOUR_REAL_API_KEY",
+  authDomain: "western-king-restaurant.firebaseapp.com",
+  projectId: "western-king-restaurant",
+  storageBucket: "PASTE_YOUR_REAL_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_YOUR_REAL_MESSAGING_SENDER_ID",
+  appId: "PASTE_YOUR_REAL_APP_ID"
 };
 
 let db = null;
-let firebaseReady = false;
+const statusEl = document.getElementById("firebaseStatus");
 
 try {
-    const placeholders = Object.values(firebaseConfig).some(value =>
-        String(value).startsWith("PASTE_") ||
-        !String(value).trim()
-    );
+  const hasPlaceholder = Object.values(firebaseConfig).some(value =>
+    typeof value !== "string" ||
+    !value.trim() ||
+    value.includes("PASTE_")
+  );
 
-    if (placeholders) {
-        throw new Error("Please paste your real Firebase configuration.");
-    }
+  if (hasPlaceholder) {
+    throw new Error("Firebase configuration still contains placeholders.");
+  }
 
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    firebaseReady = true;
+  const app = getApps().length
+    ? getApps()[0]
+    : initializeApp(firebaseConfig);
 
-    document.getElementById("firebaseStatus").textContent =
-        "🟢 Firebase initialized";
+  db = getFirestore(app);
+  statusEl.textContent = "🟢 Firebase initialized";
 } catch (error) {
-    console.error("Firebase setup error:", error);
-
-    document.getElementById("firebaseStatus").textContent =
-        "🔴 Firebase setup required";
+  console.error("Firebase setup error:", error);
+  statusEl.textContent = "🔴 Firebase configuration needs fixing";
 }
 
 const iceCreams = [
-    { id: "ice-original", name: "Original Ice Cream", price: 3.00 },
-    { id: "ice-chocolate", name: "Chocolate Ice Cream", price: 4.00 },
-    { id: "ice-strawberry", name: "Strawberry Ice Cream", price: 4.00 },
-    { id: "ice-vanilla", name: "Vanilla Ice Cream", price: 4.00 }
+  {id:"ice-original",name:"Original Ice Cream",price:3},
+  {id:"ice-chocolate",name:"Chocolate Ice Cream",price:4},
+  {id:"ice-strawberry",name:"Strawberry Ice Cream",price:4},
+  {id:"ice-vanilla",name:"Vanilla Ice Cream",price:4}
 ];
 
 const foods = [
-    { id: "chicken-chop", name: "Chicken Chop", price: 15.00 },
-    { id: "spaghetti", name: "Spaghetti", price: 10.00 },
-    { id: "chicken-burger", name: "Chicken Burger", price: 6.00 },
-    { id: "fries", name: "French Fries", price: 5.00 },
-    { id: "fish-burger", name: "Fish Burger", price: 8.00 },
-    { id: "spicy-chop", name: "Spicy Chicken Chop", price: 16.00 },
-    { id: "creamy-pasta", name: "Creamy Chicken Pasta", price: 13.90 }
+  {id:"chicken-chop",name:"Chicken Chop",price:15},
+  {id:"spaghetti",name:"Spaghetti",price:10},
+  {id:"chicken-burger",name:"Chicken Burger",price:6},
+  {id:"fries",name:"French Fries",price:5},
+  {id:"fish-burger",name:"Fish Burger",price:8},
+  {id:"spicy-chop",name:"Spicy Chicken Chop",price:16},
+  {id:"creamy-pasta",name:"Creamy Chicken Pasta",price:13.90}
 ];
 
 const drinks = [
-    { id: "coke", name: "Ice Coca-Cola", price: 3.00 },
-    { id: "mineral-water", name: "Ice Mineral Water", price: 2.00 },
-    { id: "lemon-tea", name: "Ice Lemon Tea", price: 3.00 },
-    { id: "milo", name: "Ice Milo", price: 4.00 },
-    { id: "100-plus", name: "Ice 100 Plus", price: 3.00 }
+  {id:"coke",name:"Ice Coca-Cola",price:3},
+  {id:"mineral-water",name:"Ice Mineral Water",price:2},
+  {id:"lemon-tea",name:"Ice Lemon Tea",price:3},
+  {id:"milo",name:"Ice Milo",price:4},
+  {id:"100-plus",name:"Ice 100 Plus",price:3}
 ];
 
-const allProducts = [...iceCreams, ...foods, ...drinks];
+const allProducts = [...iceCreams,...foods,...drinks];
 const cart = new Map();
-
 const money = amount => Number(amount).toFixed(2);
 
-function renderMenu(products, containerId) {
-    const container = document.getElementById(containerId);
-    container.replaceChildren();
+function renderMenu(products,containerId) {
+  const container = document.getElementById(containerId);
+  container.replaceChildren();
 
-    products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "food";
+  products.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "food";
 
-        const title = document.createElement("h3");
-        title.textContent = product.name;
+    const title = document.createElement("h3");
+    title.textContent = product.name;
 
-        const price = document.createElement("p");
-        price.className = "price";
-        price.textContent = "RM " + money(product.price);
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = "RM " + money(product.price);
 
-        const button = document.createElement("button");
-        button.className = "add-btn";
-        button.type = "button";
-        button.textContent = "＋ Add to Cart";
-        button.addEventListener("click", () => addToCart(product.id));
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "add-btn";
+    button.textContent = "＋ Add to Cart";
+    button.addEventListener("click",() => addToCart(product.id));
 
-        card.append(title, price, button);
-        container.appendChild(card);
-    });
+    card.append(title,price,button);
+    container.appendChild(card);
+  });
 }
 
 function addToCart(id) {
-    const product = allProducts.find(item => item.id === id);
-    if (!product) return;
+  const product = allProducts.find(item => item.id === id);
+  if (!product) return;
 
-    const existing = cart.get(id);
+  const item = cart.get(id);
+  if (item) item.quantity++;
+  else cart.set(id,{...product,quantity:1});
 
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cart.set(id, {
-            ...product,
-            quantity: 1
-        });
-    }
-
-    renderCart();
+  renderCart();
 }
 
-function changeQuantity(id, amount) {
-    const item = cart.get(id);
-    if (!item) return;
+function changeQuantity(id,amount) {
+  const item = cart.get(id);
+  if (!item) return;
 
-    item.quantity += amount;
-
-    if (item.quantity <= 0) {
-        cart.delete(id);
-    }
-
-    renderCart();
-}
-
-function removeItem(id) {
-    cart.delete(id);
-    renderCart();
+  item.quantity += amount;
+  if (item.quantity <= 0) cart.delete(id);
+  renderCart();
 }
 
 function getTotal() {
-    let total = 0;
-
-    cart.forEach(item => {
-        total += item.price * item.quantity;
-    });
-
-    return Math.round((total + Number.EPSILON) * 100) / 100;
+  let total = 0;
+  cart.forEach(item => total += item.price * item.quantity);
+  return Math.round((total + Number.EPSILON) * 100) / 100;
 }
 
 function renderCart() {
-    const container = document.getElementById("cartItems");
-    container.replaceChildren();
+  const container = document.getElementById("cartItems");
+  container.replaceChildren();
+  let count = 0;
 
-    let count = 0;
+  if (!cart.size) {
+    container.textContent = "Your cart is empty.";
+  }
 
-    if (cart.size === 0) {
-        container.textContent = "Your cart is empty.";
-    } else {
-        cart.forEach(item => {
-            count += item.quantity;
+  cart.forEach(item => {
+    count += item.quantity;
 
-            const row = document.createElement("div");
-            row.className = "cart-row";
+    const row = document.createElement("div");
+    row.className = "cart-row";
 
-            const info = document.createElement("div");
-            info.textContent =
-                item.name + " — RM " + money(item.price * item.quantity);
+    const info = document.createElement("div");
+    info.textContent = item.name + " — RM " +
+      money(item.price * item.quantity);
 
-            const controls = document.createElement("div");
-            controls.className = "cart-controls";
+    const controls = document.createElement("div");
+    controls.className = "cart-controls";
 
-            const minus = document.createElement("button");
-            minus.type = "button";
-            minus.className = "quantity-btn";
-            minus.textContent = "−";
-            minus.setAttribute("aria-label", "Decrease " + item.name);
-            minus.addEventListener("click", () =>
-                changeQuantity(item.id, -1)
-            );
+    const minus = document.createElement("button");
+    minus.type = "button";
+    minus.className = "quantity-btn";
+    minus.textContent = "−";
+    minus.setAttribute("aria-label","Decrease " + item.name);
+    minus.addEventListener("click",() => changeQuantity(item.id,-1));
 
-            const quantity = document.createElement("span");
-            quantity.textContent = String(item.quantity);
+    const qty = document.createElement("span");
+    qty.textContent = String(item.quantity);
 
-            const plus = document.createElement("button");
-            plus.type = "button";
-            plus.className = "quantity-btn";
-            plus.textContent = "+";
-            plus.setAttribute("aria-label", "Increase " + item.name);
-            plus.addEventListener("click", () =>
-                changeQuantity(item.id, 1)
-            );
+    const plus = document.createElement("button");
+    plus.type = "button";
+    plus.className = "quantity-btn";
+    plus.textContent = "+";
+    plus.setAttribute("aria-label","Increase " + item.name);
+    plus.addEventListener("click",() => changeQuantity(item.id,1));
 
-            const remove = document.createElement("button");
-            remove.type = "button";
-            remove.className = "delete-btn";
-            remove.textContent = "Delete";
-            remove.addEventListener("click", () => removeItem(item.id));
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "delete-btn";
+    remove.textContent = "Delete";
+    remove.addEventListener("click",() => {
+      cart.delete(item.id);
+      renderCart();
+    });
 
-            controls.append(minus, quantity, plus, remove);
-            row.append(info, controls);
-            container.appendChild(row);
-        });
-    }
+    controls.append(minus,qty,plus,remove);
+    row.append(info,controls);
+    container.appendChild(row);
+  });
 
-    document.getElementById("itemCount").textContent = String(count);
-    document.getElementById("cartTotal").textContent = money(getTotal());
+  document.getElementById("itemCount").textContent = String(count);
+  document.getElementById("cartTotal").textContent = money(getTotal());
 }
 
 const orderType = document.getElementById("orderType");
@@ -554,22 +318,18 @@ const tableGroup = document.getElementById("tableGroup");
 const tableNumber = document.getElementById("tableNumber");
 
 function updateTableField() {
-    const isDineIn = orderType.value === "Dine In";
-
-    tableGroup.hidden = !isDineIn;
-    tableNumber.disabled = !isDineIn;
-    tableNumber.required = isDineIn;
-
-    if (!isDineIn) {
-        tableNumber.value = "";
-    }
+  const dineIn = orderType.value === "Dine In";
+  tableGroup.hidden = !dineIn;
+  tableNumber.disabled = !dineIn;
+  tableNumber.required = dineIn;
+  if (!dineIn) tableNumber.value = "";
 }
 
-orderType.addEventListener("change", updateTableField);
+orderType.addEventListener("change",updateTableField);
 
-renderMenu(iceCreams, "iceCreamMenu");
-renderMenu(foods, "foodMenu");
-renderMenu(drinks, "drinkMenu");
+renderMenu(iceCreams,"iceCreamMenu");
+renderMenu(foods,"foodMenu");
+renderMenu(drinks,"drinkMenu");
 renderCart();
 updateTableField();
 
@@ -577,110 +337,92 @@ const orderForm = document.getElementById("orderForm");
 const submitBtn = document.getElementById("submitBtn");
 const message = document.getElementById("message");
 
-orderForm.addEventListener("submit", async event => {
-    event.preventDefault();
-    message.textContent = "";
+orderForm.addEventListener("submit",async event => {
+  event.preventDefault();
+  message.textContent = "";
 
-    if (!firebaseReady || !db) {
-        message.textContent =
-            "Order not saved: Firebase is not configured. " +
-            "Please check your Firebase web configuration.";
-        return;
-    }
+  if (!db) {
+    message.textContent =
+      "❌ Order not saved: Firebase configuration is incomplete. " +
+      "Replace all PASTE_ values with your real Firebase web config.";
+    return;
+  }
 
-    if (cart.size === 0) {
-        message.textContent = "Please add at least one item to your cart.";
-        return;
-    }
+  if (!cart.size) {
+    message.textContent = "Please add at least one item to your cart.";
+    return;
+  }
 
-    const customer = document.getElementById("customerName")
-        .value.trim();
+  const customer = document.getElementById("customerName").value.trim();
+  const type = orderType.value;
+  const table = type === "Dine In" ? tableNumber.value.trim() : "";
+  const description = document.getElementById("description").value.trim();
 
-    const type = orderType.value;
+  if (!customer || !type) {
+    message.textContent = "Please enter your name and order type.";
+    return;
+  }
 
-    const table = type === "Dine In"
-        ? tableNumber.value.trim()
-        : "";
+  if (type === "Dine In" && !table) {
+    message.textContent = "Please enter your table number for Dine In.";
+    return;
+  }
 
-    const description = document.getElementById("description")
-        .value.trim();
+  const items = Array.from(cart.values()).map(item => ({
+    name: item.name,
+    price: item.price,
+    quantity: item.quantity,
+    subtotal: Math.round(item.price * item.quantity * 100) / 100
+  }));
 
-    if (!customer || !type) {
-        message.textContent = "Please enter your name and order type.";
-        return;
-    }
+  const total = getTotal();
+  const orderNumber = "WK" + Math.floor(1000 + Math.random() * 9000);
 
-    if (type === "Dine In" && !table) {
-        message.textContent =
-            "Please enter your table number for Dine In.";
-        return;
-    }
+  const order = {
+    orderNumber,
+    customer,
+    orderType: type,
+    table,
+    description,
+    items,
+    total,
+    status: "NEW",
+    time: new Date().toISOString(),
+    createdAt: serverTimestamp()
+  };
 
-    const items = Array.from(cart.values()).map(item => ({
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        subtotal: Math.round(
-            item.price * item.quantity * 100
-        ) / 100
-    }));
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting...";
 
-    const total = getTotal();
+  try {
+    const docRef = await addDoc(collection(db,"orders"),order);
 
-    const orderNumber =
-        "WK" + Math.floor(1000 + Math.random() * 9000);
+    message.textContent =
+      "✅ Order Successful!\n\n" +
+      "Order Number: " + orderNumber + "\n" +
+      "Name: " + customer + "\n" +
+      "Order Type: " + type + "\n" +
+      (table ? "Table Number: " + table + "\n" : "") +
+      "Total: RM " + money(total) + "\n" +
+      "Saved to Firestore successfully.\n" +
+      "Order ID: " + docRef.id;
 
-    const order = {
-        orderNumber,
-        customer,
-        orderType: type,
-        table,
-        description,
-        items,
-        total,
-        status: "NEW",
-        time: new Date().toISOString(),
-        createdAt: serverTimestamp()
-    };
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
-
-    try {
-        const docRef = await addDoc(
-            collection(db, "orders"),
-            order
-        );
-
-        message.textContent =
-            "✅ Order Successful!\n\n" +
-            "Order Number: " + orderNumber + "\n" +
-            "Name: " + customer + "\n" +
-            "Order Type: " + type + "\n" +
-            (table ? "Table Number: " + table + "\n" : "") +
-            "Total: RM " + money(total) + "\n\n" +
-            "Your order has been saved to Firebase.\n" +
-            "Order ID: " + docRef.id;
-
-        cart.clear();
-        renderCart();
-        orderForm.reset();
-        updateTableField();
-
-    } catch (error) {
-        console.error("Order save failed:", error);
-
-        message.textContent =
-            "❌ Order Failed. Your order was not confirmed.\n" +
-            "Please check your internet connection, Firebase " +
-            "configuration and Firestore rules, then try again.";
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Confirm Order";
-    }
+    cart.clear();
+    renderCart();
+    orderForm.reset();
+    updateTableField();
+  } catch (error) {
+    console.error("Order save failed:",error);
+    message.textContent =
+      "❌ Order was not saved.\n" +
+      "Error: " + (error.code || error.message) + "\n" +
+      "Check your Firebase project, internet connection and Firestore rules.";
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Confirm Order";
+  }
 });
 </script>
-
 </body>
 </html>
 ```
